@@ -28,7 +28,7 @@
             </thead>
             <tbody>
 
-            <% @course.each do |course| %>
+            <% @course.each do |course| %>   <!-- #双||表示内部的局部变量 -->
                 <tr>
 
                   <td><%= course.course_code %></td>
