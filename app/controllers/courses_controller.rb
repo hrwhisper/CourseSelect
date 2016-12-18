@@ -46,16 +46,25 @@ class CoursesController < ApplicationController
   def open
     @course = Course.find_by_id(params[:id])
     @course.open = true
-    @course.save
-    redirect_to courses_path, flash: {:success => "已经成功开启该课程:#{ @course.name}"}
+    if @course.save
+      flash={:success => "已经成功关闭该课程:#{ @course.name}"}
+    else
+      flash={:warning => "开启失败"}
+    end
+    redirect_to courses_path, flash: flash
   end
 
   def close
     @course = Course.find_by_id(params[:id])
     @course.open = false
-    @course.save
-    redirect_to courses_path, flash: {:success => "已经成功关闭该课程:#{ @course.name}"}
+    if @course.save
+      flash={:success => "已经成功关闭该课程:#{ @course.name}"}
+    else
+      flash={:warning => "关闭失败"}
+    end
+    redirect_to courses_path, flash: flash
   end
+
   #-------------------------for students----------------------
 
   def list
@@ -83,8 +92,19 @@ class CoursesController < ApplicationController
   def index
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
-  end
 
+    @course_time = Array.new(11) { Array.new(7, '') }
+    @course.each do |cur|
+      cur_time = String(cur.course_time)
+      end_i = cur_time.index('(')
+      end_j = cur_time.index(')')
+      j = weekdate_to_num(cur_time[0...end_i])
+      t = cur_time[end_i + 1...end_j].split("-")
+      (t[0].to_i..t[1].to_i).each do |i|
+        @course_time[(i-1)*7/7][j-1] = cur.name
+      end
+    end
+  end
 
   private
 
@@ -114,5 +134,16 @@ class CoursesController < ApplicationController
                                    :credit, :limit_num, :class_room, :course_time, :course_week)
   end
 
-
+  def weekdate_to_num(week_data)
+    param = {
+        '周一' => 0,
+        '周二' => 1,
+        '周三' => 2,
+        '周四' => 3,
+        '周五' => 4,
+        '周六' => 5,
+        '周天' => 6,
+    }
+    param[week_data] + 1
+  end
 end

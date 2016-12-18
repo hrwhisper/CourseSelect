@@ -9,8 +9,10 @@
 
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
-          <% if teacher_logged_in? %><h3 class="panel-title">授课列表</h3><% end %>
-          <% if student_logged_in? %><h3 class="panel-title">已选课程</h3><% end %>
+          <% if teacher_logged_in? %><h3 class="panel-title">授课列表</h3>
+          <% end %>
+          <% if student_logged_in? %><h3 class="panel-title">已选课程</h3>
+          <% end %>
         </div>
 
         <div class="panel-body">
@@ -22,6 +24,7 @@
               <th>课时/学分</th>
               <th>考试方式</th>
               <th>主讲教师</th>
+              <th>上课时间</th>
             </tr>
 
             <tbody>
@@ -33,7 +36,7 @@
                   <td><%= course.credit %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-
+                  <td><%= course.course_time %></td>
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       <% if course.open %>
@@ -50,6 +53,37 @@
             </tbody>
           </table>
 
+        </div>
+      </div>
+      <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+          我的课程表
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <td></td>
+            <td>星期一</td>
+            <td>星期二</td>
+            <td>星期三</td>
+            <td>星期四</td>
+            <td>星期五</td>
+            <td>星期六</td>
+            <td>星期天</td>
+            </thead>
+            <tbody>
+            <% (0...@course_time.length).each do |i| %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <% (0...@course_time[i].length).each do |j| %>
+                      <td>
+                        <%= @course_time[i][j] %>
+                      </td>
+                  <% end %>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
