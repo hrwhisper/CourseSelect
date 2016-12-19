@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-
+  include CoursesHelper
   before_action :student_logged_in, only: [:select, :quit, :list]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
   before_action :logged_in, only: :index
@@ -68,8 +68,20 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    @course=Course.where('open = true')
-    @course=@course-current_user.courses
+    @course_to_choose=Course.where('open = true')-current_user.courses
+    @course=current_user.teaching_courses if teacher_logged_in?
+    @course=current_user.courses if student_logged_in?
+    @course_time = get_current_curriculum_table(@course)
+  end
+
+  def choose_course
+    ids = params[:course_to_choose]
+    # todo check ids is nil
+    # todo 检查课程冲突
+    @course = Course.find(ids)
+    current_user.courses<<@course
+    flash={:success => "成功选择课程"}
+    redirect_to courses_path, flash: flash
   end
 
   def select
@@ -92,19 +104,15 @@ class CoursesController < ApplicationController
   def index
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
-
-    @course_time = Array.new(11) { Array.new(7, '') }
-    @course.each do |cur|
-      cur_time = String(cur.course_time)
-      end_i = cur_time.index('(')
-      end_j = cur_time.index(')')
-      j = weekdate_to_num(cur_time[0...end_i])
-      t = cur_time[end_i + 1...end_j].split("-")
-      (t[0].to_i..t[1].to_i).each do |i|
-        @course_time[(i-1)*7/7][j-1] = cur.name
-      end
-    end
+    @course_time = get_current_curriculum_table(@course)
   end
+
+  def curriculum
+    @course=current_user.teaching_courses if teacher_logged_in?
+    @course=current_user.courses if student_logged_in?
+    render :json => @course
+  end
+
 
   private
 
@@ -134,16 +142,5 @@ class CoursesController < ApplicationController
                                    :credit, :limit_num, :class_room, :course_time, :course_week)
   end
 
-  def weekdate_to_num(week_data)
-    param = {
-        '周一' => 0,
-        '周二' => 1,
-        '周三' => 2,
-        '周四' => 3,
-        '周五' => 4,
-        '周六' => 5,
-        '周天' => 6,
-    }
-    param[week_data] + 1
-  end
+
 end

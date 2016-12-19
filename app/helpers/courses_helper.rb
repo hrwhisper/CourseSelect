@@ -1,0 +1,31 @@
+module CoursesHelper
+  def week_data_to_num(week_data)
+    param = {
+        '周一' => 0,
+        '周二' => 1,
+        '周三' => 2,
+        '周四' => 3,
+        '周五' => 4,
+        '周六' => 5,
+        '周天' => 6,
+    }
+    param[week_data] + 1
+  end
+
+
+
+  def get_current_curriculum_table(courses)
+    course_time = Array.new(11) { Array.new(7, '') }
+    courses.each do |cur|
+      cur_time = String(cur.course_time)
+      end_j = cur_time.index('(')
+      j = week_data_to_num(cur_time[0...end_j])
+      t = cur_time[end_j + 1...cur_time.index(')')].split("-")
+      for i in (t[0].to_i..t[1].to_i).each
+        course_time[(i-1)*7/7][j-1] = cur.name
+      end
+    end
+    course_time
+  end
+
+end

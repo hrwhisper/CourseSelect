@@ -30,7 +30,6 @@
             <tbody>
             <% @course.each do |course| %>
                 <tr>
-
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
                   <td><%= course.credit %></td>
@@ -55,37 +54,9 @@
 
         </div>
       </div>
-      <div class="panel panel-primary filterable">
-        <div class="panel-heading">
-          我的课程表
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-            <td></td>
-            <td>星期一</td>
-            <td>星期二</td>
-            <td>星期三</td>
-            <td>星期四</td>
-            <td>星期五</td>
-            <td>星期六</td>
-            <td>星期天</td>
-            </thead>
-            <tbody>
-            <% (0...@course_time.length).each do |i| %>
-                <tr>
-                  <td><%= i+1 %></td>
-                  <% (0...@course_time[i].length).each do |j| %>
-                      <td>
-                        <%= @course_time[i][j] %>
-                      </td>
-                  <% end %>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
+
+      <%= render 'courses/curriculum_table' %>
+
     </div>
   </div>
 </div>
