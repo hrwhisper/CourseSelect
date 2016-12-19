@@ -11,42 +11,45 @@
         </div>
         <div class="panel-body" style="min-height: 450px">
           <%= form_tag("/courses/choose_course", method: "post") do %>
-            <table class="table table-striped table-hover">
-              <thead>
-              <tr>
-                <th>课程编号</th>
-                <th>课程名称</th>
-                <th>课时/学分</th>
-                <th>限选</th>
-                <th>已选</th>
-                <th>课程属性</th>
-                <th>授课方式</th>
-                <th>考试方式</th>
-                <th>主讲教师</th>
+              <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>课程编号</th>
+                  <th>课程名称</th>
+                  <th>课时/学分</th>
+                  <th>限选</th>
+                  <th>已选</th>
+                  <th>课程属性</th>
+                  <th>授课方式</th>
+                  <th>考试方式</th>
+                  <th>主讲教师</th>
+                  <th>上课时间</th>
+                </tr>
+                </thead>
+                <tbody>
 
-              </tr>
-              </thead>
-              <tbody>
-
-              <% @course_to_choose.each do |course_to_choose| %>   <!-- #双||表示内部的局部变量 -->
-                  <tr>
-                    <td><%= check_box_tag 'course_to_choose[]', course_to_choose.id%></td>
-                    <td><%= course_to_choose.course_code %></td>
-                    <td><%= course_to_choose.name %></td>
-                    <td><%= course_to_choose.credit %></td>
-                    <td><%= course_to_choose.limit_num %></td>
-                    <td><%= course_to_choose.student_num %></td>
-                    <td><%= course_to_choose.course_type %></td>
-                    <td><%= course_to_choose.teaching_type %></td>
-                    <td><%= course_to_choose.exam_type %></td>
-                    <td><%= course_to_choose.teacher.name %></td>
-                    <td><%= link_to "加入课程", select_course_path(course_to_choose), class: 'btn-sm btn-info' %></td>
-                  </tr>
-              <% end %>
-              </tbody>
-            </table>
-            <button type="submit" class="btn btn-default">提交</button>
-          <%end %>
+                <% @course_to_choose.each do |course_to_choose| %>   <!-- #双||表示内部的局部变量 -->
+                    <tr>
+                      <td><%= check_box_tag 'course_to_choose[]', course_to_choose.id, false, 'alt' =>
+                          course_to_choose.name + '|'+
+                              course_to_choose.course_time %></td>
+                      <td><%= course_to_choose.course_code %></td>
+                      <td><%= course_to_choose.name %></td>
+                      <td><%= course_to_choose.credit %></td>
+                      <td><%= course_to_choose.limit_num %></td>
+                      <td><%= course_to_choose.student_num %></td>
+                      <td><%= course_to_choose.course_type %></td>
+                      <td><%= course_to_choose.teaching_type %></td>
+                      <td><%= course_to_choose.exam_type %></td>
+                      <td><%= course_to_choose.teacher.name %></td>
+                      <td><%= course_to_choose.course_time %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <button type="submit" class="btn btn-default">提交</button>
+          <% end %>
         </div>
       </div>
       <%= render 'courses/curriculum_table' %>
@@ -55,3 +58,64 @@
 </div>
 
 
+
+<script type="text/javascript" charset="utf-8">
+    var param = {
+        '周一': 0,
+        '周二': 1,
+        '周三': 2,
+        '周四': 3,
+        '周五': 4,
+        '周六': 5,
+        '周天': 6
+    };
+
+    function week_data_to_num(week_data) {
+        return param[week_data] + 1;
+    }
+
+    $('input:checkbox').change(
+        function () {
+            var res = update_course_table($(this).attr('alt'), $(this).is(':checked'));
+            if(!res && $(this).is(':checked'))
+              $(this).removeAttr('checked');
+        });
+
+    function parse_course_time(cur_course) {
+         cur_course = cur_course.split('|');
+        var cur_time = cur_course[1];
+        var end_j = cur_time.indexOf('(');
+        var col = week_data_to_num(cur_time.substring(0, end_j));
+        var t = cur_time.substring(end_j + 1, cur_time.indexOf(')')).split('-');
+        return {
+            'name': cur_course[0],
+            'start': parseInt(t[0]),
+            'end': parseInt(t[1]),
+            'col': col
+        };
+    }
+
+    function check_course_conflict(data) {
+        for (var row = data['start']; row <= data['end']; row++) {
+            var text = $('.row' + row + '.col' + data['col']).text();
+            if (text != '') return text;
+        }
+        return null;
+    }
+
+    function update_course_table(cur_course, add) {
+        var data = parse_course_time(cur_course);
+        if (add) {
+            var res = check_course_conflict(data);
+            if (res != null) {
+                alert('你选择的课和' + res + '冲突');
+                return false;
+            }
+        }
+        for (var row = data['start']; row <= data['end']; row++) {
+            $('.row' + row + '.col' + data['col']).text(add ? data['name'] : '');
+        }
+        return true;
+    }
+
+</script>
