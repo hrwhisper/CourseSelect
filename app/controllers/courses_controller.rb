@@ -69,6 +69,13 @@ class CoursesController < ApplicationController
   def student_list
     @course = Course.find_by_id(params[:id])
     @user = @course.users
+    @user_department = {}
+    @user.each do |user|
+      if !@user_department.has_key?(user.department)
+        @user_department[user.department] =0
+      end
+      @user_department[user.department] += 1
+    end
   end
 
   #-------------------------for students----------------------
