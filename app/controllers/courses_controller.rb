@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   include CoursesHelper
   before_action :student_logged_in, only: [:select, :quit, :list]
-  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update]
+  before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :student_list]
   before_action :logged_in, only: :index
 
   #-------------------------for teachers----------------------
@@ -63,6 +63,12 @@ class CoursesController < ApplicationController
       flash={:warning => "关闭失败"}
     end
     redirect_to courses_path, flash: flash
+  end
+
+
+  def student_list
+    @course = Course.find_by_id(params[:id])
+    @user = @course.users
   end
 
   #-------------------------for students----------------------
