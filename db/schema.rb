@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121082054) do
+ActiveRecord::Schema.define(version: 20161220030406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20161121082054) do
     t.string   "exam_type"
     t.string   "credit"
     t.integer  "limit_num"
-    t.integer  "student_num",   default: 0
     t.string   "class_room"
     t.string   "course_time"
     t.string   "course_week"

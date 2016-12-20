@@ -12,7 +12,12 @@ module CoursesHelper
     param[week_data] + 1
   end
 
-
+  # def get_course_list()
+  #   @course_to_choose=Course.where('open = true')-current_user.courses
+  #   @course=current_user.teaching_courses if teacher_logged_in?
+  #   @course=current_user.courses if student_logged_in?
+  #   @course_time = get_current_curriculum_table(@course)
+  # end
 
   def get_current_curriculum_table(courses)
     course_time = Array.new(11) { Array.new(7, '') }

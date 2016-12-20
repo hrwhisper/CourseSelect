@@ -22,6 +22,10 @@
               <th>课程编号</th>
               <th>课程名称</th>
               <th>课时/学分</th>
+              <% if teacher_logged_in? %>
+                  <th>限选人数</th>
+                  <th>已选人数</th>
+              <% end %>
               <th>考试方式</th>
               <th>主讲教师</th>
               <th>上课时间</th>
@@ -33,20 +37,24 @@
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
                   <td><%= course.credit %></td>
+                  <% if teacher_logged_in? %>
+                      <td><%= course.limit_num %></td>
+                      <td><%= course.users.size %></td>
+                  <% end %>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
                   <td><%= course.course_time %></td>
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       <% if course.open %>
-                          <td><%= link_to "关闭", close_course_url(course), class: 'btn btn-xs btn-danger' %></td>
+                          <td><%= link_to "关闭", close_course_url(course), class: 'btn btn-xs btn-warning' %></td>
                       <% else %>
                           <td><%= link_to "开课", open_course_url(course), class: 'btn btn-xs btn-success' %></td>
                       <% end %>
                       <td><%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger', :data => {confirm: '确定要删除此课程?'} %></td>
                   <% elsif student_logged_in? %>
                       <td><%= link_to "删除", quit_course_path(course), class: 'btn-sm btn-danger' %></td>
-                  <% end %>
+    %             <% end %>
                 </tr>
             <% end %>
             </tbody>
