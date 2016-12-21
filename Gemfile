@@ -73,3 +73,7 @@ group :test do
   gem 'capybara' # lets Cucumber pretend to be a web browser
   gem 'launchy' # a useful debugging aid for user stories
 end
+
+group :development, :test do
+  gem 'rspec-rails',      ">= 3.0.0.beta"
+end
