@@ -6,7 +6,7 @@ RailsAdmin.config do |config|
 
   # config.authorize_with :cancan, AdminAbility
 
-  config.included_models = ['User','Course','Grade']
+  config.included_models = ['User', 'Course', 'Grade', 'Notice']
 
   # config.model ['Relationship'] do
   #   navigation_label 'Association'
@@ -45,9 +45,9 @@ RailsAdmin.config do |config|
 
   config.actions do
     # root actions
-    dashboard                     # mandatory
+    dashboard # mandatory
     # collection actions
-    index                         # mandatory
+    index # mandatory
     new
     export
     history_index
