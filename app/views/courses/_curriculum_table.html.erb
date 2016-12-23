@@ -15,11 +15,11 @@
       <td>星期天</td>
       </thead>
       <tbody>
-      <% (0...@course_time.length).each do |i| %>
+      <% (0...@course_time_table.length).each do |i| %>
           <tr>
             <td><%= i+1 %></td>
-            <% (0...@course_time[i].length).each do |j| %>
-                <td class='row<%= i+1 %> col<%=j+1%>'><%= @course_time[i][j] %></td>
+            <% (0...@course_time_table[i].length).each do |j| %>
+                <td class='row<%= i+1 %> col<%=j+1%>'><%= @course_time_table[i][j] %></td>
             <% end %>
           </tr>
       <% end %>

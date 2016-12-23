@@ -1,3 +1,5 @@
+require 'set'
+
 module CoursesHelper
   def week_data_to_num(week_data)
     param = {
@@ -31,6 +33,14 @@ module CoursesHelper
       end
     end
     course_time
+  end
+
+  def get_course_info(courses, type)
+    res = Set.new
+    courses.each do |course|
+      res.add(course[type])
+    end
+    res.to_a.sort
   end
 
 end

@@ -84,7 +84,12 @@ class CoursesController < ApplicationController
     @course_to_choose=Course.where('open = true')-current_user.courses
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
-    @course_time = get_current_curriculum_table(@course)
+    @course_time_table = get_current_curriculum_table(@course)
+
+    @course_time = get_course_info(@course_to_choose,'course_time')
+    @course_exam_type = get_course_info(@course_to_choose,'exam_type')
+    @course_teacher = get_course_info(@course_to_choose,'teacher')
+
   end
 
   def choose_course
@@ -117,7 +122,7 @@ class CoursesController < ApplicationController
   def index
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
-    @course_time = get_current_curriculum_table(@course)
+    @course_time_table = get_current_curriculum_table(@course)
   end
 
   def curriculum

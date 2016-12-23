@@ -119,7 +119,17 @@ Finished in 1.202169s, 7.4865 runs/s, 16.6366 assertions/s.
 9 runs, 20 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-
+###cucumber
+```
+运行准备：
+rails generate cucumber:install capybara
+rails generate cucumber_rails_training_wheels:install
+rails generate rspec:install
+rake db:test:prepare
+运行：
+cucumber (全部执行)
+cucumber features/XX.feature (执行XX测试，.feature文件在features文件夹下)
+```
 
 ## 添加的功能
 
@@ -129,22 +139,23 @@ Finished in 1.202169s, 7.4865 runs/s, 16.6366 assertions/s.
 4. ~~查看选自己课的学生学生信息~~
 5. ~~学生信息统计可视化~~
 6. ~~管理员在首页发公告~~
-7. 选课方式修改
-8. 选课人数-并发考虑
-9. 选课结果邮件通知
+7. 编辑、查看课程大纲
+8. Discuss功能
+9. 课程评价
 10. 通过学期、时间等筛选课程
-11. 编辑、查看课程大纲
-12. GPA目标计算
-13. Discuss功能
-14. 查询评估结果及可视化
-15. 课程成绩分布可视化
-16. 选课时间限制
-17. 总分数统计
-18. 课程评价
-19. 每学期成绩分数统计
-20. 查看以往学期所授课程
-21. 获取课程名单EXCEL表格
-22. Excel成绩导入
+11. 查看以往学期所授课程
+12. 选课时间限制
+13. 获取课程名单EXCEL表格
+14. Excel成绩导入
+15. 选课方式修改
+16. 选课人数-并发考虑
+17. 选课结果邮件通知
+18. GPA目标计算
+19. 查询评估结果及可视化
+20. 课程成绩分布可视化
+21. 总分数统计
+22. 每学期成绩分数统计
+23. 获取课程名单EXCEL表格
 
 
 
