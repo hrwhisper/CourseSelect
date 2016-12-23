@@ -130,7 +130,11 @@ class CoursesController < ApplicationController
     @course=current_user.courses if student_logged_in?
     render :json => @course
   end
-
+  
+  def course_outline
+     @course = Course.find_by_id(params[:id])
+     @coursetmp=current_user.teaching_courses if teacher_logged_in?
+  end
 
   private
 
@@ -157,7 +161,7 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week)
+                                   :credit, :limit_num, :class_room, :course_time, :course_week,:outline)
   end
 
 
