@@ -1,5 +1,5 @@
 class AddOpenToCourse < ActiveRecord::Migration
   def change
-    add_column :courses, :outline, :text, :default => false
+    add_column :courses, :open, :boolean, :default => false
   end
 end

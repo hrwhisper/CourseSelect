@@ -86,9 +86,9 @@ class CoursesController < ApplicationController
     @course=current_user.courses if student_logged_in?
     @course_time_table = get_current_curriculum_table(@course)
 
-    @course_time = get_course_info(@course_to_choose,'course_time')
-    @course_exam_type = get_course_info(@course_to_choose,'exam_type')
-    @course_teacher = get_course_info(@course_to_choose,'teacher')
+    @course_time = get_course_info(@course_to_choose, 'course_time')
+    @course_exam_type = get_course_info(@course_to_choose, 'exam_type')
+    @course_teacher = get_course_info(@course_to_choose, 'teacher')
 
   end
 
@@ -130,10 +130,10 @@ class CoursesController < ApplicationController
     @course=current_user.courses if student_logged_in?
     render :json => @course
   end
-  
+
   def course_outline
-     @course = Course.find_by_id(params[:id])
-     @coursetmp=current_user.teaching_courses if teacher_logged_in?
+    @course = Course.find_by_id(params[:id])
+    @coursetmp=current_user.teaching_courses if teacher_logged_in?
   end
 
   private
@@ -161,7 +161,7 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week,:outline)
+                                   :credit, :limit_num, :class_room, :course_time, :course_week, :outline)
   end
 
 
