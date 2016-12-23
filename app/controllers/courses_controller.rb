@@ -92,6 +92,18 @@ class CoursesController < ApplicationController
 
   end
 
+  def search_courses
+    @course_to_choose=Course.where("course_time = '#{params[:course_time]}'")-current_user.courses
+    @course=current_user.teaching_courses if teacher_logged_in?
+    @course=current_user.courses if student_logged_in?
+    @course_time_table = get_current_curriculum_table(@course)
+
+    @course_time = get_course_info(@course_to_choose, 'course_time')
+    @course_exam_type = get_course_info(@course_to_choose, 'exam_type')
+    @course_teacher = get_course_info(@course_to_choose, 'teacher')
+    render list_courses_path
+  end
+
   def choose_course
     ids = params[:course_to_choose]
     # todo check ids is nil

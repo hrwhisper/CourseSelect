@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get :course_outline
     end
     collection do
+      post :search_courses
       post :choose_course
       get :list
       get :curriculum
