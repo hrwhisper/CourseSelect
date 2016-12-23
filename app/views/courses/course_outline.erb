@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-2">
+      <%= render "shared/sidenav" %>
+    </div>
+
+    <div class="col-sm-10" style="text-align:center;">
+      <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+              《<%= @course.name %> 》课程大纲
+          </h4>
+        </div>
+                           </br>
+        <div id="button-edit">
+        <% if teacher_logged_in?  %>
+              <% @coursetmp.each do |coursetmp| %>
+                  <% if @course == coursetmp  %>
+                     <%= link_to "点击修改课程大纲", edit_course_url(@course), class: 'btn btn-xs btn-info' %>
+                  <% end %>
+             <% end %>
+        <% end %>
+        <%= link_to "查看课程Discuss信息", edit_course_url(@course), class: 'btn btn-xs btn-info' %>
+          <div class="panel-body">
+            <div class="table-responsive">
+                       <%= @course.outline%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

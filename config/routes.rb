@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :open
       get :close
       get :student_list
+      get :course_outline
     end
     collection do
       post :choose_course
