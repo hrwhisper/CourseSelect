@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224120318) do
+ActiveRecord::Schema.define(version: 20161224122651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20161224120318) do
     t.text     "outline",       default: "本课程暂无大纲"
   end
 
+  create_table "courses_semesters", id: false, force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "semester_id"
+  end
+
+  add_index "courses_semesters", ["course_id"], name: "index_courses_semesters_on_course_id", using: :btree
+  add_index "courses_semesters", ["semester_id"], name: "index_courses_semesters_on_semester_id", using: :btree
+
   create_table "grades", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "user_id"
@@ -54,14 +62,6 @@ ActiveRecord::Schema.define(version: 20161224120318) do
   end
 
   add_index "notices", ["user_id"], name: "index_notices_on_user_id", using: :btree
-
-  create_table "semester_infos", id: false, force: :cascade do |t|
-    t.integer "course_id"
-    t.integer "semester_id"
-  end
-
-  add_index "semester_infos", ["course_id"], name: "index_semester_infos_on_course_id", using: :btree
-  add_index "semester_infos", ["semester_id"], name: "index_semester_infos_on_semester_id", using: :btree
 
   create_table "semesters", force: :cascade do |t|
     t.integer "year"

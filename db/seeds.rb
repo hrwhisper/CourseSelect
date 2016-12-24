@@ -34,6 +34,9 @@ Course.create!([
   {name: "数据库新技术", course_code: "093M2007H", course_type: "一级学科普及课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "40/2.0", limit_num: nil, class_room: "教1-107", course_time: "周一(3-4)", course_week: "第2-12周\t", teacher_id: 34, open: true, outline: "本课程暂无大纲"},
   {name: "Python语言导论", course_code: "09MGX005H", course_type: "公共选修课", teaching_type: "课堂讲授为主", exam_type: "课堂开卷", credit: "40/1.0", limit_num: 154, class_room: "教1-108", course_time: "周二(7-8)", course_week: "第4-14周\t", teacher_id: 35, open: true, outline: "本课程暂无大纲"}
 ])
+Course::HABTM_Semester.create!([
+  {course_id: 1, semester_id: 3}
+])
 Grade.create!([
   {course_id: 33, user_id: 36, grade: nil},
   {course_id: 19, user_id: 36, grade: nil},
@@ -1215,6 +1218,14 @@ Grade.create!([
   {course_id: 32, user_id: 235, grade: nil},
   {course_id: 7, user_id: 235, grade: nil},
   {course_id: 16, user_id: 235, grade: nil}
+])
+Semester.create!([
+  {year: 2015, num: 1},
+  {year: 2015, num: 2},
+  {year: 2016, num: 1}
+])
+Semester::HABTM_Course.create!([
+  {course_id: 1, semester_id: 3}
 ])
 User.create!([
   {name: "彭兆卿", email: "admin@test.com", num: "201628008629001", major: "计算机软件与理论", department: "计算机与控制学院", password_digest: "$2a$10$rZyE8URfPMJFSNUFEDRSBODJJHy8O0HfeSKCeDlqTiqdrTNCzB5UO", remember_digest: nil, admin: true, teacher: false},
