@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     collection do
       post :choose_course
       get :list
+      post :list
       get :curriculum
     end
   end

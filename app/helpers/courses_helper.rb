@@ -43,4 +43,11 @@ module CoursesHelper
     res.to_a.sort
   end
 
+  def check_course_condition(course, key, value)
+    if value == '' or course[key] == value
+      return true
+    end
+    false
+  end
+
 end

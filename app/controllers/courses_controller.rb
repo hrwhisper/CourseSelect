@@ -88,9 +88,19 @@ class CoursesController < ApplicationController
 
     @course_time = get_course_info(@course_to_choose, 'course_time')
     @course_exam_type = get_course_info(@course_to_choose, 'exam_type')
-    @course_teacher = get_course_info(@course_to_choose, 'teacher')
-
+    # @course_teacher = get_course_info(@course_to_choose, 'teacher')
+    if request.post?
+      res = []
+      @course_to_choose.each do |course|
+        if check_course_condition(course, 'course_time', params['course_time']) and
+            check_course_condition(course, 'exam_type', params['exam_type'])
+          res << course
+        end
+        @course_to_choose=res
+      end
+    end
   end
+
 
   def choose_course
     ids = params[:course_to_choose]
