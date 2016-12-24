@@ -23,6 +23,7 @@ class CoursesController < ApplicationController
 
   def edit
     @course=Course.find_by_id(params[:id])
+    @semester = @course.semesters[0] # semester_format(@course.semesters[0])
   end
 
   def update
