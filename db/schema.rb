@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222075759) do
+ActiveRecord::Schema.define(version: 20161224035319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.integer  "comment_1"
+    t.integer  "comment_2"
+    t.integer  "comment_3"
+    t.integer  "comment_4"
+    t.integer  "comment_5"
+    t.integer  "comment_6"
+    t.integer  "comment_7"
+    t.integer  "comment_8"
+    t.integer  "comment_9"
+    t.integer  "comment_10"
+    t.integer  "comment_11"
+    t.integer  "comment_12"
+    t.integer  "comment_13"
+    t.integer  "comment_14"
+    t.integer  "comment_15"
+    t.integer  "comment_16"
+    t.integer  "comment_17"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["course_id"], name: "index_comments_on_course_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
