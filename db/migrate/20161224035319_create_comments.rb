@@ -1,6 +1,8 @@
 class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
+      t.belongs_to :course, index: true
+      t.belongs_to :user, index: true
       t.integer :comment_1
       t.integer :comment_2
       t.integer :comment_3
