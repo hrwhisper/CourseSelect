@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get :close
       get :student_list
       get :course_outline
+      get :course_discuss
     end
     collection do
       post :choose_course
@@ -33,8 +34,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :discusss
+  resources :discussions
+  
+  
   resources :grades, only: [:index, :update]
   resources :users
+
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'

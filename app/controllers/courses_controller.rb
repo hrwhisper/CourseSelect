@@ -135,6 +135,20 @@ class CoursesController < ApplicationController
     @course = Course.find_by_id(params[:id])
     @coursetmp=current_user.teaching_courses if teacher_logged_in?
   end
+  
+  
+  def course_discuss
+   @course = Course.find_by_id(params[:id])
+   @discuss = @course.discussions
+   if @course.diss=="暂无人发言"
+      @course.diss="匿名用户："
+   end
+   if @course.tmp!=nil
+     @course.diss += @course.tmp
+   end
+   #@course.diss = @course.diss + "匿名用户"
+   #@course.diss = @course.diss + @course.tmp
+  end
 
   private
 
@@ -161,8 +175,7 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week, :outline)
+                                   :credit, :limit_num, :class_room, :course_time, :course_week, :tmp,:outline,:diss,:discussion,:discussions,:discuss,:discussess)
   end
-
 
 end
