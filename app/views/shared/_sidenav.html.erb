@@ -94,4 +94,47 @@
       </div>
     </div>
   </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <% if teacher_logged_in? %>
+            <a data-toggle="collapse" data-parent="#accordion" href="#CommentCollapse"><span class="glyphicon glyphicon-user"></span>
+              评估结果</a>
+        <% end %>
+
+        <% if student_logged_in? %>
+            <a data-toggle="collapse" data-parent="#accordion" href="#CommentCollapse"><span class="glyphicon glyphicon-user"></span>
+              评估课程</a>
+        <% end %>
+      </h4>
+    </div>
+
+    <div id="CommentCollapse" class="panel-collapse collapse <%= "in" if ["comments"].include?(params[:controller]) %>">
+      <div class="list-group">
+
+        <% if teacher_logged_in? %>
+            <% current_user.teaching_courses.each do |course| %>
+                <li class="list-group-item">
+                  <%= link_to comments_path(course_id: course.id), :method => :get do %>
+                      <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+                      <span class="label label-info pull-right"><%= course.users.length %></span>
+                  <% end %>
+                </li>
+            <% end %>
+
+        <% end %>
+
+        <% if student_logged_in? %>
+            <li class="list-group-item">
+              <%= link_to comments_path do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 评估课程
+              <% end %>
+            </li>
+        <% end %>
+
+      </div>
+    </div>	
+  </div>
+  
 </div>
