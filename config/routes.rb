@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'grades/export' =>"grades#export"
+  post 'grades/import' =>"grades#import"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
       get :close
       get :student_list
       get :course_outline
+      get :course_discuss
     end
     collection do
       post :choose_course
@@ -34,9 +37,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :discusss
+  resources :discussions
+  
+  
   resources :grades, only: [:index, :update]
   resources :users
   resources :comments
+
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'

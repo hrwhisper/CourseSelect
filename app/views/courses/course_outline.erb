@@ -20,7 +20,7 @@
                   <% end %>
              <% end %>
         <% end %>
-        <%= link_to "查看课程Discuss信息", edit_course_url(@course), class: 'btn btn-xs btn-info' %>
+       <%= link_to "查看课程Discuss信息",course_discuss_course_url(@course), class: 'btn btn-xs btn-info' %>
           <div class="panel-body">
             <div class="table-responsive">
                        <%= @course.outline%>
