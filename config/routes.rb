@@ -36,7 +36,14 @@ Rails.application.routes.draw do
 
   resources :grades, only: [:index, :update]
   resources :users
-  resources :comments
+  resources :comments do
+    member do
+    end
+    collection do
+      get :list
+    end
+  end
+  
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
