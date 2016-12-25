@@ -1,3 +1,5 @@
 class Semester < ActiveRecord::Base
-  has_and_belongs_to_many :courses
+  has_many :courses_semester
+  has_many :courses, through: :courses_semester
+  accepts_nested_attributes_for :courses
 end

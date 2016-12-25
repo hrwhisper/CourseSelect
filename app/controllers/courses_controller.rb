@@ -23,11 +23,13 @@ class CoursesController < ApplicationController
 
   def edit
     @course=Course.find_by_id(params[:id])
-    @semester = @course.semesters[0] # semester_format(@course.semesters[0])
+    # @semester = @course.semester # semester_format(@course.semesters[0])
   end
 
   def update
     @course = Course.find_by_id(params[:id])
+    puts('--------')
+
     if @course.update_attributes(course_params)
       flash={:info => "更新成功"}
     else
@@ -171,9 +173,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week, :outline)
+    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type, :credit,
+                                   :limit_num, :class_room, :course_time, :course_week, :outline, :semester_attributes)
   end
-
-
 end

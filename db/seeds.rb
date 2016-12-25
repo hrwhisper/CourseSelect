@@ -1,6 +1,9 @@
+Comment.create!([
+  {course_id: 1, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil},
+  {course_id: 3, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil}
+])
 Course.create!([
   {name: "计算机体系结构", course_code: "091M4001H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 2, class_room: "教1-107", course_time: "周一(9-11)", course_week: "第2-20周", teacher_id: 2, open: true, outline: "本课程暂无大纲"},
-  {name: "计算机网络", course_code: "091M4002H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: nil, class_room: "教1-107", course_time: "周五(2-4)", course_week: "第2-20周\t", teacher_id: 3, open: true, outline: "本课程暂无大纲"},
   {name: "高级软件工程", course_code: "091M4021H-1", course_type: "一级学科核心课", teaching_type: "授课、讨论\t", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: nil, class_room: "教1-109", course_time: "周四(9-11)", course_week: "第2-20周\t", teacher_id: 4, open: true, outline: "本课程暂无大纲"},
   {name: "高级软件工程", course_code: "091M4021H-2", course_type: "一级学科核心课", teaching_type: "授课、讨论\t", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: nil, class_room: "教1-109", course_time: "周三(9-11)", course_week: "第2-20周\t", teacher_id: 5, open: true, outline: "本课程暂无大纲"},
   {name: "数理逻辑与程序理论", course_code: "091M4023H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: nil, class_room: "教1-113", course_time: "周二(5-7)", course_week: "第2-20周\t", teacher_id: 6, open: true, outline: "本课程暂无大纲"},
@@ -32,10 +35,44 @@ Course.create!([
   {name: "计算机算法设计与分析", course_code: "093M1002H-2", course_type: "一级学科核心课", teaching_type: "讲课、上机", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 150, class_room: "教1-108", course_time: "周三(1-2)", course_week: "第2-17周\t", teacher_id: 32, open: true, outline: "本课程暂无大纲"},
   {name: "计算机算法设计与分析", course_code: "093M1002H-3", course_type: "一级学科核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 220, class_room: "教1-101", course_time: "周二(3-4)", course_week: "第5-20周\t", teacher_id: 33, open: true, outline: "本课程暂无大纲"},
   {name: "数据库新技术", course_code: "093M2007H", course_type: "一级学科普及课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "40/2.0", limit_num: nil, class_room: "教1-107", course_time: "周一(3-4)", course_week: "第2-12周\t", teacher_id: 34, open: true, outline: "本课程暂无大纲"},
-  {name: "Python语言导论", course_code: "09MGX005H", course_type: "公共选修课", teaching_type: "课堂讲授为主", exam_type: "课堂开卷", credit: "40/1.0", limit_num: 154, class_room: "教1-108", course_time: "周二(7-8)", course_week: "第4-14周\t", teacher_id: 35, open: true, outline: "本课程暂无大纲"}
+  {name: "Python语言导论", course_code: "09MGX005H", course_type: "公共选修课", teaching_type: "课堂讲授为主", exam_type: "课堂开卷", credit: "40/1.0", limit_num: 154, class_room: "教1-108", course_time: "周二(7-8)", course_week: "第4-14周\t", teacher_id: 35, open: true, outline: "本课程暂无大纲"},
+  {name: "计算机网络", course_code: "091M4002H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 50, class_room: "教1-107", course_time: "周五(2-4)", course_week: "第2-20周\t", teacher_id: 3, open: true, outline: "本课程暂无大纲"}
 ])
-Course::HABTM_Semester.create!([
-  {course_id: 1, semester_id: 3}
+CoursesSemester.create!([
+  {course_id: 1, semester_id: 3},
+  {course_id: 2, semester_id: 3},
+  {course_id: 3, semester_id: 3},
+  {course_id: 4, semester_id: 3},
+  {course_id: 5, semester_id: 3},
+  {course_id: 6, semester_id: 3},
+  {course_id: 7, semester_id: 3},
+  {course_id: 8, semester_id: 3},
+  {course_id: 9, semester_id: 3},
+  {course_id: 10, semester_id: 3},
+  {course_id: 11, semester_id: 3},
+  {course_id: 12, semester_id: 3},
+  {course_id: 13, semester_id: 3},
+  {course_id: 14, semester_id: 3},
+  {course_id: 15, semester_id: 3},
+  {course_id: 16, semester_id: 3},
+  {course_id: 17, semester_id: 3},
+  {course_id: 18, semester_id: 3},
+  {course_id: 19, semester_id: 3},
+  {course_id: 20, semester_id: 3},
+  {course_id: 21, semester_id: 3},
+  {course_id: 22, semester_id: 3},
+  {course_id: 23, semester_id: 3},
+  {course_id: 24, semester_id: 3},
+  {course_id: 25, semester_id: 3},
+  {course_id: 26, semester_id: 3},
+  {course_id: 27, semester_id: 3},
+  {course_id: 28, semester_id: 3},
+  {course_id: 29, semester_id: 3},
+  {course_id: 30, semester_id: 3},
+  {course_id: 31, semester_id: 3},
+  {course_id: 32, semester_id: 3},
+  {course_id: 33, semester_id: 3},
+  {course_id: 34, semester_id: 3}
 ])
 Grade.create!([
   {course_id: 33, user_id: 36, grade: nil},
@@ -1223,9 +1260,6 @@ Semester.create!([
   {year: 2015, num: 1},
   {year: 2015, num: 2},
   {year: 2016, num: 1}
-])
-Semester::HABTM_Course.create!([
-  {course_id: 1, semester_id: 3}
 ])
 User.create!([
   {name: "彭兆卿", email: "admin@test.com", num: "201628008629001", major: "计算机软件与理论", department: "计算机与控制学院", password_digest: "$2a$10$rZyE8URfPMJFSNUFEDRSBODJJHy8O0HfeSKCeDlqTiqdrTNCzB5UO", remember_digest: nil, admin: true, teacher: false},
