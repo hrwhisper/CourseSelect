@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   include CoursesHelper
   before_action :student_logged_in, only: [:select, :quit, :list]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :student_list]
-  before_action :logged_in, only: :index
+  before_action :logged_in, only: [:index, :my_course_list]
 
   #-------------------------for teachers----------------------
 
@@ -93,14 +93,7 @@ class CoursesController < ApplicationController
     @course_exam_type = get_course_info(@course_to_choose, 'exam_type')
     # @course_teacher = get_course_info(@course_to_choose, 'teacher')
     if request.post?
-      res = []
-      @course_to_choose.each do |course|
-        if check_course_condition(course, 'course_time', params['course_time']) and
-            check_course_condition(course, 'exam_type', params['exam_type'])
-          res << course
-        end
-        @course_to_choose=res
-      end
+      @course_to_choose=course_filter_by_condition(@course_to_choose, params, ['course_time', 'exam_type'])
     end
   end
 
@@ -133,9 +126,20 @@ class CoursesController < ApplicationController
   #-------------------------for both teachers and students----------------------
 
   def index
+    redirect_to '/courses/my_course_list'
+  end
+
+  def my_course_list
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
     @course_time_table = get_current_curriculum_table(@course)
+    @semester_year = get_course_info(@course, 'year')
+    @semester_term_num = get_course_info(@course, 'term_num')
+    if request.post?
+      params[:year] = params[:year].to_i
+      params[:term_num] = params[:term_num].to_i
+      @course=course_filter_by_condition(@course, params, ['year', 'term_num'])
+    end
   end
 
   def curriculum
@@ -188,6 +192,8 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week, :tmp, :outline, :diss, :discussion, :discussions, :discuss, :discussess)
+                                   :credit, :limit_num, :class_room, :course_time, :course_week,
+                                   :tmp, :outline, :diss, :discussion, :discussions, :discuss,
+                                   :discussess, :year, :term_num)
   end
 end

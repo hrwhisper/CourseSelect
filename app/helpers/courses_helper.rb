@@ -43,11 +43,28 @@ module CoursesHelper
     res.to_a.sort
   end
 
-  def check_course_condition(course, key, value)
-    if value == '' or course[key] == value
+  def check_course_condition(course, key, params)
+    if params[key] == '' or course[key] == params[key]
       return true
     end
     false
+  end
+
+  def course_filter_by_condition(courses, params, keys)
+    res = []
+    courses.each do |course|
+      ok = true
+      keys.each do |key|
+        if not check_course_condition(course, key, params)
+          ok = false
+          break
+        end
+      end
+      if ok
+        res << course
+      end
+    end
+    res
   end
 
   def semester_format(semester)
