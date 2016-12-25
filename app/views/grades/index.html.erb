@@ -10,17 +10,33 @@
           <% if teacher_logged_in? %><h3 class="panel-title">成绩管理: <%=@course.name%></h3><% end %>
           <% if student_logged_in? %><h3 class="panel-title">成绩列表</h3><% end %>
         </div>
+        
+        <% if teacher_logged_in? %>
+        <%= form_tag "/grades/import", multipart: true do %>
+            <input type="hidden" value="<%=@course.id%>"  name="course_id">
+            <%= file_field_tag :file %>
+            <%= submit_tag "导入", :class=> "btn"%>
+            <% end %>
+        <% end %>
+        
         <div class="panel-body" style="min-height: 450px">
           <table class="table table-striped table-hover">
             <thead>
 
             <tr>
+              <th>成绩编号</th>
               <th>学号</th>
               <th>名字</th>
               <th>专业</th>
               <th>培养单位</th>
               <th>课程</th>
               <th>目前分数</th>
+              <% if teacher_logged_in? %>
+                  <th><%= link_to "导出", grades_export_path(:course_id=>@course.id,:format => :xls) %>
+
+                  </th>
+
+              <% end %>
 
             </tr>
             </thead>
@@ -28,6 +44,7 @@
 
             <% @grades.each do |grade| %>
                 <tr>
+                  <td><%= grade.id %></td>
                   <td><%= grade.user.num %></td>
                   <td><%= grade.user.name %></td>
                   <td><%= grade.user.major %></td>
