@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20161224122651) do
     t.datetime "updated_at",                        null: false
     t.boolean  "open",          default: false
     t.text     "outline",       default: "本课程暂无大纲"
+    t.string   "tmp"
+    t.text     "diss",          default: "暂无人发言"
   end
 
   create_table "courses_semesters", id: false, force: :cascade do |t|
@@ -68,6 +70,25 @@ ActiveRecord::Schema.define(version: 20161224122651) do
 
   add_index "courses_semesters", ["course_id"], name: "index_courses_semesters_on_course_id", using: :btree
   add_index "courses_semesters", ["semester_id"], name: "index_courses_semesters_on_semester_id", using: :btree
+
+  create_table "discuss", force: :cascade do |t|
+    t.integer  "course_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "discuss", ["course_id"], name: "index_discuss_on_course_id", using: :btree
+
+  create_table "discussions", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "user"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "discussions", ["course_id"], name: "index_discussions_on_course_id", using: :btree
 
   create_table "grades", force: :cascade do |t|
     t.integer  "course_id"

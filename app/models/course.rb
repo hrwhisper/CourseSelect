@@ -2,10 +2,13 @@ class Course < ActiveRecord::Base
 
   has_many :grades
   has_many :users, through: :grades
+
+  has_many :discussions
   has_many :comments
 
   has_one :courses_semester
   has_one :semester, through: :courses_semester
+
 
   belongs_to :teacher, class_name: 'User'
 
