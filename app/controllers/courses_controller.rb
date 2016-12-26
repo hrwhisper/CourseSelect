@@ -84,9 +84,7 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    current_semester = get_current_semester()
-    @course_to_choose=Course.where('open = true and year=? and term_num =?',
-                                   current_semester[0], current_semester[1])-current_user.courses
+    @course_to_choose=get_course_to_choose_list()
 
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
@@ -136,23 +134,24 @@ class CoursesController < ApplicationController
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
     @course_time_table = get_current_curriculum_table(@course)
-    @semester_year = get_course_info(@course, 'year')
-    @semester_term_num = get_course_info(@course, 'term_num')
+    @all_semester= get_course_info(@course, 'year', 'term_num')
+    semester = nil
     if request.post?
-      if params[:year] !='' or params[:term_num] !=''
-        params[:year] = params[:year].to_i
-        params[:term_num] = params[:term_num].to_i
-        @course=course_filter_by_condition(@course, params, ['year', 'term_num'])
+      if params[:semester] !=''
+        @current_semester = params[:semester]
+        semester = semester_to_array(@current_semester)
       end
     else
-      current_semester = get_current_semester()
+      @current_semester = get_current_semester()
+      semester = semester_to_array(@current_semester)
+    end
+    if semester
       condition = {
-          'year' => current_semester[0],
-          'term_num' => current_semester[1]
+          'year' => semester[0],
+          'term_num' => semester[1]
       }
       @course=course_filter_by_condition(@course, condition, ['year', 'term_num'])
     end
-
   end
 
 end

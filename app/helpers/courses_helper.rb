@@ -35,22 +35,33 @@ module CoursesHelper
     course_time
   end
 
-  def get_course_info(courses, type)
+  def get_course_info(courses, type, type2=nil)
     res = Set.new
     courses.each do |course|
-      res.add(course[type])
+      if type2
+        res.add(course[type].to_s+'-'+course[type2].to_s)
+      else
+        res.add(course[type])
+      end
     end
     res.to_a.sort
   end
 
   def get_current_semester()
     current_semester = Systeminfo.where(name: 'current_semester').take
-    current_semester = current_semester[:value].split('-')
-    current_semester[0],current_semester[1] = current_semester[0].to_i,current_semester[1].to_i
+    current_semester[:value]
+  end
+
+  def semester_to_array(current_semester)
+    current_semester = current_semester.split('-')
+    current_semester[0], current_semester[1] = current_semester[0].to_i, current_semester[1].to_i
     current_semester
   end
 
   def course_filter_by_condition(courses, params, keys)
+    if params == nil
+      return courses
+    end
     res = []
     courses.each do |course|
       ok = true
@@ -65,6 +76,12 @@ module CoursesHelper
       end
     end
     res
+  end
+
+  def get_course_to_choose_list()
+    current_semester = semester_to_array(get_current_semester())
+    Course.where('open = true and year=? and term_num =?',
+                                   current_semester[0], current_semester[1])-current_user.courses
   end
 
   def semester_format(semester)

@@ -37,7 +37,8 @@ Course.create!([
   {name: "Python语言导论", course_code: "09MGX005H", course_type: "公共选修课", teaching_type: "课堂讲授为主", exam_type: "课堂开卷", credit: "40/1.0", limit_num: 154, class_room: "教1-108", course_time: "周二(7-8)", course_week: "第4-14周\t", teacher_id: 35, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "计算机网络", course_code: "091M4002H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 50, class_room: "教1-107", course_time: "周五(2-4)", course_week: "第2-20周\t", teacher_id: 3, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "高级软件工程", course_code: "091M4021H-1", course_type: "一级学科核心课", teaching_type: "授课、讨论\t", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: nil, class_room: "教1-109", course_time: "周四(9-11)", course_week: "第2-20周\t", teacher_id: 4, open: true, outline: "这是很高级的软件工程", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
-  {name: "软件工程", course_code: nil, course_type: "一级学科核心课", teaching_type: "授课、讨论", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 26, class_room: "教1-109", course_time: "周四(9-11)", course_week: "第2-20周", teacher_id: 4, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2015, term_num: 2}
+  {name: "软件工程", course_code: nil, course_type: "一级学科核心课", teaching_type: "授课、讨论", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 26, class_room: "教1-109", course_time: "周四(9-11)", course_week: "第2-20周", teacher_id: 4, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2015, term_num: 2},
+  {name: "计算机网络2015", course_code: nil, course_type: "一级学科核心课", teaching_type: "授课、讨论", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 100, class_room: "教1-109", course_time: "周三(9-11)", course_week: "第2-20周", teacher_id: 3, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2015, term_num: 1}
 ])
 Grade.create!([
   {course_id: 33, user_id: 36, grade: nil},
