@@ -84,7 +84,10 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    @course_to_choose=Course.where('open = true')-current_user.courses
+    current_semester = get_current_semester()
+    @course_to_choose=Course.where('open = true and year=? and term_num =?',
+                                   current_semester[0], current_semester[1])-current_user.courses
+
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
     @course_time_table = get_current_curriculum_table(@course)
@@ -136,64 +139,75 @@ class CoursesController < ApplicationController
     @semester_year = get_course_info(@course, 'year')
     @semester_term_num = get_course_info(@course, 'term_num')
     if request.post?
-      params[:year] = params[:year].to_i
-      params[:term_num] = params[:term_num].to_i
-      @course=course_filter_by_condition(@course, params, ['year', 'term_num'])
+      if params[:year] !='' or params[:term_num] !=''
+        params[:year] = params[:year].to_i
+        params[:term_num] = params[:term_num].to_i
+        @course=course_filter_by_condition(@course, params, ['year', 'term_num'])
+      end
+    else
+      current_semester = get_current_semester()
+      condition = {
+          'year' => current_semester[0],
+          'term_num' => current_semester[1]
+      }
+      @course=course_filter_by_condition(@course, condition, ['year', 'term_num'])
     end
+
   end
 
-  def curriculum
-    @course=current_user.teaching_courses if teacher_logged_in?
-    @course=current_user.courses if student_logged_in?
-    render :json => @course
+end
+
+def curriculum
+  @course=current_user.teaching_courses if teacher_logged_in?
+  @course=current_user.courses if student_logged_in?
+  render :json => @course
+end
+
+def course_outline
+  @course = Course.find_by_id(params[:id])
+  @coursetmp=current_user.teaching_courses if teacher_logged_in?
+end
+
+def course_discuss
+  @course = Course.find_by_id(params[:id])
+  @discuss = @course.discussions
+  if @course.diss=="暂无人发言"
+    @course.diss="匿名用户："
   end
-
-  def course_outline
-    @course = Course.find_by_id(params[:id])
-    @coursetmp=current_user.teaching_courses if teacher_logged_in?
+  if @course.tmp!=nil
+    @course.diss += @course.tmp
   end
+  #@course.diss = @course.diss + "匿名用户"
+  #@course.diss = @course.diss + @course.tmp
+end
 
+private
 
-  def course_discuss
-    @course = Course.find_by_id(params[:id])
-    @discuss = @course.discussions
-    if @course.diss=="暂无人发言"
-      @course.diss="匿名用户："
-    end
-    if @course.tmp!=nil
-      @course.diss += @course.tmp
-    end
-    #@course.diss = @course.diss + "匿名用户"
-    #@course.diss = @course.diss + @course.tmp
-  end
-
-  private
-
-  # Confirms a student logged-in user.
-  def student_logged_in
-    unless student_logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
-    end
-  end
-
-  # Confirms a teacher logged-in user.
-  def teacher_logged_in
-    unless teacher_logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
-    end
-  end
-
-  # Confirms a  logged-in user.
-  def logged_in
-    unless logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
-    end
-  end
-
-  def course_params
-    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week,
-                                   :tmp, :outline, :diss, :discussion, :discussions, :discuss,
-                                   :discussess, :year, :term_num)
+# Confirms a student logged-in user.
+def student_logged_in
+  unless student_logged_in?
+    redirect_to root_url, flash: {danger: '请登陆'}
   end
 end
+
+# Confirms a teacher logged-in user.
+def teacher_logged_in
+  unless teacher_logged_in?
+    redirect_to root_url, flash: {danger: '请登陆'}
+  end
+end
+
+# Confirms a  logged-in user.
+def logged_in
+  unless logged_in?
+    redirect_to root_url, flash: {danger: '请登陆'}
+  end
+end
+
+def course_params
+  params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
+                                 :credit, :limit_num, :class_room, :course_time, :course_week,
+                                 :tmp, :outline, :diss, :discussion, :discussions, :discuss,
+                                 :discussess, :year, :term_num)
+end
+

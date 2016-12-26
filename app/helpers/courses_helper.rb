@@ -43,11 +43,11 @@ module CoursesHelper
     res.to_a.sort
   end
 
-  def check_course_condition(course, key, params)
-    if params[key] == '' or course[key] == params[key]
-      return true
-    end
-    false
+  def get_current_semester()
+    current_semester = Systeminfo.where(name: 'current_semester').take
+    current_semester = current_semester[:value].split('-')
+    current_semester[0],current_semester[1] = current_semester[0].to_i,current_semester[1].to_i
+    current_semester
   end
 
   def course_filter_by_condition(courses, params, keys)
@@ -55,7 +55,7 @@ module CoursesHelper
     courses.each do |course|
       ok = true
       keys.each do |key|
-        if not check_course_condition(course, key, params)
+        if not (params[key] == '' or course[key] == params[key])
           ok = false
           break
         end

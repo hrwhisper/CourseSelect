@@ -1,3 +1,7 @@
+Comment.create!([
+  {course_id: 1, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil},
+  {course_id: 35, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil}
+])
 Course.create!([
   {name: "计算机体系结构", course_code: "091M4001H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 2, class_room: "教1-107", course_time: "周一(9-11)", course_week: "第2-20周", teacher_id: 2, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "高级软件工程", course_code: "091M4021H-2", course_type: "一级学科核心课", teaching_type: "授课、讨论\t", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: nil, class_room: "教1-109", course_time: "周三(9-11)", course_week: "第2-20周\t", teacher_id: 5, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
@@ -1216,6 +1220,9 @@ Grade.create!([
   {course_id: 32, user_id: 235, grade: nil},
   {course_id: 7, user_id: 235, grade: nil},
   {course_id: 16, user_id: 235, grade: nil}
+])
+Systeminfo.create!([
+  {name: "current_semester", value: "2016-1"}
 ])
 User.create!([
   {name: "彭兆卿", email: "admin@test.com", num: "201628008629001", major: "计算机软件与理论", department: "计算机与控制学院", password_digest: "$2a$10$rZyE8URfPMJFSNUFEDRSBODJJHy8O0HfeSKCeDlqTiqdrTNCzB5UO", remember_digest: nil, admin: true, teacher: false},

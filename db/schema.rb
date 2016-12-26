@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225055902) do
+ActiveRecord::Schema.define(version: 20161226005815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,10 +96,12 @@ ActiveRecord::Schema.define(version: 20161225055902) do
 
   add_index "notices", ["user_id"], name: "index_notices_on_user_id", using: :btree
 
-  create_table "system_dbs", force: :cascade do |t|
+  create_table "systeminfos", force: :cascade do |t|
     t.string "name"
     t.string "value"
   end
+
+  add_index "systeminfos", ["name"], name: "index_systeminfos_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
