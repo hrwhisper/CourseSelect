@@ -14,7 +14,20 @@
           <% end %>
         </div>
 
+
         <div class="panel-body">
+          <div class="row">
+            <%= form_tag("/courses/my_course_list", method: "post") do %>
+                <div class="form-group">
+                  <%= render 'courses/search_course_select_form', info: @all_semester,
+                             submit_name: "semester", name: "学期" %>
+                </div>
+                <button type="submit" class="btn btn-default">提交</button>
+            <% end %>
+          </div>
+
+          <hr>
+          <h4>当前是&nbsp;<b><%= @current_semester ? @current_semester : '所有' %></b>&nbsp;学期的课程</h4>
           <table class="table table-responsive table-condensed table-hover">
             <thead>
             <tr>
@@ -35,7 +48,8 @@
                 <tr>
                   <td><%= course.course_code %></td>
                   <!-- <td><%= course.name %></td>-->
-                  <td><%= link_to course.name, course_outline_course_url(course) %><td>
+                  <td><%= link_to course.name, course_outline_course_url(course) %>
+                  <td>
                   <td><%= course.credit %></td>
                   <% if teacher_logged_in? %>
                       <td><%= course.limit_num %></td>
