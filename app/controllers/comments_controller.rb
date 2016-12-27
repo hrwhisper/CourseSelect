@@ -4,8 +4,9 @@ class CommentsController < ApplicationController
         if teacher_logged_in?
           @course=Course.find_by_id(params[:course_id])
           @comments=@course.comments
+          flash:flash
         elsif student_logged_in?
-          @comments=current_user.comments
+          @comments=current_user.comments flash:flash
         else
           redirect_to root_path, flash: {:warning=>"请先登陆"}
         end
