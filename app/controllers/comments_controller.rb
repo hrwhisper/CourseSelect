@@ -4,9 +4,8 @@ class CommentsController < ApplicationController
         if teacher_logged_in?
           @course=Course.find_by_id(params[:course_id])
           @comments=@course.comments
-          flash:flash
         elsif student_logged_in?
-          @comments=current_user.comments flash:flash
+          @comments=current_user.comments
         else
           redirect_to root_path, flash: {:warning=>"请先登陆"}
         end
@@ -18,12 +17,13 @@ class CommentsController < ApplicationController
     
     def update
        @comment = Comment.find_by_id(params[:id])
-      if @comment.update_attributes(comment_params)
-        flash={:info => "#{@comment.course.name}的成绩已评估"}
-      else
-        flash={:warning => "更新失败"}
-      end
-      redirect_to comments_path, flash: flash
+        if @comment.update_attributes(comment_params)
+          flash={:info => "#{@comment.course.name}已评估"}
+        else
+          flash={:warning => "更新失败"}
+        end
+        redirect_to comments_path, flash: flash
+
     end
     
     def list
