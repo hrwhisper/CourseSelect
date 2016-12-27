@@ -38,7 +38,8 @@
             <li class="list-group-item">
               <%= link_to list_courses_path do %>
                   <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
-                  <span class="label label-info pull-right"><%= (Course.where('open = true')-current_user.courses).length %></span>
+                  <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %>
+                  </span>
               <% end %>
             </li>
             <li class="list-group-item">
@@ -94,7 +95,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -116,7 +117,9 @@
         <% if teacher_logged_in? %>
             <% current_user.teaching_courses.each do |course| %>
                 <li class="list-group-item">
+
                   <%= link_to list_comments_path(course_id: course.id), :method => :get do %>
+
                       <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
                       <span class="label label-info pull-right"><%= course.users.length %></span>
                   <% end %>
@@ -132,9 +135,7 @@
               <% end %>
             </li>
         <% end %>
-
       </div>
     </div>	
   </div>
-  
 </div>

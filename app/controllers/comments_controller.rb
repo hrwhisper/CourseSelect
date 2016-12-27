@@ -24,6 +24,12 @@ class CommentsController < ApplicationController
         end
         redirect_to comments_path, flash: flash
 
+      if @comment.update_attributes(comment_params)
+        flash={:info => "#{@comment.course.name}的成绩已评估"}
+      else
+        flash={:warning => "更新失败"}
+      end
+      redirect_to comments_path, flash: flash
     end
     
     def list

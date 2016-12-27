@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   include CoursesHelper
   before_action :student_logged_in, only: [:select, :quit, :list]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :student_list]
-  before_action :logged_in, only: :index
+  before_action :logged_in, only: [:index, :my_course_list]
 
   #-------------------------for teachers----------------------
 
@@ -23,10 +23,13 @@ class CoursesController < ApplicationController
 
   def edit
     @course=Course.find_by_id(params[:id])
+    # @semester = @course.semester # semester_format(@course.semesters[0])
   end
 
   def update
     @course = Course.find_by_id(params[:id])
+    puts('--------')
+
     if @course.update_attributes(course_params)
       flash={:info => "更新成功"}
     else
@@ -81,7 +84,8 @@ class CoursesController < ApplicationController
   #-------------------------for students----------------------
 
   def list
-    @course_to_choose=Course.where('open = true')-current_user.courses
+    @course_to_choose=get_course_to_choose_list()
+
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
     @course_time_table = get_current_curriculum_table(@course)
@@ -90,14 +94,7 @@ class CoursesController < ApplicationController
     @course_exam_type = get_course_info(@course_to_choose, 'exam_type')
     # @course_teacher = get_course_info(@course_to_choose, 'teacher')
     if request.post?
-      res = []
-      @course_to_choose.each do |course|
-        if check_course_condition(course, 'course_time', params['course_time']) and
-            check_course_condition(course, 'exam_type', params['exam_type'])
-          res << course
-        end
-        @course_to_choose=res
-      end
+      @course_to_choose=course_filter_by_condition(@course_to_choose, params, ['course_time', 'exam_type'])
     end
   end
 
@@ -130,49 +127,86 @@ class CoursesController < ApplicationController
   #-------------------------for both teachers and students----------------------
 
   def index
+    redirect_to '/courses/my_course_list'
+  end
+
+  def my_course_list
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
     @course_time_table = get_current_curriculum_table(@course)
-  end
-
-  def curriculum
-    @course=current_user.teaching_courses if teacher_logged_in?
-    @course=current_user.courses if student_logged_in?
-    render :json => @course
-  end
-
-  def course_outline
-    @course = Course.find_by_id(params[:id])
-    @coursetmp=current_user.teaching_courses if teacher_logged_in?
-  end
-
-  private
-
-  # Confirms a student logged-in user.
-  def student_logged_in
-    unless student_logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
+    @all_semester= get_course_info(@course, 'year', 'term_num')
+    semester = nil
+    if request.post?
+      if params[:semester] !=''
+        @current_semester = params[:semester]
+        semester = semester_to_array(@current_semester)
+      end
+    else
+      @current_semester = get_current_semester()
+      semester = semester_to_array(@current_semester)
+    end
+    if semester
+      condition = {
+          'year' => semester[0],
+          'term_num' => semester[1]
+      }
+      @course=course_filter_by_condition(@course, condition, ['year', 'term_num'])
     end
   end
-
-  # Confirms a teacher logged-in user.
-  def teacher_logged_in
-    unless teacher_logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
-    end
-  end
-
-  # Confirms a  logged-in user.
-  def logged_in
-    unless logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
-    end
-  end
-
-  def course_params
-    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                   :credit, :limit_num, :class_room, :course_time, :course_week, :outline)
-  end
-
 
 end
+
+def curriculum
+  @course=current_user.teaching_courses if teacher_logged_in?
+  @course=current_user.courses if student_logged_in?
+  render :json => @course
+end
+
+def course_outline
+  @course = Course.find_by_id(params[:id])
+  @coursetmp=current_user.teaching_courses if teacher_logged_in?
+end
+
+def course_discuss
+  @course = Course.find_by_id(params[:id])
+  @discuss = @course.discussions
+  if @course.diss=="暂无人发言"
+    @course.diss="匿名用户："
+  end
+  if @course.tmp!=nil
+    @course.diss += @course.tmp
+  end
+  #@course.diss = @course.diss + "匿名用户"
+  #@course.diss = @course.diss + @course.tmp
+end
+
+private
+
+# Confirms a student logged-in user.
+def student_logged_in
+  unless student_logged_in?
+    redirect_to root_url, flash: {danger: '请登陆'}
+  end
+end
+
+# Confirms a teacher logged-in user.
+def teacher_logged_in
+  unless teacher_logged_in?
+    redirect_to root_url, flash: {danger: '请登陆'}
+  end
+end
+
+# Confirms a  logged-in user.
+def logged_in
+  unless logged_in?
+    redirect_to root_url, flash: {danger: '请登陆'}
+  end
+end
+
+def course_params
+  params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
+                                 :credit, :limit_num, :class_room, :course_time, :course_week,
+                                 :tmp, :outline, :diss, :discussion, :discussions, :discuss,
+                                 :discussess, :year, :term_num)
+end
+
