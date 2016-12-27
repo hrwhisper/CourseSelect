@@ -21,6 +21,7 @@
 		   	</thead>
 			
 			<%= form_for @comment, url: comment_url(id: @comment.id), method: :patch do |f| %>
+			<%= render 'shared/error_messages', :object => @comment %>
 		   	<tbody>
 				<tr>
 					<th>1</th>
