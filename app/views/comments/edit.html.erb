@@ -31,12 +31,7 @@
 		    	</tr>
 		   	</thead>
 			
-
-			<%= form_for @comment,url: comment_url(id: @comment.id), method: :patch do |f| %>
-			<%= render 'shared/error_messages', :object => @comment %>
-
-			<%= form_for @comment, url: comment_url(id: @comment.id), method: :patch do |f| %>
-
+			<%= form_for @comment, url: comment_url(id: @comment.id),method: :patch do |f| %>
 		   	<tbody>
 				<tr>
 					<th>1</th>
@@ -275,6 +270,28 @@
 		    <%= f.submit "提交", class: "btn btn-success btn-xs" %>
 		</div>
 		 <% end %>
+		 
+			<script type="text/javascript">
+				function validate_required(field,alerttxt)
+				{
+				with (field)
+				  {
+				  if (value==null||value=="")
+				    {alert(alerttxt);return false}
+				  else {return true}
+				  }
+				}
+				
+				function validate_form(thisform)
+				{
+				with (thisform)
+				  {
+				  if (validate_required(comment_17,"Email must be filled out!")==false)
+				    {email.focus();return false}
+				  }
+				}
+			</script>
+				
         </div>
       </div>
     </div>
