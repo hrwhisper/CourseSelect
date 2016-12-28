@@ -267,7 +267,10 @@
 			
  		</table>
 		<div class="form-actions">
-		    <input type=button name="commit" value="提交" onclick="check(this.form)" class="btn btn-success btn-xs" />
+			<%if !@comment.commented?%>
+		    <input type=button name="commit" value="提交" onclick="check(this.form)" class="btn btn-info btn-block" />
+		    <%end%>
+		    <%= link_to '取消', comments_path, :class => "btn btn-default btn-block" %>
 		</div>
 		 <% end %>
         </div>

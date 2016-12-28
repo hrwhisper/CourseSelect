@@ -17,8 +17,13 @@ class CommentsController < ApplicationController
     
     def update
       @comment = Comment.find_by_id(params[:id])
-      if @comment.update_attributes(comment_params) 
-        flash={:info => "#{@comment.course.name}已评估"}
+      if @comment.update_attributes(comment_params)
+        @comment.commented = true
+        if @comment.save
+          flash={:info => "#{@comment.course.name}已评估"}
+        else
+          flash={:info => "请重新提交#{@comment.course.name}的评估"}
+        end
       else
         flash={:warning => "更新失败"}
       end
