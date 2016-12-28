@@ -148,13 +148,16 @@ class CoursesController < ApplicationController
     semester = nil
     if request.post?
       if params[:semester] !=''
-        semester = semester_to_array(params[:semester])
+        @current_semester = params[:semester]
+        semester = semester_to_array(@current_semester)
       end
     else
       semester = semester_to_array(@current_semester)
     end
     if semester
       @course= filter_course_by_semester(@course, semester)
+    else
+       @current_semester = nil
     end
   end
 
