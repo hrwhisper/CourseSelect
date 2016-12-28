@@ -1,6 +1,10 @@
 Comment.create!([
+  {course_id: 35, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil},
+  {course_id: 3, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil},
+  {course_id: 4, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil},
   {course_id: 1, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil},
-  {course_id: 35, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil}
+  {course_id: 2, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil},
+  {course_id: 30, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil}
 ])
 Course.create!([
   {name: "计算机体系结构", course_code: "091M4001H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 2, class_room: "教1-107", course_time: "周一(9-11)", course_week: "第2-20周", teacher_id: 2, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
@@ -29,7 +33,6 @@ Course.create!([
   {name: "现代信息检索", course_code: "092M5025H", course_type: "专业普及课", teaching_type: "课堂讲授为主", exam_type: "课堂开卷", credit: "40/2.0", limit_num: nil, class_room: "教1-109", course_time: "周三(3-4)", course_week: "第2-12周\t", teacher_id: 27, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "随机过程", course_code: "092M5026H", course_type: "专业普及课", teaching_type: "课堂讲授为主", exam_type: "读书报告", credit: "40/2.0", limit_num: nil, class_room: "教1-109", course_time: "周三(5-7)", course_week: "第2-17周\t", teacher_id: 28, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "机器视觉及其应用", course_code: "092M6001H", course_type: "专业研讨课", teaching_type: "授课、讨论\t", exam_type: "读书报告", credit: "20/1.0", limit_num: 40, class_room: "教1-125", course_time: "周三(5-6)", course_week: "第10-19周\t", teacher_id: 29, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
-  {name: "嵌入式系统", course_code: "092M6002H", course_type: "专业研讨课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "20/1.0", limit_num: 40, class_room: "教1-115", course_time: "周四(9-10)", course_week: "第2-12周\t", teacher_id: 30, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "计算机算法设计与分析", course_code: "093M1002H-1", course_type: "一级学科核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 220, class_room: "教1-101", course_time: "周二(1-2)", course_week: "第2-17周\t", teacher_id: 31, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "计算机算法设计与分析", course_code: "093M1002H-2", course_type: "一级学科核心课", teaching_type: "讲课、上机", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 150, class_room: "教1-108", course_time: "周三(1-2)", course_week: "第2-17周\t", teacher_id: 32, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "计算机算法设计与分析", course_code: "093M1002H-3", course_type: "一级学科核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 220, class_room: "教1-101", course_time: "周二(3-4)", course_week: "第5-20周\t", teacher_id: 33, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
@@ -38,7 +41,8 @@ Course.create!([
   {name: "计算机网络", course_code: "091M4002H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 50, class_room: "教1-107", course_time: "周五(2-4)", course_week: "第2-20周\t", teacher_id: 3, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "高级软件工程", course_code: "091M4021H-1", course_type: "一级学科核心课", teaching_type: "授课、讨论\t", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: nil, class_room: "教1-109", course_time: "周四(9-11)", course_week: "第2-20周\t", teacher_id: 4, open: true, outline: "这是很高级的软件工程", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
   {name: "软件工程", course_code: nil, course_type: "一级学科核心课", teaching_type: "授课、讨论", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 26, class_room: "教1-109", course_time: "周四(9-11)", course_week: "第2-20周", teacher_id: 4, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2015, term_num: 2},
-  {name: "计算机网络2015", course_code: nil, course_type: "一级学科核心课", teaching_type: "授课、讨论", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 100, class_room: "教1-109", course_time: "周三(9-11)", course_week: "第2-20周", teacher_id: 3, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2015, term_num: 1}
+  {name: "计算机网络2015", course_code: nil, course_type: "一级学科核心课", teaching_type: "授课、讨论", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 100, class_room: "教1-109", course_time: "周三(9-11)", course_week: "第2-20周", teacher_id: 3, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2015, term_num: 1},
+  {name: "嵌入式系统", course_code: "092M6002H", course_type: "专业研讨课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "20/1.0", limit_num: 36, class_room: "教1-115", course_time: "周四(9-10)", course_week: "第2-12周\t", teacher_id: 30, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1}
 ])
 Grade.create!([
   {course_id: 33, user_id: 36, grade: nil},
@@ -1223,7 +1227,8 @@ Grade.create!([
   {course_id: 16, user_id: 235, grade: nil}
 ])
 Systeminfo.create!([
-  {name: "current_semester", value: "2016-1"}
+  {name: "current_semester", value: "2016-1"},
+  {name: "course_select_end_time", value: "2016-12-29-9-0"}
 ])
 User.create!([
   {name: "彭兆卿", email: "admin@test.com", num: "201628008629001", major: "计算机软件与理论", department: "计算机与控制学院", password_digest: "$2a$10$rZyE8URfPMJFSNUFEDRSBODJJHy8O0HfeSKCeDlqTiqdrTNCzB5UO", remember_digest: nil, admin: true, teacher: false},
@@ -1261,7 +1266,6 @@ User.create!([
   {name: "王文杰", email: "teacher32@test.com", num: nil, major: nil, department: "计算机与控制学院", password_digest: "$2a$10$MK86g6eUVUNlbwGs2ZpbD.JL4.74ao5LfRvP18LCqlWkPyEmioZDe", remember_digest: nil, admin: false, teacher: true},
   {name: "苏桂平", email: "teacher33@test.com", num: nil, major: nil, department: "计算机与控制学院", password_digest: "$2a$10$gvSFriRhJeWoIe077azBl.W4YSTJXHtbfE0rMZDrBLijtLnsiC3ru", remember_digest: nil, admin: false, teacher: true},
   {name: "张晋连", email: "teacher34@test.com", num: nil, major: nil, department: "计算机与控制学院", password_digest: "$2a$10$7XHmfOdyd4mF9/HrDYCRYOP3G7/UiS4K57i.d8yMCqEELYg/gEKEK", remember_digest: nil, admin: false, teacher: true},
-  {name: "越纹欣", email: "student1@test.com", num: "201640335724143", major: "计算机应用技术", department: "软件研究所", password_digest: "$2a$10$AcCVPMgnE3913bJwZqFbQOeg38DSMvWQYdKPjx/TtuTQHQ7rNm46C", remember_digest: nil, admin: false, teacher: false},
   {name: "羽宥昆", email: "student2@test.com", num: "201611237010038", major: "控制理论与控制工程", department: "计算机技术研究所", password_digest: "$2a$10$E9U8rvt6nZRmQTZIHSoq4OjMV9KgoxCLnd5781B6Lx1dfTkRW0qQy", remember_digest: nil, admin: false, teacher: false},
   {name: "前仪如", email: "student3@test.com", num: "201671172949722", major: "模式识别与智能系统", department: "计算机与控制学院", password_digest: "$2a$10$oVu.VPvw3gPlGHMwORWxYutCZ2oAcJ3048Ai8fWNckNlsi4GFNL.q", remember_digest: nil, admin: false, teacher: false},
   {name: "捷威芸", email: "student4@test.com", num: "201623005917625", major: "信息安全", department: "自动化研究所", password_digest: "$2a$10$NPxj0nGge4YukIlpzmxFSuhVppHORqvY1jnnJOg1fTv.VAMM7qZT.", remember_digest: nil, admin: false, teacher: false},
@@ -1460,5 +1464,6 @@ User.create!([
   {name: "漆雕俐舜", email: "student197@test.com", num: "201694592166426", major: "控制理论与控制工程", department: "计算机与控制学院", password_digest: "$2a$10$QHhHF/9vs8/c.4uNEcxBCuJ2WdYXGCo5rI3WMKJygtN9WB99f9d3K", remember_digest: nil, admin: false, teacher: false},
   {name: "依韵麟", email: "student198@test.com", num: "201621283686410", major: "通信与信息系统", department: "计算机与控制学院", password_digest: "$2a$10$p3KIYDRUZsCVJPa8dZBw9eDx/2nTgtwXdlnImkqFuqWbKwmey82LO", remember_digest: nil, admin: false, teacher: false},
   {name: "寸翰伶", email: "student199@test.com", num: "201662251554732", major: "计算机应用技术", department: "计算机与控制学院", password_digest: "$2a$10$Ihw9KNFyphOGvYNc7PIjZuE3hYWz17QsvSc5zklby.cHqKgY9aFba", remember_digest: nil, admin: false, teacher: false},
-  {name: "以辛绮", email: "student200@test.com", num: "201664262918152", major: "控制理论与控制工程", department: "计算机技术研究所", password_digest: "$2a$10$nKstdi.7JAEz9i6lD6hdMeBQusC3HAGhS9zq6QQVv08Cu0gtjXEAa", remember_digest: nil, admin: false, teacher: false}
+  {name: "以辛绮", email: "student200@test.com", num: "201664262918152", major: "控制理论与控制工程", department: "计算机技术研究所", password_digest: "$2a$10$nKstdi.7JAEz9i6lD6hdMeBQusC3HAGhS9zq6QQVv08Cu0gtjXEAa", remember_digest: nil, admin: false, teacher: false},
+  {name: "越纹欣", email: "student1@test.com", num: "201640335724143", major: "计算机应用技术", department: "软件研究所", password_digest: "$2a$10$AcCVPMgnE3913bJwZqFbQOeg38DSMvWQYdKPjx/TtuTQHQ7rNm46C", remember_digest: nil, admin: false, teacher: false}
 ])

@@ -106,14 +106,32 @@ class CoursesController < ApplicationController
     flash = nil
     if @in_course_select_time # 选课时间判断
       ids = params[:course_to_choose]
-      # todo check ids is nil
       if ids
         @course = Course.find(ids)
         if course_conflict?(get_current_semester_course(), @course)
           flash={:error => "课程冲突"}
         else
-          current_user.courses<<@course
-          flash={:success => "成功选择课程"}
+          fails_course = []
+          success_course = []
+          @course.each do |course|
+            if course.grades.length < course.limit_num
+              current_user.courses << course #todo 并发考虑
+              success_course << course.name
+            else
+              fails_course << course.name
+            end
+          end
+          if success_course.length !=0
+            flash = {:success => ("成功选择课程:  " + success_course.join(','))}
+          end
+          if fails_course.length !=0
+            waring_info = fails_course.join(',') +'  人数已满'
+            if flash != nil
+              flash[:warning] = waring_info
+            else
+              flash = {:warning => waring_info}
+            end
+          end
         end
       else
         flash={:success => "请勾选课程"}
@@ -157,7 +175,7 @@ class CoursesController < ApplicationController
     if semester
       @course= filter_course_by_semester(@course, semester)
     else
-       @current_semester = nil
+      @current_semester = nil
     end
   end
 
