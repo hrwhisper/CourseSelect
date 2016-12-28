@@ -32,7 +32,12 @@
                   <td><%= comment.course.credit %></td>
                   <td><%= comment.course.exam_type %></td>
                   <td><%= comment.course.teacher.name %></td>
+                  <%if comment.commented?%>
+                  <td><%= link_to "已评估", edit_comment_url(comment), class: 'btn btn-xs btn-info' %></td>
+                  <%end%>
+                  <%if !comment.commented?%>
                   <td><%= link_to "评估", edit_comment_url(comment), class: 'btn btn-xs btn-info' %></td>
+                  <%end%>
                 </tr>
             <% end %>
             </tbody>

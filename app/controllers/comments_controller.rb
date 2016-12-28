@@ -17,18 +17,17 @@ class CommentsController < ApplicationController
     
     def update
       @comment = Comment.find_by_id(params[:id])
-      if (@comment.comment_1.nil?||@comment.comment_2.nil?||@comment.comment_3.nil?||@comment.comment_4.nil?||@comment.comment_5.nil?||@comment.comment_6.nil?||
-        @comment.comment_7.nil?||@comment.comment_8.nil?||@comment.comment_9.nil?||@comment.comment_10.nil?||@comment.comment_11.nil?||@comment.comment_12.nil?||
-        @comment.comment_13.nil?||@comment.comment_14.nil?||@comment.comment_15.nil?||@comment.comment_16.nil?||@comment.comment_17.nil?) 
-        flash={:info => "#{@comment.course.name}要求评估所有选项"}
-        redirect_to edit_comment_path(@comment.id),flash: flash
-      elsif @comment.update_attributes(comment_params) 
-        flash={:info => "#{@comment.course.name}已评估"}
-        redirect_to comments_path, flash: flash
+      if @comment.update_attributes(comment_params)
+        @comment.commented = true
+        if @comment.save
+          flash={:info => "#{@comment.course.name}已评估"}
+        else
+          flash={:info => "请重新提交#{@comment.course.name}的评估"}
+        end
       else
         flash={:warning => "更新失败"}
-        redirect_to comments_path, flash: flash
       end
+      redirect_to comments_path, flash: flash
     end
     
     def list
