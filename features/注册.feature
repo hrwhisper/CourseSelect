@@ -1,4 +1,4 @@
-Feature: 学生注册
+Feature: 注册
   Scenario: 学生注册失败
     Given 在注册界面
     And 注册姓名为"student1"
