@@ -144,14 +144,13 @@ class CoursesController < ApplicationController
     @course=current_user.courses if student_logged_in?
     @course_time_table = get_course_table(@course)
     @all_semester= get_course_info(@course, 'year', 'term_num')
+    @current_semester = get_current_semester()
     semester = nil
     if request.post?
       if params[:semester] !=''
-        @current_semester = params[:semester]
-        semester = semester_to_array(@current_semester)
+        semester = semester_to_array(params[:semester])
       end
     else
-      @current_semester = get_current_semester()
       semester = semester_to_array(@current_semester)
     end
     if semester
