@@ -1,3 +1,14 @@
+<Script>
+	function reurl(){
+		url = location.href;
+		var times = url.split("?");
+		if(times[1] != 1){ 
+		url += "?1"; 
+		self.location.replace(url);
+		}
+	}
+	onload=reurl();
+</script>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-2">
@@ -20,7 +31,12 @@
 		    	</tr>
 		   	</thead>
 			
+
+			<%= form_for @comment,url: comment_url(id: @comment.id), method: :patch do |f| %>
+			<%= render 'shared/error_messages', :object => @comment %>
+
 			<%= form_for @comment, url: comment_url(id: @comment.id), method: :patch do |f| %>
+
 		   	<tbody>
 				<tr>
 					<th>1</th>
@@ -42,7 +58,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_2, 70 %><%= label_tag(:comment_2_70, "差") %> </span>
 					</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>3</th>
 					<th>仪装端庄，精神饱满 </th>
 					<td>
@@ -52,7 +72,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_3, 70 %><%= label_tag(:comment_3_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>4</th>
 					<th>虚心听取意见，积极改进教学</th>
 					<td>
@@ -62,7 +86,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_4, 70 %><%= label_tag(:comment_4_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>5</th>
 					<th>无调课、停课、替讲现象</th>
 					<td>
@@ -72,7 +100,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_5, 70 %><%= label_tag(:comment_5_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>6</th>
 					<th>教学内容基本符合教学大纲要求</th>
 					<td>
@@ -82,7 +114,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_6, 70 %><%= label_tag(:comment_6_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>7</th>
 					<th>讲授思路清晰，概念清楚</th>
 					<td>
@@ -92,7 +128,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_7, 70 %><%= label_tag(:comment_7_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>8</th>
 					<th>课程特色鲜明，内容取舍合理，组织严密，逻辑性强</th>
 					<td>
@@ -102,7 +142,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_8, 70 %><%= label_tag(:comment_8_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>9</th>
 					<th>重点突出，难点讲解清楚</th>
 					<td>
@@ -112,7 +156,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_9, 70 %><%= label_tag(:comment_9_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>10</th>
 					<th>拓展学生知识面，培养分析能力，引导创新</th>
 					<td>
@@ -122,7 +170,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_10, 70 %><%= label_tag(:comment_10_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>11</th>
 					<th>因材施教，教学相长</th>
 					<td>
@@ -132,7 +184,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_11, 70 %><%= label_tag(:comment_11_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>12</th>
 					<th>注重学生能力培养，合理配置作业</th>
 					<td>
@@ -142,7 +198,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_12, 70 %><%= label_tag(:comment_12_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>13</th>
 					<th>答疑</th>
 					<td>
@@ -152,7 +212,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_13, 70 %><%= label_tag(:comment_13_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>14</th>
 					<th>课堂互动</th>
 					<td>
@@ -162,7 +226,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_14, 70 %><%= label_tag(:comment_14_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>15</th>
 					<th>有启发，学习能力明显提高</th>
 					<td>
@@ -172,7 +240,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_15, 70 %><%= label_tag(:comment_15_70, "差") %> </span>
 					</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>16</th>
 					<th>教学有吸引力，学生能够掌握或理解大部分教学内容</th>
 					<td>
@@ -182,7 +254,11 @@
 						<span style="margin-left: 20px"><%= f.radio_button :comment_16, 70 %><%= label_tag(:comment_16_70, "差") %> </span>
 						</td>
                 </tr>
+
+				<tr>
+
 			<tr>
+
 					<th>17</th>
 					<th>达到教学目的和要求</th>
 					<td>
