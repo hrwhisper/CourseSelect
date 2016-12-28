@@ -83,38 +83,47 @@ class CoursesController < ApplicationController
 
   #-------------------------for students----------------------
 
-  def list
-    @course_to_choose=get_course_to_choose_list()
+  def list # course to select list
+    @in_course_select_time = in_course_select_time?()
+    if @in_course_select_time # 选课时间判断
+      @course_to_choose=get_course_to_choose_list()
 
-    @course=current_user.teaching_courses if teacher_logged_in?
-    @course=current_user.courses if student_logged_in?
-    @course_time_table = get_current_curriculum_table(@course)
+      @course = get_current_semester_course()
+      @course_time_table = get_course_table(@course)
 
-    @course_time = get_course_info(@course_to_choose, 'course_time')
-    @course_exam_type = get_course_info(@course_to_choose, 'exam_type')
-    # @course_teacher = get_course_info(@course_to_choose, 'teacher')
-    if request.post?
-      @course_to_choose=course_filter_by_condition(@course_to_choose, params, ['course_time', 'exam_type'])
+      @course_time = get_course_info(@course_to_choose, 'course_time')
+      @course_exam_type = get_course_info(@course_to_choose, 'exam_type')
+      # @course_teacher = get_course_info(@course_to_choose, 'teacher')
+      if request.post?
+        @course_to_choose=course_filter_by_condition(@course_to_choose, params, ['course_time', 'exam_type'])
+      end
     end
   end
 
 
-  def choose_course
-    ids = params[:course_to_choose]
-    # todo check ids is nil
-    # todo 检查课程冲突
-    @course = Course.find(ids)
-    current_user.courses<<@course
-    flash={:success => "成功选择课程"}
+  def select
+    @in_course_select_time = in_course_select_time?()
+    flash = nil
+    if @in_course_select_time # 选课时间判断
+      ids = params[:course_to_choose]
+      # todo check ids is nil
+      if ids
+        @course = Course.find(ids)
+        if course_conflict?(get_current_semester_course(), @course)
+          flash={:error => "课程冲突"}
+        else
+          current_user.courses<<@course
+          flash={:success => "成功选择课程"}
+        end
+      else
+        flash={:success => "请勾选课程"}
+      end
+    else
+      flash={:error => "不在选课时间！"}
+    end
     redirect_to courses_path, flash: flash
   end
 
-  def select
-    @course=Course.find_by_id(params[:id])
-    current_user.courses<<@course
-    flash={:suceess => "成功选择课程: #{@course.name}"}
-    redirect_to courses_path, flash: flash
-  end
 
   def quit
     @course=Course.find_by_id(params[:id])
@@ -133,7 +142,7 @@ class CoursesController < ApplicationController
   def my_course_list
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
-    @course_time_table = get_current_curriculum_table(@course)
+    @course_time_table = get_course_table(@course)
     @all_semester= get_course_info(@course, 'year', 'term_num')
     semester = nil
     if request.post?
@@ -146,11 +155,7 @@ class CoursesController < ApplicationController
       semester = semester_to_array(@current_semester)
     end
     if semester
-      condition = {
-          'year' => semester[0],
-          'term_num' => semester[1]
-      }
-      @course=course_filter_by_condition(@course, condition, ['year', 'term_num'])
+      @course= filter_course_by_semester(@course, semester)
     end
   end
 

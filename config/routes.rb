@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   resources :courses do
     member do
-      get :select
       get :quit
       get :open
       get :close
@@ -32,7 +31,7 @@ Rails.application.routes.draw do
     collection do
       get :my_course_list
       post :my_course_list
-      post :choose_course
+      post :select
       get :list
       post :list
       get :curriculum
@@ -52,7 +51,6 @@ Rails.application.routes.draw do
       get :list
     end
   end
-  
 
 
   get 'sessions/login' => 'sessions#new'
