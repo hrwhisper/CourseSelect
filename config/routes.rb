@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   resources :discussions
 
 
-  resources :grades, only: [:index, :update]
+  resources :grades, only: [:index, :update, :export]
   resources :users
   resources :comments do
     member do
@@ -56,7 +56,6 @@ Rails.application.routes.draw do
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'
-
 
   # Example resource route with options:
   #   resources :products do
