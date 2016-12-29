@@ -266,6 +266,17 @@
 			</tbody>
 			
  		</table>
+ 		
+ 		<div class="control-group">
+			    <h4>想对老师说的话</h4>
+		</div>
+		<div class="control-group">
+		    <div class="controls2">
+		        <%= f.text_area :Commenttext,class: 'form-control' %>
+		    </div>
+		</div>
+		<h3></h3>
+
 		<div class="form-actions">
 			<%if !@comment.commented?%>
 		    <input type=button name="commit" value="提交" onclick="check(this.form)" class="btn btn-info btn-block" />
@@ -298,9 +309,10 @@
 		var comment_15 =$("input[name='comment[comment_15]']:checked").val();
 		var comment_16 =$("input[name='comment[comment_16]']:checked").val();
 		var comment_17 =$("input[name='comment[comment_17]']:checked").val();
+		var comment_text = $("#comment_Commenttext").val();
 		if(comment_1==null||comment_2==null||comment_3==null||comment_4==null||comment_5==null||comment_6==null||comment_7==null||
 		comment_8==null||comment_9==null||comment_10==null||comment_11==null||comment_12==null||comment_13==null||comment_14==null||
-		comment_15==null||comment_16==null||comment_17==null)
+		comment_15==null||comment_16==null||comment_17==null||comment_text=='')
 		{
 			alert("每一项都不能为空");
 		}else{

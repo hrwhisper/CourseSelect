@@ -141,9 +141,27 @@
 					</td>
                 </tr>
 			</tbody>
+
+
 			
  		</table>
-		
+ 		<h3></h3>
+ 		<table class="table table-striped table-bordered table-advance table-hover">
+		   <thead>
+		       <tr>
+		           <th>评估内容</th>
+		    	</tr>
+		   	</thead>
+		   <tbody>
+					<% @comments.each do |comment| %>
+							<% if !(comment.Commenttext.nil?)%>
+			          <tr>
+			            <th><%= comment.Commenttext %></th>
+			          </tr>
+			        <% end %>
+     			<% end %>
+			</tbody>
+		</table>
         </div>
       </div>
     </div>
