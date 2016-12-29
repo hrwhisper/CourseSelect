@@ -78,6 +78,10 @@ rake db:migrate:reset
 rake db:seed
 ```
 
+更新自己的github仓库（git push)
+
+最后通过pull request即可。
+
 
 
 

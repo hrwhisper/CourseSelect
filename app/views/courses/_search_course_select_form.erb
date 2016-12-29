@@ -5,7 +5,7 @@
       <% if nil != @current_semester %>
           <option value="<%= @current_semester %>"><%= @current_semester %></option>
       <% end %>
-      <option value="">所有学期</option>
+      <option value=""><%= submit_name == 'semester'? '所有学期':'' %></option>
       <% info.each do |info| %>
           <% if info != @current_semester %>
               <option value="<%= info %>"><%= info %></option>
