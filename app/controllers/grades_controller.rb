@@ -76,10 +76,16 @@ class GradesController < ApplicationController
       @grades = current_user.grades
     end
     
+    @totalscore = 0
+    @totalcredit= 0
+    @meanscore = 0
     if !(@grades.nil?)
       @grade_level = {"优"=>0,"良"=>0,"中"=>0,"差"=>0,"不及格"=>0}
       @grades.each do |grade|
         if  !(grade.grade.nil?)
+           @credits = grade.course.credit.split('/')
+           @totalscore+=grade.grade * @credits[1].to_i
+           @totalcredit+=@credits[1].to_f
           if grade.grade <60
             @grade_level["不及格"]+=1
           elsif grade.grade <70

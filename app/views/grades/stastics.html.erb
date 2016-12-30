@@ -20,6 +20,23 @@
             <% end %>
           </div>
         </div>
+
+        <div class="panel panel-primary filterable">
+		       <div class="table-responsive">
+      		    <table class="table table-striped" id="curriculum_table">
+      		    <tbody>
+      		      <tr>
+      		              	<th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp加权平均成绩：</th>
+      					<% if  @totalcredit!=0%>
+      				            <th><%= @totalscore/@totalcredit%></th>
+      					<% end %>
+      					</tr>
+      		      </tbody>
+      		    </table>
+		        </div>
+		    </div>
+        
+        
       <%= render 'grades/grade_info_visualization' %>
       </div>	  
     </div
