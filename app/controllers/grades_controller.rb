@@ -1,4 +1,5 @@
 class GradesController < ApplicationController
+  include CoursesHelper
 
   before_action :teacher_logged_in, only: [:update, :export]
 
@@ -41,6 +42,59 @@ class GradesController < ApplicationController
         # temp_file.rewind
       }
     end
+  end
+  
+  def stastics
+    @grades = Array.new
+    @courses=current_user.courses
+    @all_semester= get_course_info(@courses, 'year', 'term_num')
+    @current_semester = get_current_semester()
+    semester = nil
+    
+    if request.post?
+      if params[:semester] !=''
+        @current_semester = params[:semester]
+        semester = semester_to_array(@current_semester)
+      end
+    else
+      semester = semester_to_array(@current_semester)
+    end
+    
+    if !(semester.nil?)
+      @courses= filter_course_by_semester(@courses, semester)
+      @courses.each do |course|
+        course.grades.each do |grade|
+          if !(grade.nil?)
+            if grade.user.num == current_user.num
+              @grades << grade
+            end
+          end
+        end
+      end
+    else
+      @current_semester = nil
+      @grades = current_user.grades
+    end
+    
+    if !(@grades.nil?)
+      @grade_level = {"优"=>0,"良"=>0,"中"=>0,"差"=>0,"不及格"=>0}
+      @grades.each do |grade|
+        if  !(grade.grade.nil?)
+          if grade.grade <60
+            @grade_level["不及格"]+=1
+          elsif grade.grade <70
+            @grade_level["差"]+=1
+          elsif grade.grade <80
+            @grade_level["中"]+=1
+          elsif grade.grade <90
+            @grade_level["良"]+=1
+          else
+            @grade_level["优"]+=1
+          end
+        end
+      end
+    end
+    
   end
 
   private
