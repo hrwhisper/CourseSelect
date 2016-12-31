@@ -6,8 +6,8 @@ Comment.create!([
   {course_id: 2, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil, commented: false, Commenttext: nil},
   {course_id: 30, user_id: 36, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil, commented: false, Commenttext: nil},
   {course_id: 2, user_id: 235, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil, commented: false, Commenttext: nil},
-  {course_id: 30, user_id: 235, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil, commented: false, Commenttext: nil},
-  {course_id: 1, user_id: 235, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil, commented: false, Commenttext: nil}
+  {course_id: 1, user_id: 235, comment_1: nil, comment_2: nil, comment_3: nil, comment_4: nil, comment_5: nil, comment_6: nil, comment_7: nil, comment_8: nil, comment_9: nil, comment_10: nil, comment_11: nil, comment_12: nil, comment_13: nil, comment_14: nil, comment_15: nil, comment_16: nil, comment_17: nil, commented: false, Commenttext: nil},
+  {course_id: 30, user_id: 235, comment_1: 100, comment_2: 100, comment_3: 100, comment_4: 100, comment_5: 100, comment_6: 100, comment_7: 90, comment_8: 90, comment_9: 100, comment_10: 100, comment_11: 90, comment_12: 100, comment_13: 90, comment_14: 90, comment_15: 100, comment_16: 100, comment_17: 100, commented: true, Commenttext: "老师上课好好~"}
 ])
 Course.create!([
   {name: "计算机体系结构", course_code: "091M4001H", course_type: "专业核心课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 50, class_room: "教1-107", course_time: "周一(9-11)", course_week: "第2-20周", teacher_id: 2, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1},
@@ -1231,7 +1231,7 @@ Grade.create!([
 ])
 Systeminfo.create!([
   {name: "current_semester", value: "2016-1"},
-  {name: "course_select_end_time", value: "2016-12-30-9-0"}
+  {name: "course_select_end_time", value: "2017-1-5-9-0"}
 ])
 User.create!([
   {name: "彭兆卿", email: "admin@test.com", num: "201628008629001", major: "计算机软件与理论", department: "计算机与控制学院", password_digest: "$2a$10$rZyE8URfPMJFSNUFEDRSBODJJHy8O0HfeSKCeDlqTiqdrTNCzB5UO", remember_digest: nil, admin: true, teacher: false},

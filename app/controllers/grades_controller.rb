@@ -43,14 +43,14 @@ class GradesController < ApplicationController
       }
     end
   end
-  
+
   def stastics
-    @grades = Array.new
+    @grades = []
     @courses=current_user.courses
     @all_semester= get_course_info(@courses, 'year', 'term_num')
     @current_semester = get_current_semester()
     semester = nil
-    
+
     if request.post?
       if params[:semester] !=''
         @current_semester = params[:semester]
@@ -59,37 +59,32 @@ class GradesController < ApplicationController
     else
       semester = semester_to_array(@current_semester)
     end
-    
-    if !(semester.nil?)
-      @courses= filter_course_by_semester(@courses, semester)
-      @courses.each do |course|
-        course.grades.each do |grade|
-          if !(grade.nil?)
-            if grade.user.num == current_user.num
-              @grades << grade
-            end
-          end
+
+    if semester
+      current_user.grades.each do|grade|
+        if grade.course.year == semester[0] and grade.course.term_num == semester[1]
+          @grades << grade
         end
       end
+      @courses= filter_course_by_semester(@courses, semester)
     else
       @current_semester = nil
       @grades = current_user.grades
     end
-    
-    @totalscore = 0
-    @totalcredit= 0
-    @meanscore = 0
+    @total_score = 0
+    @total_credit= 0
+    @means_core = 0
     if !(@grades.nil?)
-      @grade_level = {"优"=>0,"良"=>0,"中"=>0,"差"=>0,"不及格"=>0}
+      @grade_level = {"优" => 0, "良" => 0, "中" => 0, "及格" => 0, "不及格" => 0}
       @grades.each do |grade|
-        if  !(grade.grade.nil?)
-           @credits = grade.course.credit.split('/')
-           @totalscore+=grade.grade * @credits[1].to_i
-           @totalcredit+=@credits[1].to_f
+        if !(grade.grade.nil?)
+          @credits = grade.course.credit.split('/')
+          @total_score+=grade.grade * @credits[1].to_i
+          @total_credit+=@credits[1].to_f
           if grade.grade <60
             @grade_level["不及格"]+=1
           elsif grade.grade <70
-            @grade_level["差"]+=1
+            @grade_level["及格"]+=1
           elsif grade.grade <80
             @grade_level["中"]+=1
           elsif grade.grade <90
@@ -100,7 +95,6 @@ class GradesController < ApplicationController
         end
       end
     end
-    
   end
 
 

@@ -18,20 +18,20 @@
               <div class="row">
                 <div class="col-sm-12" style="padding-bottom: 26px">
 
-                  <%= form_tag 'grades/import', method: "post",  multipart: true,:class => "form-inline" do %>
+                  <%= form_tag 'grades/import', method: "post", multipart: true, :class => "form-inline" do %>
                       <input type="hidden" value="<%= @course.id %>" name="course_id">
                       <div class="form-group">
-                        <label class="sr-only"  for="inputfile" >选择excel文件</label>
-                         <%= file_field_tag :excel_file %>
+                        <label class="sr-only" for="inputfile">选择excel文件</label>
+                        <%= file_field_tag :excel_file %>
                       </div>
-                      <%= submit_tag "上传",:class=>"btn btn-default"%>
+                      <%= submit_tag "上传", :class => "btn btn-default" %>
 
                   <% end %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <%= link_to "导出", grades_export_url(:course_id =>@course.id,:format => 'xls'),:class =>"btn btn-info"%>
+                  <%= link_to "导出", grades_export_url(:course_id => @course.id, :format => 'xls'), :class => "btn btn-info" %>
                 </div>
               </div>
           <% end %>
@@ -40,12 +40,15 @@
             <thead>
             <tr>
               <th>成绩编号</th>
-              <th>学号</th>
-              <th>名字</th>
-              <th>专业</th>
-              <th>培养单位</th>
+              <% if not student_logged_in? %>
+                  <th>学号</th>
+                  <th>名字</th>
+                  <th>专业</th>
+                  <th>培养单位</th>
+              <% end %>
               <th>课程</th>
-              <th>目前分数</th>
+              <th>学期</th>
+              <th>分数</th>
             </tr>
             </thead>
             <tbody>
@@ -53,11 +56,15 @@
             <% @grades.each do |grade| %>
                 <tr>
                   <td><%= grade.id %></td>
-                  <td><%= grade.user.num %></td>
-                  <td><%= grade.user.name %></td>
-                  <td><%= grade.user.major %></td>
-                  <td><%= grade.user.department %></td>
+                  <% if not student_logged_in? %>
+                      <td><%= grade.user.num %></td>
+                      <td><%= grade.user.name %></td>
+                      <td><%= grade.user.major %></td>
+                      <td><%= grade.user.department %></td>
+                  <% end %>
+
                   <td><%= grade.course.name %></td>
+                  <td><%= grade.course.year.to_s + '-' + grade.course.term_num.to_s %></td>
                   <td><%= grade.grade %></td>
 
                   <% if teacher_logged_in? %>
