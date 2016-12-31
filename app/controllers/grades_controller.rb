@@ -66,7 +66,6 @@ class GradesController < ApplicationController
           @grades << grade
         end
       end
-      @courses= filter_course_by_semester(@courses, semester)
     else
       @current_semester = nil
       @grades = current_user.grades
