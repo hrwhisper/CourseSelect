@@ -33,65 +33,52 @@ class CommentsController < ApplicationController
     def list
       @course=Course.find_by_id(params[:course_id])
       @comments=@course.comments
+      @comments_score = Array[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
       @count=0
-       @comment_1_score = 0 
-        @comment_2_score = 0
-        @comment_3_score = 0
-        @comment_4_score = 0
-        @comment_5_score = 0
-        @comment_6_score = 0
-        @comment_7_score = 0
-        @comment_8_score = 0
-        @comment_9_score = 0
-        @comment_10_score = 0
-        @comment_11_score = 0
-        @comment_12_score = 0
-        @comment_13_score = 0
-        @comment_14_score = 0
-        @comment_15_score = 0
-        @comment_16_score = 0
-        @comment_17_score = 0
       @comments.each do |comment|
         if !(comment.comment_1.nil?) then
           @count+=1
-          @comment_1_score += comment.comment_1
-          @comment_2_score += comment.comment_2
-          @comment_3_score += comment.comment_3
-          @comment_4_score += comment.comment_4
-          @comment_5_score += comment.comment_5
-          @comment_6_score += comment.comment_6
-          @comment_7_score += comment.comment_7
-          @comment_8_score += comment.comment_8
-          @comment_9_score += comment.comment_9
-          @comment_10_score += comment.comment_10
-          @comment_11_score += comment.comment_11
-          @comment_12_score += comment.comment_12
-          @comment_13_score += comment.comment_13
-          @comment_14_score += comment.comment_14
-          @comment_15_score += comment.comment_15
-          @comment_16_score += comment.comment_16
-          @comment_17_score += comment.comment_17
+          @comments_score[0] += comment.comment_1
+          @comments_score[1] += comment.comment_2
+          @comments_score[2] += comment.comment_3
+          @comments_score[3] += comment.comment_4
+          @comments_score[4] += comment.comment_5
+          @comments_score[5] += comment.comment_6
+          @comments_score[6] += comment.comment_7
+          @comments_score[7] += comment.comment_8
+          @comments_score[8] += comment.comment_9
+          @comments_score[9] += comment.comment_10
+          @comments_score[10] += comment.comment_11
+          @comments_score[11] += comment.comment_12
+          @comments_score[12] += comment.comment_13
+          @comments_score[13] += comment.comment_14
+          @comments_score[14] += comment.comment_15
+          @comments_score[15] += comment.comment_16
+          @comments_score[16] += comment.comment_17
         end
       end
       if @count!=0 then
-      @comment_1_score/=@count
-      @comment_2_score/=@count
-      @comment_3_score/=@count
-      @comment_4_score/=@count
-      @comment_5_score/=@count
-      @comment_6_score/=@count
-      @comment_7_score/=@count
-      @comment_8_score/=@count
-      @comment_9_score/=@count
-      @comment_10_score/=@count
-      @comment_11_score/=@count
-      @comment_12_score/=@count
-      @comment_13_score/=@count
-      @comment_14_score/=@count
-      @comment_15_score/=@count
-      @comment_16_score/=@count
-      @comment_17_score/=@count
+        @i = 0
+        while @i < 17 do
+            @comments_score[@i] /= @count
+            @i+=1
+        end
       end
+      
+      #评教信息图表
+      if @count != 0 then
+        @comment_level = {"优"=>0,"良"=>0,"中"=>0}
+        @comments_score.each do |comment|
+          if comment < 80
+            @comment_level["中"]+=1
+          elsif comment<90
+            @comment_level["良"]+=1
+          else
+            @comment_level["优"]+=1
+          end
+        end
+      end
+      
     end
     
     def comment_params
