@@ -71,15 +71,6 @@ ActiveRecord::Schema.define(version: 20161224122651) do
   add_index "courses_semesters", ["course_id"], name: "index_courses_semesters_on_course_id", using: :btree
   add_index "courses_semesters", ["semester_id"], name: "index_courses_semesters_on_semester_id", using: :btree
 
-  create_table "discuss", force: :cascade do |t|
-    t.integer  "course_id"
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "discuss", ["course_id"], name: "index_discuss_on_course_id", using: :btree
-
   create_table "discussions", force: :cascade do |t|
     t.integer  "course_id"
     t.string   "user"
