@@ -15,6 +15,30 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
+
+*,
+*:after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'ecoicons';
+  src: asset_url("../fonts/ecoicons/ecoicons.eot");
+  src: asset_url("../fonts/ecoicons/ecoicons.eot?#iefix") format("embedded-opentype");
+  src: asset_url("../fonts/ecoicons/ecoicons.woff") format("woff");
+  src: asset_url("../fonts/ecoicons/ecoicons.ttf") format("truetype");
+  src: asset_url("../fonts/ecoicons/ecoicons.svg#ecoicons") format("svg");
+}
+
+
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: monospace, '宋体' , Tahoma, Helvetica,
+Arial, "\5b8b\4f53", sans-serif;}
+
 body {
   overflow-x: hidden;
 }
@@ -83,8 +107,14 @@ html {
 
 }
 
-.change_color {
-  color: white;
+
+.my_course_list_bg{
+  background-color: white;
+}
+
+
+.change_color{
+  color:white;
   background: #97c65e;
 }
 
@@ -134,24 +164,6 @@ html {
   font-size: 15px;
 }
 
-*,
-*:after,
-*::before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-weight: normal;
-  font-style: normal;
-  font-family: 'ecoicons';
-  src: url("../fonts/ecoicons/ecoicons.eot");
-  src: url("../fonts/ecoicons/ecoicons.eot?#iefix") format("embedded-opentype"), url("../fonts/ecoicons/ecoicons.woff") format("woff"), url("../fonts/ecoicons/ecoicons.ttf") format("truetype"), url("../fonts/ecoicons/ecoicons.svg#ecoicons") format("svg");
-}
-
-/* Icomoon.com */
-
 .gn-menu-main,
 .gn-menu-main ul {
   margin: 0;
@@ -185,7 +197,7 @@ html {
 .no-touch .gn-menu-main a:hover,
 .no-touch .gn-menu li.gn-search-item:hover,
 .no-touch .gn-menu li.gn-search-item:hover a {
-  background: #5f6f81;
+  background: #97c65e;
   color: white;
 }
 
@@ -201,7 +213,7 @@ html {
 
 .gn-menu-main li.gn-trigger {
   position: relative;
-  //width: 60px;
+  width: 60px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -283,7 +295,7 @@ input.gn-search {
   outline: none;
   border: none;
   background: transparent;
-  color: #5f6f81;
+  color: #97c65e;
   font-weight: 300;
   //font-family: 'Lato', Arial, sans-serif;
   cursor: pointer;
@@ -292,19 +304,19 @@ input.gn-search {
 /* placeholder */
 
 .gn-search::-webkit-input-placeholder {
-  color: #5f6f81
+  color: #97c65e
 }
 
 .gn-search:-moz-placeholder {
-  color: #5f6f81
+  color: #97c65e
 }
 
 .gn-search::-moz-placeholder {
-  color: #5f6f81
+  color: #97c65e
 }
 
 .gn-search:-ms-input-placeholder {
-  color: #5f6f81
+  color: #97c65e
 }
 
 /* hide placeholder when active in Chrome */
@@ -348,18 +360,23 @@ input.gn-search:focus {
 }
 
 .gn-icon::before {
-  display: inline-block;
+  //display: inline-block;
   width: 60px;
   text-align: left;
   text-transform: none;
   font-weight: normal;
   font-style: normal;
   font-variant: normal;
-  font-family: 'ecoicons';
+  //font-family: 'ecoicons';
   line-height: 1;
   speak: none;
   -webkit-font-smoothing: antialiased;
 }
+
+.bella-icon-class::before{
+  content: "\e000"
+}
+
 
 .gn-icon-help::before {
   content: "\e000"
@@ -417,17 +434,17 @@ input.gn-search:focus {
 .gn-icon-menu::before {
   margin-left: -15px;
   vertical-align: -2px;
-  width: 30px;
+  width: 10px;
   height: 3px;
-  background: #5f6f81;
-  box-shadow: 0 3px white, 0 -6px #5f6f81, 0 -9px white, 0 -12px #5f6f81;
+  background: #97c65e;
+  box-shadow: 0 3px white, 0 -6px #97c65e, 0 -9px white, 0 -12px #97c65e;
   content: '';
 }
 
 .no-touch .gn-icon-menu:hover::before,
 .no-touch .gn-icon-menu.gn-selected:hover::before {
   background: white;
-  box-shadow: 0 3px #5f6f81, 0 -6px white, 0 -9px #5f6f81, 0 -12px white;
+  box-shadow: 0 3px #97c65e, 0 -6px white, 0 -9px #97c65e, 0 -12px #97c65e;
 }
 
 .gn-icon-menu.gn-selected::before {
@@ -445,7 +462,7 @@ input.gn-search:focus {
 }
 
 .gn-menu-wrapper.gn-open-all {
-  width: 340px
+  width: 200px
 }
 
 .gn-menu-wrapper.gn-open-all .gn-submenu li {
@@ -464,6 +481,10 @@ input.gn-search:focus {
     width: 130%
   }
 }
+
+.change_bg_font{
+  background-color: #34383b;
+
 
 #notice_detail {
   padding: 10px;
