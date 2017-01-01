@@ -1,0 +1,16 @@
+<div class="col-sm-4" style="padding-bottom: 26px;">
+  <label for="name" class="col-sm-2 control-label"><%= name %></label>
+  <div class="col-sm-10">
+    <select class="form-control" name="<%= submit_name %>">
+      <% if nil != @current_semester %>
+          <option value="<%= @current_semester %>"><%= @current_semester %></option>
+      <% end %>
+      <option value=""><%= submit_name == 'semester'? '所有学期':'' %></option>
+      <% info.each do |info| %>
+          <% if info != @current_semester %>
+              <option value="<%= info %>"><%= info %></option>
+          <% end %>
+      <% end %>
+    </select>
+  </div>
+</div>

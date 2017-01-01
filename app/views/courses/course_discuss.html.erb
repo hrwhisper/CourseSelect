@@ -15,37 +15,47 @@
         <div id="button-edit">
           
        
-       <%= form_for @course, html: {class: 'form-horizontal', role: 'form'} do |f| %>
-       <%= render 'shared/error_messages', :object => @course %>
-          <div class="form-group">
-      <%= f.label "请输入匿名发言的内容：", class: 'col-sm-3 control-label' %>
+ <div class="panel-body" style="text-align:left;">
+            <div class="table-responsive">
+          <tbody>
+             <br>
+             <%if @course.diss == "暂无人发言" %>
+                 <td><B>暂时无人发言！</B></td>
+             <% end %>
+             <% @test = @course.diss.split("匿名用户：")%>
+              <% @judge ="" %>
+              <% @test.each do |test| %>
+                <% if test != "暂无人发言" and test != "" %>
+                  <% if @judge.include? test   %>
+                  <% else %>
+                      <td><B>匿名用户：</B></td>
+                      <td><%= test%></td>
+                            <br>
+                      <% @judge+=test %>
+                  <% end %>
+              <% end %>
+             <% end %>
+    
+          </tbody>
+            </div>
+          </div>
+          
+            <%= form_for @course, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+    <%= render 'shared/error_messages', :object => @course %>
+
+
       <div class="col-sm-9">
         <div class="input-group input-group-lg">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_field :tmp,class:'form-control' %>
+          <%= f.text_area :tmp, class: 'form-control', placeholder: "输入发言内容" %>
         </div>
-      </div>
     </div>
 
     <%= f.submit '提交', class: "btn btn-success btn-block" %>
     <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
-   <% end %>
 
-          <div class="panel-body" style="text-align:left;">
-            <div class="table-responsive">
-          <tbody>
-            <br>
-             <% if @course.tmp !=nil%>
-             <td><%= @course.diss %></td>
-             <% end %>
-          <% @discuss.each do |discuss| %>
-              <td><%= discuss.user %></td>
-              <td><%= discuss.content %></td>
-              <td><%= discuss.created_at %></td>
-          <% end %>
-          </tbody>
-            </div>
-          </div>
+<% end %>
+
           
         </div>
       </div>

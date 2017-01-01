@@ -28,7 +28,6 @@
             <% end %>
 
             <td><%= course_to_choose.course_code %></td>
-            <!--<td><%= course_to_choose.name %></td>-->
             <td><%= link_to course_to_choose.name, course_outline_course_url(course_to_choose) %></td>
             <td><%= course_to_choose.credit %></td>
             <td><%= course_to_choose.limit_num %></td>
@@ -38,7 +37,6 @@
             <td><%= course_to_choose.exam_type %></td>
             <td><%= course_to_choose.teacher.name %></td>
             <td><%= course_to_choose.course_time %></td>
-            <td><%= course_to_choose.year %> <%= course_to_choose.term_num %></td>
           </tr>
       <% end %>
       </tbody>

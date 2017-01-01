@@ -1,29 +1,77 @@
-<div class="panel panel-primary filterable">
-  <div class="panel-heading">
-    我的课程表
+<div id="side_course_table" class="side_course_table col-sm-8">
+  <div class="sideDiv_content">
+    <div class="panel panel-primary filterable">
+      <div class="panel-heading">
+        我的课程表
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped" id="curriculum_table">
+          <thead>
+          <td></td>
+          <td>星期一</td>
+          <td>星期二</td>
+          <td>星期三</td>
+          <td>星期四</td>
+          <td>星期五</td>
+          <td>星期六</td>
+          <td>星期天</td>
+          </thead>
+          <tbody>
+          <% (0...@course_time_table.length).each do |i| %>
+              <tr>
+                <td><%= i+1 %></td>
+                <% (0...@course_time_table[i].length).each do |j| %>
+                    <td class='row<%= i+1 %> col<%= j+1 %>'><%= @course_time_table[i][j] %></td>
+                <% end %>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
-  <div class="table-responsive">
-    <table class="table table-striped" id="curriculum_table">
-      <thead>
-      <td></td>
-      <td>星期一</td>
-      <td>星期二</td>
-      <td>星期三</td>
-      <td>星期四</td>
-      <td>星期五</td>
-      <td>星期六</td>
-      <td>星期天</td>
-      </thead>
-      <tbody>
-      <% (0...@course_time_table.length).each do |i| %>
-          <tr>
-            <td><%= i+1 %></td>
-            <% (0...@course_time_table[i].length).each do |j| %>
-                <td class='row<%= i+1 %> col<%=j+1%>'><%= @course_time_table[i][j] %></td>
-            <% end %>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
+  <div class="side_course_table_ctrlBlock">
+    <div id="course_table_slide_in_button"></div>
   </div>
 </div>
+
+<script>
+    $(document).ready(
+        function () {
+            var sideDiv_right = $("#side_course_table").width() +($("body").height() > $(window).height() ? 16 : 23);
+            var speed = 300;
+
+            $("#side_course_table").css("right", -sideDiv_right);
+            $("#side_course_table").css("top", window.pageYOffset + 100 + 'px');
+
+            var cnt = 0;
+
+            $("#course_table_slide_in_button").click(function () {
+                if (!cnt) {
+                    $("#side_course_table")
+                        .animate({
+                                right: '0px'
+                            },
+                            speed,
+                            function () {
+                                document.getElementById("course_table_slide_in_button").style.transform = "rotate(180deg)";
+                                cnt = 1;
+                            });
+                } else {
+                    $("#side_course_table")
+                        .animate({
+                                right: -sideDiv_right + 'px'
+                            },
+                            speed,
+                            function () {
+                                document.getElementById("course_table_slide_in_button").style.transform = "rotate(0deg)";
+                                cnt = 0;
+                            });
+                }
+            });
+
+        }).scroll(function () {
+        $("#side_course_table").css("top", window.pageYOffset + 100 + 'px');
+    });
+</script>

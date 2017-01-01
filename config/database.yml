@@ -3,7 +3,6 @@ default: &default
   encoding: unicode
   pool: 5
 
-
 development:
   <<: *default
   database: courseselect_development

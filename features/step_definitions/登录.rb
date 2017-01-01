@@ -2,7 +2,7 @@ When(/^I click login button$/) do
     #if(page.find("a[href='/sessions/login']"))
     #    click_on("登录")
     #end
-    click_link("登陆")
+    click_link("登录")
     # Write code here that turns the phrase above into concrete actions
 end
 
@@ -34,7 +34,17 @@ When(/^我单击登录按钮$/) do
     # Write code here that turns the phrase above into concrete actions
 end
 
-Then(/^返回首页$/) do
+Then(/^以学生身份返回首页$/) do
+    visit root_path
+    # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^以教师身份返回首页$/) do
+    visit root_path
+    # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^以管理员身份返回首页$/) do
     visit root_path
     # Write code here that turns the phrase above into concrete actions
 end
