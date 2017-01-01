@@ -11,18 +11,20 @@
  * file per style scope.
  *
  */
-
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
-body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: monospace, '宋体' , Tahoma, Helvetica,
-Arial, "\5b8b\4f53", sans-serif;}
-.table{
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+  font-family: monospace, '宋体', Tahoma, Helvetica,
+  Arial, "\5b8b\4f53", sans-serif;
+}
+
+.table {
   margin-bottom: 10px;
 }
 
-.table-striped > tbody > tr:hover >td.has_hover {
+.table-striped > tbody > tr:hover > td.has_hover {
   background-color: #C0C0C0;
 }
 
@@ -32,14 +34,14 @@ footer {
   padding: 10px;
 }
 
-.body-background{
+.body-background {
   //background-image: image-url('bg.jpg');
   //background-color: #97c65e;
   //background-repeat: no-repeat;
   //background-size: 100% 100%;
 }
 
-body{
+body {
   padding-top: 80px;
   padding-bottom: 100px;
 }
@@ -48,15 +50,16 @@ html {
   height: 100%;
 }
 
-.login_box .panel{
+.login_box .panel {
   //background: rgba(45,45,45,.15);
   border: 100px solid transparent;
 }
 
-.login_body{
+.login_body {
   vertical-align: middle;
 }
-.loginin_page_container{
+
+.loginin_page_container {
   width: 350px;
   height: auto;
   margin: 120px auto;
@@ -65,7 +68,7 @@ html {
 
 }
 
-.loginin_input{
+.loginin_input {
 
   text-decoration: none;
   width: 100%;
@@ -74,16 +77,14 @@ html {
   padding: 0 15px;
   //background: rgba(45,45,45,.15);
 
-
 }
 
-
-.change_color{
-  color:white;
+.change_color {
+  color: white;
   background: #97c65e;
 }
 
-.change_btn_style{
+.change_btn_style {
   background-color: #f7ce00;
   border: none;
   border-radius: 25px;
@@ -98,11 +99,12 @@ html {
   padding-bottom: 14px;
 
 }
-.change_input_style{
+
+.change_input_style {
   background-color: #f8f8f8;
   border-radius: 6px;
   border: solid 1px #e5e5e5;
-  color: rgba(45,45,45,.15);
+  color: rgba(45, 45, 45, .15);
   display: block;
   outline: 0;
   padding: 0 1em;
@@ -110,22 +112,24 @@ html {
   width: 100%;
   font-size: 14px;
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,.1);
-
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 
 }
 
-.width{
-  width:100%;
+.width {
+  width: 100%;
   border-radius: 15px !important;
   background-color: transparent;
 }
-.margin{
+
+.margin {
   margin-top: 20px;
 }
-.change_font{
+
+.change_font {
   font-size: 15px;
 }
+
 *,
 *:after,
 *::before {
@@ -455,4 +459,16 @@ input.gn-search:focus {
   .gn-menu-wrapper.gn-open-all .gn-scroller {
     width: 130%
   }
+}
+
+#notice_detail {
+  padding: 10px;
+}
+#notice_detail .notice_head {
+  padding-bottom: 9px;
+  margin-bottom: 26px;
+  border-bottom: 1px dashed #E7E7E7;
+}
+#notice_detail .notice_head span{
+  margin-right:10px;
 }
