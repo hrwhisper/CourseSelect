@@ -2,39 +2,83 @@
 <html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Nexus Website Menu</title>
-  <meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
-  <meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
-  <meta name="author" content="Codrops" />
   <link rel="shortcut icon" href="../favicon.ico">
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/demo.css" /> -->
-  <link rel="stylesheet" type="text/css" href="css/component.css" />
-  <script src="js/modernizr.custom.js"></script>
+
 </head>
 <body>
 <div class="container">
   <ul id="gn-menu" class="gn-menu-main">
     <li class="gn-trigger">
-      <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+      <a class="gn-icon gn-icon-menu"></a>
       <nav class="gn-menu-wrapper">
         <div class="gn-scroller">
           <ul class="gn-menu">
-            <li class="gn-search-item">
-              <input placeholder="Search" type="search" class="gn-search">
-              <a class="gn-icon gn-icon-search"><span>Search</span></a>
-            </li>
+
+            <!--<li class="gn-search-item">-->
+              <!--<input placeholder="Search" type="search" class="gn-search">-->
+              <!--<a class="gn-icon gn-icon-search"><span>Search</span></a>-->
+            <!--</li>-->
+
+
+            <!--教师：课程管理 & 学生：选修课程-->
             <li>
-              <a class="gn-icon gn-icon-download">Downloads</a>
-              <ul class="gn-submenu">
-                <li><a class="gn-icon gn-icon-illustrator">Vector Illustrations</a></li>
-                <li><a class="gn-icon gn-icon-photoshop">Photoshop files</a></li>
-              </ul>
+              <!--<a class="gn-icon gn-icon-download">Downloads</a>-->
+              <% if teacher_logged_in? %>
+                  <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+                    课程管理</a>
+              <% end %>
+              <% if student_logged_in? %>
+                  <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+                    选修课程</a>
+              <% end %>
+
+              <div id="CourseCollapse" class="panel-collapse collapse <%= "in" if ["courses"].include?(params[:controller]) %>">
+
+                <ul class="gn-submenu ">
+                <!--<li><a class="gn-icon gn-icon-illustrator">Vector Illustrations</a></li>-->
+                <!--<li><a class="gn-icon gn-icon-photoshop">Photoshop files</a></li>-->
+
+
+                  <!--教师登陆：课程管理-已授课程／创建新课程-->
+                  <% if teacher_logged_in? %>
+                      <li class="list-group-item">
+                        <%= link_to courses_path do %>
+                            <span class="glyphicon glyphicon-chevron-right"></span> 已授课程
+                            <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
+                        <% end %>
+                      </li>
+                      <li class="list-group-item">
+                        <%= link_to new_course_path do %>
+                            <span class="glyphicon glyphicon-chevron-right"></span> 创建新课程
+                        <% end %>
+                      </li>
+                  <% end %>
+
+
+                  <!--学生登陆：选修课程-选修课程／已选课程-->
+                  <% if student_logged_in? %>
+                      <li class="list-group-item">
+                        <%= link_to list_courses_path do %>
+                            <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
+                    <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %>
+                    </span>
+                        <% end %>
+                      </li>
+                      <li class="list-group-item">
+                        <%= link_to courses_path do %>
+                            <span class="glyphicon glyphicon-chevron-right"></span> 已选课程
+                            <span class="label label-info pull-right"><%= current_user.courses.length %></span>
+                        <% end %>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
             </li>
+
             <li><a class="gn-icon gn-icon-cog">Settings</a></li>
+
             <li><a class="gn-icon gn-icon-help">Help</a></li>
+
             <li>
               <a class="gn-icon gn-icon-archive">Archives</a>
               <ul class="gn-submenu">
@@ -43,22 +87,18 @@
                 <li><a class="gn-icon gn-icon-videos">Videos</a></li>
               </ul>
             </li>
+
           </ul>
         </div><!-- /gn-scroller -->
       </nav>
     </li>
     <li><a href="http://tympanus.net/codrops">Codrops</a></li>
-    <li><a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/HeaderEffects/"><span>Previous Demo</span></a></li>
-    <li><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16030"><span>Back to the Codrops Article</span></a></li>
   </ul>
-  <header>
-    <h1>Google Nexus Website Menu <span>A sidebar menu as seen on the <a href="http://www.google.com/nexus/index.html">Google Nexus 7</a> page</span></h1>
-  </header>
+
 </div><!-- /container -->
-<script src="js/classie.js"></script>
-<script src="js/gnmenu.js"></script>
+
 <script>
-  new gnMenu( document.getElementById( 'gn-menu' ) );
+  doc = new gnMenu( document.getElementById( 'gn-menu' ) );
 </script>
 </body>
 </html>
