@@ -187,7 +187,6 @@ class CoursesController < ApplicationController
   end
 
   def course_outline
-    puts("this is course_outline")
     @course = Course.find_by_id(params[:id])
     @coursetmp = current_user.teaching_courses if teacher_logged_in?
   end
