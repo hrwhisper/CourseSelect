@@ -6,7 +6,7 @@ So that they have a better experience
 
 Scenario: User sees the login message
 When I am on the homepage
-Then I should see 登陆
+Then I should see 登录
 
 Scenario: User sees the register message
 When I am on the homepage
