@@ -39,10 +39,11 @@
 <script>
     $(document).ready(
         function () {
-            var sideDiv_right = $("#side_course_table").width() + 16;
+            var sideDiv_right = $("#side_course_table").width() +($("body").height() > $(window).height() ? 16 : 23);
             var speed = 300;
+
             $("#side_course_table").css("right", -sideDiv_right);
-            $("#side_course_table").css("top", window.pageYOffset + 'px');
+            $("#side_course_table").css("top", window.pageYOffset + 100 + 'px');
 
             var cnt = 0;
 
@@ -71,6 +72,6 @@
             });
 
         }).scroll(function () {
-        $("#side_course_table").css("top", window.pageYOffset + 'px');
+        $("#side_course_table").css("top", window.pageYOffset + 100 + 'px');
     });
 </script>

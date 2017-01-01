@@ -479,9 +479,11 @@ input.gn-search:focus {
   margin-right: 10px;
 }
 
+
 #side_course_table {
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
-  height: 100%;
+  //height: 100%;
+  height: 483px;
   overflow: hidden;
   position: absolute;
   z-index: 100;
@@ -509,10 +511,10 @@ input.gn-search:focus {
 .side_course_table_ctrlBlock #course_table_slide_in_button {
   background: image_url("/images/side_course_table_button.png") repeat scroll left top rgba(0, 0, 0, 0);
   height: 85px;
-  margin-top: -43px;
+  margin-top: 222px;
   position: absolute;
   left: 0;
-  top: 312px;
+  top: 0;
   width: 16px;
 }
 

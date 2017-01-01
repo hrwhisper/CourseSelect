@@ -153,36 +153,36 @@ class CoursesController < ApplicationController
 
   #-------------------------for both teachers and students----------------------
 
-def edit_outline
+  def edit_outline
     @course=Course.find_by_id(params[:id])
     # @semester = @course.semester # semester_format(@course.semesters[0])
-end
+  end
 
-def course_outline
+  def course_outline
     puts("this is course_outline")
     @course = Course.find_by_id(params[:id])
     @coursetmp = current_user.teaching_courses if teacher_logged_in?
-end
-  
-def course_discuss
+  end
+
+  def course_discuss
     @course = Course.find_by_id(params[:id])
     @test=@course.diss
     if @test == "暂无人发言"
       @test=""
     end
     if @course.tmp!=nil
-       @test= @test+"匿名用户："
-       @test=@test+@course.tmp
-       @course.diss=@test
+      @test= @test+"匿名用户："
+      @test=@test+@course.tmp
+      @course.diss=@test
     end
-     #@course.diss="暂无人发言"
-     if @course.save
+    #@course.diss="暂无人发言"
+    if @course.save
       flash={:success => "已经成功保存该发言:#{ @course.name}"}
     else
       flash={:warning => "保存失败"}
     end
     # redirect_to courses_path, flash: flash
-end
+  end
 
 
   def index
@@ -210,8 +210,8 @@ end
       @current_semester = nil
     end
   end
-  
-  
+
+
   private
 
   # Confirms a student logged-in user.
@@ -221,11 +221,11 @@ end
     end
   end
 
-def curriculum
-  @course=current_user.teaching_courses if teacher_logged_in?
-  @course=current_user.courses if student_logged_in?
-  render :json => @course
-end
+  def curriculum
+    @course=current_user.teaching_courses if teacher_logged_in?
+    @course=current_user.courses if student_logged_in?
+    render :json => @course
+  end
 
 
   def curriculum
