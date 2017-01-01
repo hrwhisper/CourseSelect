@@ -150,6 +150,10 @@ class CoursesController < ApplicationController
   def course_discuss
    @course = Course.find_by_id(params[:id])
    @discuss = @course.discussions
+   @discusstmp=Discussion.new
+   if @discuss==nil
+     @discuss=@discusstmp
+   end
    if @course.diss=="暂无人发言"
       @course.diss="匿名用户："
    end

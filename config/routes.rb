@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   end
 
   resources :discusss
-  resources :discussions
+  resources :discussions, only: [:index, :update]
   
   
   resources :grades, only: [:index, :update]
