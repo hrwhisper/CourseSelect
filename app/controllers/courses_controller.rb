@@ -234,8 +234,6 @@ end
     render :json => @course
   end
 
-
-
   private
 
   # Confirms a student logged-in user.
