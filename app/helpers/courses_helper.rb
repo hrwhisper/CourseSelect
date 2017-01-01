@@ -50,4 +50,9 @@ module CoursesHelper
     false
   end
 
+  def semester_format(semester)
+    year = semester.year
+    num = semester.num
+    "#{year}年第(#{num})学期"
+  end
 end
