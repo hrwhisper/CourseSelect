@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="panel panel-primary filterable">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseNotice">
+            公告
+          </a>
+        </h4>
+      </div>
+      <div id="collapseNotice" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <h2><%= @notice.title %></h2>
+          <%= @notice.created_at %>
+          <p><%= @notice.content %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

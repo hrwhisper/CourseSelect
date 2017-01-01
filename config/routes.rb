@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   resources :discussions
   resources :grades, only: [:index, :update, :export, :import,:stastics]
   resources :users
+  resources :notices
   resources :comments do
     member do
     end

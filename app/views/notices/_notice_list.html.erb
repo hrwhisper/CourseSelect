@@ -20,7 +20,7 @@
           </thead>
           <tbody>
           <% @notice.each do |notice| %>
-              <td><%= notice.title %></td>
+              <td><%= link_to notice.title, notice_url(notice) %></td>
               <td><%= notice.content %></td>
               <td><%= notice.created_at %></td>
           <% end %>

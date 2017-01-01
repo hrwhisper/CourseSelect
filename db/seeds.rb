@@ -1229,6 +1229,9 @@ Grade.create!([
   {course_id: 32, user_id: 229, grade: 20},
   {course_id: 32, user_id: 235, grade: 66}
 ])
+Notice.create!([
+  {user_id: nil, title: "选课截至2017-1-5", content: "如题"}
+])
 Systeminfo.create!([
   {name: "current_semester", value: "2016-1"},
   {name: "course_select_end_time", value: "2017-1-5-9-0"}

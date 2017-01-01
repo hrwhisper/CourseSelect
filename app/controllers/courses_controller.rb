@@ -153,6 +153,38 @@ class CoursesController < ApplicationController
 
   #-------------------------for both teachers and students----------------------
 
+def edit_outline
+    @course=Course.find_by_id(params[:id])
+    # @semester = @course.semester # semester_format(@course.semesters[0])
+end
+
+def course_outline
+    puts("this is course_outline")
+    @course = Course.find_by_id(params[:id])
+    @coursetmp = current_user.teaching_courses if teacher_logged_in?
+end
+  
+def course_discuss
+    @course = Course.find_by_id(params[:id])
+    @test=@course.diss
+    if @test == "暂无人发言"
+      @test=""
+    end
+    if @course.tmp!=nil
+       @test= @test+"匿名用户："
+       @test=@test+@course.tmp
+       @course.diss=@test
+    end
+     #@course.diss="暂无人发言"
+     if @course.save
+      flash={:success => "已经成功保存该发言:#{ @course.name}"}
+    else
+      flash={:warning => "保存失败"}
+    end
+    # redirect_to courses_path, flash: flash
+end
+
+
   def index
     redirect_to '/courses/my_course_list'
   end
@@ -178,30 +210,8 @@ class CoursesController < ApplicationController
       @current_semester = nil
     end
   end
-
-  def course_outline
-    @course = Course.find_by_id(params[:id])
-    @coursetmp=current_user.teaching_courses if teacher_logged_in?
-  end
   
   
-  def course_discuss
-   @course = Course.find_by_id(params[:id])
-   @discuss = @course.discussions
-   @discusstmp=Discussion.new
-   if @discuss==nil
-     @discuss=@discusstmp
-   end
-   if @course.diss=="暂无人发言"
-      @course.diss="匿名用户："
-   end
-   if @course.tmp!=nil
-     @course.diss += @course.tmp
-   end
-   #@course.diss = @course.diss + "匿名用户"
-   #@course.diss = @course.diss + @course.tmp
-  end
-
   private
 
   # Confirms a student logged-in user.
@@ -217,57 +227,42 @@ def curriculum
   render :json => @course
 end
 
-def course_outline
-  @course = Course.find_by_id(params[:id])
-  @coursetmp=current_user.teaching_courses if teacher_logged_in?
-end
 
-def edit_outline
-    @course=Course.find_by_id(params[:id])
-    # @semester = @course.semester # semester_format(@course.semesters[0])
-end
-
-def course_discuss
-  @course = Course.find_by_id(params[:id])
-  @discuss = @course.discussions
-  if @course.diss=="暂无人发言"
-    @course.diss="匿名用户："
+  def curriculum
+    @course=current_user.teaching_courses if teacher_logged_in?
+    @course=current_user.courses if student_logged_in?
+    render :json => @course
   end
-  if @course.tmp!=nil
-    @course.diss += @course.tmp
+
+
+
+  private
+
+  # Confirms a student logged-in user.
+  def student_logged_in
+    unless student_logged_in?
+      redirect_to root_url, flash: {danger: '请登陆'}
+    end
   end
-  #@course.diss = @course.diss + "匿名用户"
-  #@course.diss = @course.diss + @course.tmp
-end
 
-private
-
-# Confirms a student logged-in user.
-def student_logged_in
-  unless student_logged_in?
-    redirect_to root_url, flash: {danger: '请登陆'}
+  # Confirms a teacher logged-in user.
+  def teacher_logged_in
+    unless teacher_logged_in?
+      redirect_to root_url, flash: {danger: '请登陆'}
+    end
   end
-end
 
-# Confirms a teacher logged-in user.
-def teacher_logged_in
-  unless teacher_logged_in?
-    redirect_to root_url, flash: {danger: '请登陆'}
+  # Confirms a  logged-in user.
+  def logged_in
+    unless logged_in?
+      redirect_to root_url, flash: {danger: '请登陆'}
+    end
   end
-end
 
-# Confirms a  logged-in user.
-def logged_in
-  unless logged_in?
-    redirect_to root_url, flash: {danger: '请登陆'}
+  def course_params
+    params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
+                                   :credit, :limit_num, :class_room, :course_time, :course_week,
+                                   :tmp, :outline, :diss, :discussion, :discussions, :discuss,
+                                   :discussess, :year, :term_num)
   end
-end
-
-def course_params
-  params.require(:course).permit(:course_code, :name, :course_type, :teaching_type, :exam_type,
-                                 :credit, :limit_num, :class_room, :course_time, :course_week,
-                                 :tmp, :outline, :diss, :discussion, :discussions, :discuss,
-                                 :discussess, :year, :term_num)
-end
-
 end
