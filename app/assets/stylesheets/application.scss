@@ -15,6 +15,10 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
+body {
+  overflow-x: hidden;
+}
+
 body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
   font-family: monospace, '宋体', Tahoma, Helvetica,
   Arial, "\5b8b\4f53", sans-serif;
@@ -35,7 +39,7 @@ footer {
 }
 
 .body-background {
-  //background-image: image-url('bg.jpg');
+  //background-images: images-url('bg.jpg');
   //background-color: #97c65e;
   //background-repeat: no-repeat;
   //background-size: 100% 100%;
@@ -464,11 +468,54 @@ input.gn-search:focus {
 #notice_detail {
   padding: 10px;
 }
+
 #notice_detail .notice_head {
   padding-bottom: 9px;
   margin-bottom: 26px;
   border-bottom: 1px dashed #E7E7E7;
 }
-#notice_detail .notice_head span{
-  margin-right:10px;
+
+#notice_detail .notice_head span {
+  margin-right: 10px;
+}
+
+#side_course_table {
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: 100;
+}
+
+.sideDiv_content {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding-left: 16px;
+}
+
+.side_course_table_ctrlBlock {
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 26px;
+  z-index: 50;
+}
+
+.side_course_table_ctrlBlock #course_table_slide_in_button {
+  background: image_url("/images/side_course_table_button.png") repeat scroll left top rgba(0, 0, 0, 0);
+  height: 85px;
+  margin-top: -43px;
+  position: absolute;
+  left: 0;
+  top: 312px;
+  width: 16px;
+}
+
+.side_course_table_ctrlBlock #course_table_slide_in_button:hover {
+  background: image_url("/images/side_course_table_button_hover.png") repeat scroll left top rgba(0, 0, 0, 0);
 }
