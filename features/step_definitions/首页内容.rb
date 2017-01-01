@@ -1,5 +1,5 @@
-Then(/^I should see 登陆$/) do
-    expect(page).to have_content("登陆")
+Then(/^I should see 登录$/) do
+    expect(page).to have_content("登录")
     # Write code here that turns the phrase above into concrete actions
 end
 
