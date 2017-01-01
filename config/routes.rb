@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'grades/export' =>"grades#export"
-  post 'grades/import' =>"grades#import"
+  get 'grades/export' => "grades#export"
+  get 'grades/stastics' => "grades#stastics"
+  post 'grades/stastics' => "grades#stastics"
+  post 'grades/import' => "grades#import"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -21,16 +23,18 @@ Rails.application.routes.draw do
 
   resources :courses do
     member do
-      get :select
       get :quit
       get :open
       get :close
       get :student_list
       get :course_outline
       get :course_discuss
+      get :edit_outline
     end
     collection do
-      post :choose_course
+      get :my_course_list
+      post :my_course_list
+      post :select
       get :list
       post :list
       get :curriculum
@@ -42,14 +46,21 @@ Rails.application.routes.draw do
   
   
   resources :grades, only: [:index, :update]
+  resources :discussions
+  resources :grades, only: [:index, :update, :export, :import,:stastics]
   resources :users
-  resources :comments
+  resources :comments do
+    member do
+    end
+    collection do
+      get :list
+    end
+  end
 
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
   delete 'sessions/logout' => 'sessions#destroy'
-
 
   # Example resource route with options:
   #   resources :products do

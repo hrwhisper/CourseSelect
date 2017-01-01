@@ -97,8 +97,7 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <input class="form-control" placeholder="2016" type="text" value="<%= @semester.year %>"
-                 name="semester" id="course_credit">
+          <%= f.text_field :year, class: 'form-control', placeholder: "输入开课年份" %>
         </div>
       </div>
     </div>
@@ -108,8 +107,7 @@
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <input class="form-control" placeholder="1" type="text" value="<%= @semester.num %>"
-                 name="semester" id="course_credit">
+             <%= f.text_field :term_num, class: 'form-control', placeholder: "输入开课学年" %>
         </div>
       </div>
     </div>
@@ -119,9 +117,7 @@
       <div class="col-sm-9">
         <div class="input-group input-group-lg">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-
           <%= f.text_area :outline, class: 'form-control', placeholder: "输入课程大纲" %>
-
         </div>
       </div>
     </div>

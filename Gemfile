@@ -18,7 +18,6 @@ gem 'rails_admin', '~> 0.8.1'
 # gem 'roo'
 # gem 'roo-xls'
 # gem 'paper_trail'
-# gem 'rubyzip', '~> 1.1.0'
 # gem 'axlsx', '2.1.0.pre'
 # gem 'axlsx_rails'
 
@@ -84,3 +83,4 @@ group :development, :test do
 end
 
 gem 'seed_dump'
+gem 'spreadsheet'

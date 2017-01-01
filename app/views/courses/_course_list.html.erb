@@ -1,5 +1,5 @@
 <% index_course = '/' %>
-<%= form_tag("/courses/choose_course", method: "post") do %>
+<%= form_tag("/courses/select", method: "post") do %>
 
     <table class="table table-striped table-hover">
       <thead>
@@ -38,7 +38,6 @@
             <td><%= course_to_choose.exam_type %></td>
             <td><%= course_to_choose.teacher.name %></td>
             <td><%= course_to_choose.course_time %></td>
-            <td><%= course_to_choose.semesters[0].year %> <%= course_to_choose.semesters[0].num %></td>
           </tr>
       <% end %>
       </tbody>

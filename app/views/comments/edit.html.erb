@@ -1,0 +1,322 @@
+<Script>
+	function reurl(){
+		url = location.href;
+		var times = url.split("?");
+		if(times[1] != 1){ 
+		url += "?1"; 
+		self.location.replace(url);
+		}
+	}
+	onload=reurl();
+</script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= render "shared/sidenav" %>
+
+    </div>
+    <div class="col-sm-10">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">评估课程: <%=@comment.course.name%></h3>
+        </div>
+        <div class="panel-body" style="min-height: 450px">
+        
+			<table class="table table-striped table-bordered table-advance table-hover">
+		   <thead>
+		       <tr>
+		           <th>序号</th>
+		           <th>评估内容</th>
+		           <th>评分</th>
+		    	</tr>
+		   	</thead>
+			
+			<%= form_for @comment, html: {name: 'myform'},url: comment_url(id: @comment.id),method: :patch do |f| %>
+		   	<tbody>
+				<tr>
+					<th>1</th>
+					<th>治学严整、言传身教</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_1, 100 %><%= label_tag(:comment_1_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_1, 90 %><%= label_tag(:comment_1_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_1, 80 %><%= label_tag(:comment_1_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_1, 70 %><%= label_tag(:comment_1_70, "差") %> </span>
+					</td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<th>备课充分，讲课认真</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_2, 100 %><%= label_tag(:comment_2_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_2, 90 %><%= label_tag(:comment_2_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_2, 80 %><%= label_tag(:comment_2_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_2, 70 %><%= label_tag(:comment_2_70, "差") %> </span>
+					</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>3</th>
+					<th>仪装端庄，精神饱满 </th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_3, 100 %><%= label_tag(:comment_3_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_3, 90 %><%= label_tag(:comment_3_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_3, 80 %><%= label_tag(:comment_3_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_3, 70 %><%= label_tag(:comment_3_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>4</th>
+					<th>虚心听取意见，积极改进教学</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_4, 100 %><%= label_tag(:comment_4_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_4, 90 %><%= label_tag(:comment_4_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_4, 80 %><%= label_tag(:comment_4_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_4, 70 %><%= label_tag(:comment_4_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>5</th>
+					<th>无调课、停课、替讲现象</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_5, 100 %><%= label_tag(:comment_5_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_5, 90 %><%= label_tag(:comment_5_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_5, 80 %><%= label_tag(:comment_5_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_5, 70 %><%= label_tag(:comment_5_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>6</th>
+					<th>教学内容基本符合教学大纲要求</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_6, 100 %><%= label_tag(:comment_6_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_6, 90 %><%= label_tag(:comment_6_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_6, 80 %><%= label_tag(:comment_6_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_6, 70 %><%= label_tag(:comment_6_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>7</th>
+					<th>讲授思路清晰，概念清楚</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_7, 100 %><%= label_tag(:comment_7_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_7, 90 %><%= label_tag(:comment_7_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_7, 80 %><%= label_tag(:comment_7_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_7, 70 %><%= label_tag(:comment_7_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>8</th>
+					<th>课程特色鲜明，内容取舍合理，组织严密，逻辑性强</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_8, 100 %><%= label_tag(:comment_8_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_8, 90 %><%= label_tag(:comment_8_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_8, 80 %><%= label_tag(:comment_8_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_8, 70 %><%= label_tag(:comment_8_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>9</th>
+					<th>重点突出，难点讲解清楚</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_9, 100 %><%= label_tag(:comment_9_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_9, 90 %><%= label_tag(:comment_9_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_9, 80 %><%= label_tag(:comment_9_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_9, 70 %><%= label_tag(:comment_9_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>10</th>
+					<th>拓展学生知识面，培养分析能力，引导创新</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_10, 100 %><%= label_tag(:comment_10_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_10, 90 %><%= label_tag(:comment_10_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_10, 80 %><%= label_tag(:comment_10_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_10, 70 %><%= label_tag(:comment_10_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>11</th>
+					<th>因材施教，教学相长</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_11, 100 %><%= label_tag(:comment_11_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_11, 90 %><%= label_tag(:comment_11_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_11, 80 %><%= label_tag(:comment_11_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_11, 70 %><%= label_tag(:comment_11_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>12</th>
+					<th>注重学生能力培养，合理配置作业</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_12, 100 %><%= label_tag(:comment_12_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_12, 90 %><%= label_tag(:comment_12_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_12, 80 %><%= label_tag(:comment_12_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_12, 70 %><%= label_tag(:comment_12_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>13</th>
+					<th>答疑</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_13, 100 %><%= label_tag(:comment_13_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_13, 90 %><%= label_tag(:comment_13_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_13, 80 %><%= label_tag(:comment_13_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_13, 70 %><%= label_tag(:comment_13_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>14</th>
+					<th>课堂互动</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_14, 100 %><%= label_tag(:comment_14_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_14, 90 %><%= label_tag(:comment_14_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_14, 80 %><%= label_tag(:comment_14_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_14, 70 %><%= label_tag(:comment_14_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>15</th>
+					<th>有启发，学习能力明显提高</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_15, 100 %><%= label_tag(:comment_15_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_15, 90 %><%= label_tag(:comment_15_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_15, 80 %><%= label_tag(:comment_15_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_15, 70 %><%= label_tag(:comment_15_70, "差") %> </span>
+					</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>16</th>
+					<th>教学有吸引力，学生能够掌握或理解大部分教学内容</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_16, 100 %><%= label_tag(:comment_16_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_16, 90 %><%= label_tag(:comment_16_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_16, 80 %><%= label_tag(:comment_16_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_16, 70 %><%= label_tag(:comment_16_70, "差") %> </span>
+						</td>
+                </tr>
+
+				<tr>
+
+			<tr>
+
+					<th>17</th>
+					<th>达到教学目的和要求</th>
+					<td>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_17, 100 %><%= label_tag(:comment_17_100, "优") %></span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_17, 90 %><%= label_tag(:comment_17_90, "良") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_17, 80 %><%= label_tag(:comment_17_80, "中") %> </span>
+						<span style="margin-left: 20px"><%= f.radio_button :comment_17, 70 %><%= label_tag(:comment_17_70, "差") %> </span>
+						</td>
+                </tr>
+			</tbody>
+			
+ 		</table>
+ 		
+ 		<div class="control-group">
+			    <h4>想对老师说的话</h4>
+		</div>
+		<div class="control-group">
+		    <div class="controls2">
+		        <%= f.text_area :Commenttext,class: 'form-control' %>
+		    </div>
+		</div>
+		<h3></h3>
+
+		<div class="form-actions">
+			<%if !@comment.commented?%>
+		    <input type=button name="commit" value="提交" onclick="check(this.form)" class="btn btn-info btn-block" />
+		    <%end%>
+		    <%= link_to '取消', comments_path, :class => "btn btn-default btn-block" %>
+		</div>
+		 <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript"> 
+	function check(form) {
+		var comment_1 =$("input[name='comment[comment_1]']:checked").val();
+		var comment_2 =$("input[name='comment[comment_2]']:checked").val();
+		var comment_3 =$("input[name='comment[comment_3]']:checked").val();
+		var comment_4 =$("input[name='comment[comment_4]']:checked").val();
+		var comment_5 =$("input[name='comment[comment_5]']:checked").val();
+		var comment_6 =$("input[name='comment[comment_6]']:checked").val();
+		var comment_7 =$("input[name='comment[comment_7]']:checked").val();
+		var comment_8 =$("input[name='comment[comment_8]']:checked").val();
+		var comment_9 =$("input[name='comment[comment_9]']:checked").val();
+		var comment_10 =$("input[name='comment[comment_10]']:checked").val();
+		var comment_11 =$("input[name='comment[comment_11]']:checked").val();
+		var comment_12 =$("input[name='comment[comment_12]']:checked").val();
+		var comment_13 =$("input[name='comment[comment_13]']:checked").val();
+		var comment_14 =$("input[name='comment[comment_14]']:checked").val();
+		var comment_15 =$("input[name='comment[comment_15]']:checked").val();
+		var comment_16 =$("input[name='comment[comment_16]']:checked").val();
+		var comment_17 =$("input[name='comment[comment_17]']:checked").val();
+		var comment_text = $("#comment_Commenttext").val();
+		if(comment_1==null||comment_2==null||comment_3==null||comment_4==null||comment_5==null||comment_6==null||comment_7==null||
+		comment_8==null||comment_9==null||comment_10==null||comment_11==null||comment_12==null||comment_13==null||comment_14==null||
+		comment_15==null||comment_16==null||comment_17==null||comment_text=='')
+		{
+			alert("每一项都不能为空");
+		}else{
+			document.myform.submit();
+		}
+    } 
+</script>  

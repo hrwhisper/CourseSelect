@@ -6,7 +6,6 @@ class HomesController < ApplicationController
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
     @notice = Notice.all
-
   end
 
 # Confirms a student logged-in user.

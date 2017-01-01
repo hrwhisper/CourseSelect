@@ -1,7 +1,10 @@
 <%= javascript_include_tag('echarts.min.js') %>
+<%= javascript_include_tag('modernizr.custom.js') %>
+
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
+
 
     <div class="navbar-header">
       <%= link_to "CourseSelect", root_path, class: 'navbar-brand' %>
@@ -44,7 +47,7 @@
         <% else %>
 
             <li><%= link_to sessions_login_path do %>
-                  登陆 <span class="	glyphicon glyphicon-user"></span>
+                  登录 <span class="	glyphicon glyphicon-user"></span>
               <% end %>
             </li>
 

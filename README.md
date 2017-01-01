@@ -1,28 +1,7 @@
-# CourseSelect [![Build Status](https://travis-ci.org/PENGZhaoqing/CourseSelect.svg?branch=master)](https://travis-ci.org/PENGZhaoqing/CourseSelect)
-
-### [中文教程1](http://blog.csdn.net/ppp8300885/article/details/52594839) [中文教程2](http://blog.csdn.net/ppp8300885/article/details/52601560) [中文教程3](http://blog.csdn.net/ppp8300885/article/details/52669749)
+# CourseSelect
 
 
-这个样本系统是基于国科大研究生课程 (高级软件工程) 开发的项目,目的是帮助入门者学习RoR (Ruby on Rails) 
-
-适合新学者的入手的第一个项目 ([演示Demo戳这里](https://courseselect.herokuapp.com/ ))，入门者可以在这个样本系统上增加更多的功能:
-
-* 处理选课冲突、控制选课人数
-* 统计选课学分，学位课等
-* 增加选课的开放、关闭功能
-* 自定义管理员后台
-* 基于OAuth的授权登陆
-* Excel格式的数据导入
-* 绑定用户邮箱（实现注册激活，忘记密码等）
-* 站内查找检索 （课程按分类查找，过滤等）
-
-### 目前功能：
-
-* 多角色登陆（学生，老师，管理员）
-* 学生动态选课，退课
-* 老师动态增加，删除课程
-* 老师对课程下的学生添加、修改成绩
-* 权限控制：老师和学生只能看到自己相关课程信息
+这个系统是基于https://github.com/PENGZhaoqing/CourseSelect 的继续开发
 
 ### 截图
 
@@ -61,6 +40,48 @@ $ rails s
 ```
 
 在浏览器中输入`localhost:3000`访问主页
+
+
+
+## 多人开发协作
+
+fork后，同步我的代码：
+
+添加源
+
+```
+git remote add upstream https://github.com/hrwhisper/CourseSelect
+git remote -v
+```
+
+git remote -v 后，应该出现我的地址。
+
+然后
+
+```
+git fetch upstream
+git merge upstream/master
+```
+
+每次同步代码后，可以执行如下重新构建一下数据库（若rake db:migrate 不行的话，那就加上reset）
+
+```
+rake db:migrate:reset
+rake db:seed
+```
+
+由于可能加了新的包，所以最好还要
+```
+bundle install
+```
+
+更新自己的github仓库（git push)
+
+最后通过pull request即可。
+
+
+
+
 
 ##使用
 
@@ -139,41 +160,52 @@ cucumber features/XX.feature (执行XX测试，.feature文件在features文件�
 4. ~~查看选自己课的学生学生信息~~
 5. ~~学生信息统计可视化~~
 6. ~~管理员在首页发公告~~
-7. 编辑、查看课程大纲
-8. Discuss功能
-9. 课程评价
-10. 通过学期、时间等筛选课程
-11. 查看以往学期所授课程
-12. 选课时间限制
-13. 获取课程名单EXCEL表格
-14. Excel成绩导入
-15. 选课方式修改
-16. 选课人数-并发考虑
-17. 选课结果邮件通知
-18. GPA目标计算
-19. 查询评估结果及可视化
-20. 课程成绩分布可视化
-21. 总分数统计
-22. 每学期成绩分数统计
-23. 获取课程名单EXCEL表格
+7. ~~通过学期、时间等筛选课程~~
+8. ~~查看以往学期所授课程~~
+9. ~~编辑、查看课程大纲~~
+10. ~~选课时间限制~~
+11. ~~选课人数限制-~~
+12. ~~获取课程名单EXCEL表格~~
+13. ~~Excel成绩导入~~
+14. ~~课程评价~~
+15. ~~课程成绩分布可视化~~
+16. ~~每学期成绩分数统计~~
+17. ~~总分数统计~~
+18. ~~查询评估结果~~
+19. 通知详情页
+20. Discuss功能
+21. 评估结果可视化
+22. GPA目标计算
+23. 选课方式修改
+24. 选课结果邮件通知
 
 
 
 
 ## 更新日志 ##
+- 2016.12.29
+  - excel 导出
+  - bug修复
+- 2016.12.28
+  - 选课时间限制
+  - 服务器后台验证选课时间限制
+  - 服务器后台验证课程冲突
+  - 修复提交空id导致的错误
+  - 更新readme
+  - 选课人数
+- 2016.12.25
+  - excel
+  - 可以通过学期筛选课程
 - 2016.12.21
   - 管理员首页可以发公告
-
 - 2016.12.20
   - 删除student_num字段
   - 修复课程已选人数不对的bug
   - 教师页面看已经选的人数
   - 教师可以查看选课的学生名单
   - 研究所信息统计可视化
-
 - 2016.12.19
   - 选课批量提交
   - 实时课表
-
 - 2016.12.18
   - 课表功能

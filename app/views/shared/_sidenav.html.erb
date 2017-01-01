@@ -1,21 +1,23 @@
 <div class="panel-group" id="accordion">
 
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading ">
       <h4 class="panel-title">
 
-        <% if teacher_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
-              课程管理</a>
-        <% end %>
+                <% if teacher_logged_in? %>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+                      课程管理</a>
+                <% end %>
 
-        <% if student_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
-              选修课程</a>
-        <% end %>
-
+                <% if student_logged_in? %>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+                      选修课程</a>
+                <% end %>
       </h4>
     </div>
+
+
+
 
     <div id="CourseCollapse" class="panel-collapse collapse <%= "in" if ["courses"].include?(params[:controller]) %>">
       <ul class="list-group">
@@ -38,7 +40,8 @@
             <li class="list-group-item">
               <%= link_to list_courses_path do %>
                   <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
-                  <span class="label label-info pull-right"><%= (Course.where('open = true')-current_user.courses).length %></span>
+                  <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %>
+                  </span>
               <% end %>
             </li>
             <li class="list-group-item">
@@ -89,12 +92,17 @@
                   <span class="glyphicon glyphicon-chevron-right"></span> 所有成绩
               <% end %>
             </li>
+            <li class="list-group-item">
+              <%= link_to grades_stastics_path do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 成绩统计
+              <% end %>
+            </li>
         <% end %>
 
       </div>
     </div>
   </div>
-  
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -116,7 +124,9 @@
         <% if teacher_logged_in? %>
             <% current_user.teaching_courses.each do |course| %>
                 <li class="list-group-item">
-                  <%= link_to comments_path(course_id: course.id), :method => :get do %>
+
+                  <%= link_to list_comments_path(course_id: course.id), :method => :get do %>
+
                       <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
                       <span class="label label-info pull-right"><%= course.users.length %></span>
                   <% end %>
@@ -127,14 +137,12 @@
 
         <% if student_logged_in? %>
             <li class="list-group-item">
-              <%= link_to comments_path do %>
+              <%= link_to comments_path  do %>
                   <span class="glyphicon glyphicon-chevron-right"></span> 评估课程
               <% end %>
             </li>
         <% end %>
-
       </div>
     </div>	
   </div>
-  
 </div>

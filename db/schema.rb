@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224122651) do
+ActiveRecord::Schema.define(version: 20161230113557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 20161224122651) do
     t.integer  "comment_15"
     t.integer  "comment_16"
     t.integer  "comment_17"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "commented",   default: false
+    t.text     "Commenttext"
   end
 
   add_index "comments", ["course_id"], name: "index_comments_on_course_id", using: :btree
@@ -61,15 +63,9 @@ ActiveRecord::Schema.define(version: 20161224122651) do
     t.text     "outline",       default: "本课程暂无大纲"
     t.string   "tmp"
     t.text     "diss",          default: "暂无人发言"
+    t.integer  "year"
+    t.integer  "term_num",      default: 1
   end
-
-  create_table "courses_semesters", id: false, force: :cascade do |t|
-    t.integer "course_id"
-    t.integer "semester_id"
-  end
-
-  add_index "courses_semesters", ["course_id"], name: "index_courses_semesters_on_course_id", using: :btree
-  add_index "courses_semesters", ["semester_id"], name: "index_courses_semesters_on_semester_id", using: :btree
 
   create_table "discussions", force: :cascade do |t|
     t.integer  "course_id"
@@ -102,15 +98,12 @@ ActiveRecord::Schema.define(version: 20161224122651) do
 
   add_index "notices", ["user_id"], name: "index_notices_on_user_id", using: :btree
 
-  create_table "semesters", force: :cascade do |t|
-    t.integer "year"
-    t.integer "num"
-  end
-
-  create_table "system_dbs", force: :cascade do |t|
+  create_table "systeminfos", force: :cascade do |t|
     t.string "name"
     t.string "value"
   end
+
+  add_index "systeminfos", ["name"], name: "index_systeminfos_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -127,5 +120,6 @@ ActiveRecord::Schema.define(version: 20161224122651) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["num"], name: "index_users_on_num", unique: true, using: :btree
 
 end

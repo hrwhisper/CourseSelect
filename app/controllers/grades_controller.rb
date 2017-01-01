@@ -1,6 +1,7 @@
 class GradesController < ApplicationController
+  include CoursesHelper
 
-  before_action :teacher_logged_in, only: [:update]
+  before_action :teacher_logged_in, only: [:update, :export, :import]
 
   def update
     @grade=Grade.find_by_id(params[:id])
@@ -19,57 +20,117 @@ class GradesController < ApplicationController
     elsif student_logged_in?
       @grades=current_user.grades
     else
-      redirect_to root_path, flash: {:warning=>"请先登陆"}
-    end
-  end
-  
- def import
-    file = params[:file]
-    begin
-      file_ext = File.extname(file.original_filename)
-      if not [".xls", ".xlsx"].include?(file_ext)
-        flash={:danger => "失败，文件类型不支持"}
-      else
-        spreadsheet = (file_ext == ".xls") ? Roo::Excel.new(file.path) : Roo::Excelx.new(file.path)
-        header = spreadsheet.row(1)
-        (2..spreadsheet.last_row).each do |i|
-          @grade=Grade.find_by_id(spreadsheet.row(i)[0])
-          #@grade=Grade.where(User.where(course.course_code==spreadsheet.row(i)[1]))
-          @grade.update_attributes!(:grade => spreadsheet.row(i)[6])
-        end
-        flash={:success => "上传成功"}
-      end
-      redirect_to grades_path(course_id: params[:course_id]), flash: flash
+      redirect_to root_path, flash: {:warning => "请先登陆"}
     end
   end
 
   def export
-    if teacher_logged_in?
-      @course=Course.find_by_id(params[:course_id])
-      @grades=@course.grades
-    else
-      redirect_to root_path, flash: {:warning=>"请先登陆"}
-    end
+    course = Course.find_by_id(params[:course_id])
     respond_to do |format|
-      format.html
       format.xls {
-        require 'spreadsheet'
-        book = Spreadsheet::Workbook.new
-        sheet1 = book.create_worksheet
-        sheet1.row(0).concat %w{成绩编号 学号 姓名 专业 培养单位 课程 成绩}
-        @grades.each_with_index do |grade,i|
-          sheet1.row(i+1).push grade.id, grade.user.num, grade.user.name, grade.user.major, grade.user.department, grade.course.name, grade.grade
+        require 'tempfile'
+        temp_file = Tempfile.new("#{current_user.id.to_s+'_'+course.name}.xls")
+
+        workbook = Spreadsheet::Workbook.new
+        worksheet = workbook.create_worksheet
+        worksheet.row(0).concat %w{学号 姓名 专业 培养单位 邮箱 成绩}
+        course.grades.each_with_index do |grade, i|
+          worksheet.row(i+1).push grade.user.num, grade.user.name, grade.user.major, grade.user.department, grade.user.email, grade.grade
         end
-        book.write 'grade.xls'
-        send_file 'grade.xls',:type => "application/vnd.ms-excel", :filename => "#{@course.name}.xls", :stream => false
-        return
+        workbook.write temp_file
+        send_file temp_file, :type => "application/vnd.ms-excel", :filename => "#{course.name}.xls", :stream => false
+        # temp_file.rewind
       }
     end
   end
 
+  def stastics
+    @grades = []
+    @courses=current_user.courses
+    @all_semester= get_course_info(@courses, 'year', 'term_num')
+    @current_semester = get_current_semester()
+    semester = nil
+
+    if request.post?
+      if params[:semester] !=''
+        @current_semester = params[:semester]
+        semester = semester_to_array(@current_semester)
+      end
+    else
+      semester = semester_to_array(@current_semester)
+    end
+
+    if semester
+      current_user.grades.each do|grade|
+        if grade.course.year == semester[0] and grade.course.term_num == semester[1]
+          @grades << grade
+        end
+      end
+    else
+      @current_semester = nil
+      @grades = current_user.grades
+    end
+    @total_score = 0
+    @total_credit= 0
+    @means_core = 0
+    if !(@grades.nil?)
+      @grade_level = {"优" => 0, "良" => 0, "中" => 0, "及格" => 0, "不及格" => 0}
+      @grades.each do |grade|
+        if !(grade.grade.nil?)
+          @credits = grade.course.credit.split('/')
+          @total_score+=grade.grade * @credits[1].to_i
+          @total_credit+=@credits[1].to_f
+          if grade.grade <60
+            @grade_level["不及格"]+=1
+          elsif grade.grade <70
+            @grade_level["及格"]+=1
+          elsif grade.grade <80
+            @grade_level["中"]+=1
+          elsif grade.grade <90
+            @grade_level["良"]+=1
+          else
+            @grade_level["优"]+=1
+          end
+        end
+      end
+    end
+  end
+
+
+  def import
+    file = params[:excel_file]
+    course_id = params[:course_id]
+    flash = {}
+    if file.original_filename.split('.')[-1] == 'xls'
+      book = Spreadsheet.open file.path
+      error_student = []
+      worksheet = book.worksheet 0
+      worksheet.each_with_index do |row, i|
+        if i != 0
+          cur_student = User.find_by_num(row[0]) # row[0] is the student_num
+          if not cur_student
+            error_student << row[0]
+            next
+          end
+          grade = Grade.where('course_id = ? and user_id=?', course_id, cur_student.id).take
+          if not row[-1] or row[-1] < 0 or row[-1] > 100 or not grade or (not grade.update(grade: row[-1]))
+            error_student << row[0]
+          end
+        end
+      end
+      flash[:success] = "上传成功,共有#{worksheet.last_row_index}个学生, #{worksheet.last_row_index - error_student.length}个学生成绩已更新"
+      if error_student.length !=0
+        flash[:error] = "学号为 #{error_student.join(' , ')} 更新失败，请检查学号以及分数的合法性"
+      end
+    else
+      flash[:error] = '文件格式错误'
+    end
+    redirect_to grades_path(course_id: course_id), flash: flash
+  end
+
   private
 
-  # Confirms a teacher logged-in user.
+# Confirms a teacher logged-in user.
   def teacher_logged_in
     unless teacher_logged_in?
       redirect_to root_url, flash: {danger: '请登陆'}
