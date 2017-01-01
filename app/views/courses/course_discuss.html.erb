@@ -19,14 +19,21 @@
             <div class="table-responsive">
           <tbody>
              <br>
+             <%if @course.diss == "暂无人发言" %>
+                 <td><B>暂时无人发言！</B></td>
+             <% end %>
              <% @test = @course.diss.split("匿名用户：")%>
-             
+              <% @judge ="" %>
               <% @test.each do |test| %>
-              <% if test != "暂无人发言" and test != "" %>
-              <td><B>匿名用户：</B></td>
+                <% if test != "暂无人发言" and test != "" %>
+                  <% if @judge.include? test   %>
+                  <% else %>
+                      <td><B>匿名用户：</B></td>
+                      <td><%= test%></td>
+                            <br>
+                      <% @judge+=test %>
+                  <% end %>
               <% end %>
-              <td><%= test%></td>
-              <br>
              <% end %>
     
           </tbody>
