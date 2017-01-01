@@ -15,7 +15,6 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
-
 *,
 *:after,
 *::before {
@@ -35,9 +34,10 @@
   src: asset_url("../fonts/ecoicons/ecoicons.svg#ecoicons") format("svg");
 }
 
-
-body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: monospace, '宋体' , Tahoma, Helvetica,
-Arial, "\5b8b\4f53", sans-serif;}
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+  font-family: monospace, '宋体', Tahoma, Helvetica,
+  Arial, "\5b8b\4f53", sans-serif;
+}
 
 body {
   overflow-x: hidden;
@@ -107,14 +107,12 @@ html {
 
 }
 
-
-.my_course_list_bg{
+.my_course_list_bg {
   background-color: white;
 }
 
-
-.change_color{
-  color:white;
+.change_color {
+  color: white;
   background: #97c65e;
 }
 
@@ -373,10 +371,9 @@ input.gn-search:focus {
   -webkit-font-smoothing: antialiased;
 }
 
-.bella-icon-class::before{
+.bella-icon-class::before {
   content: "\e000"
 }
-
 
 .gn-icon-help::before {
   content: "\e000"
@@ -482,9 +479,9 @@ input.gn-search:focus {
   }
 }
 
-.change_bg_font{
+.change_bg_font {
   background-color: #34383b;
-
+}
 
 #notice_detail {
   padding: 10px;
@@ -499,7 +496,6 @@ input.gn-search:focus {
 #notice_detail .notice_head span {
   margin-right: 10px;
 }
-
 
 #side_course_table {
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
