@@ -209,7 +209,7 @@ class CoursesController < ApplicationController
     unless student_logged_in?
       redirect_to root_url, flash: {danger: '请登陆'}
     end
-end
+  end
 
 def curriculum
   @course=current_user.teaching_courses if teacher_logged_in?
