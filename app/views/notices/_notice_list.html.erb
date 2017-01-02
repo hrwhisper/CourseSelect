@@ -1,6 +1,6 @@
-<div class="panel panel-primary filterable">
-  <div class="panel-heading">
-    <h4 class="panel-title">
+<div class="panel panel-primary filterable table_border">
+  <div class="panel-heading table_new">
+    <h4 class="panel-title ">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseNotice">
         公告
       </a>
@@ -22,7 +22,7 @@
           <% @notice.each do |notice| %>
               <td><%= link_to notice.title, notice_url(notice) %></td>
               <td><%= notice.content %></td>
-              <td><%= notice.created_at %></td>
+              <td><%= notice.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
           <% end %>
           </tbody>
         </table>

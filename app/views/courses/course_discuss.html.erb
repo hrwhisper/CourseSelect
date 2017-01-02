@@ -39,10 +39,10 @@
   <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12" style="text-align:center;">
-      <div class="panel panel-primary filterable">
-        <div class="panel-heading">
+      <div class="panel panel-primary filterable table_border">
+        <div class="panel-heading table_new">
           <h3 class="panel-title">
-              《<%= @course.name %> 》Discuss区
+              《<%= @course.name %>》Discuss区
           </h3>
         </div>
           </div>
@@ -89,7 +89,7 @@
           <%= f.text_area :tmp, class: 'form-control', placeholder: "输入发言内容" %>
         </div>
 
-    <%= f.submit '提交', class: "btn btn-success btn-block" %>
+    <%= f.submit '提交', class: "btn btn-success btn-block btn_new" %>
     <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
 
   
