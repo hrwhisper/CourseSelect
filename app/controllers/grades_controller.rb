@@ -101,7 +101,7 @@ class GradesController < ApplicationController
     file = params[:excel_file]
     course_id = params[:course_id]
     flash = {}
-    if file.original_filename.split('.')[-1] == 'xls'
+    if file and file.original_filename.split('.')[-1] == 'xls'
       book = Spreadsheet.open file.path
       error_student = []
       worksheet = book.worksheet 0
@@ -109,18 +109,18 @@ class GradesController < ApplicationController
         if i != 0
           cur_student = User.find_by_num(row[0]) # row[0] is the student_num
           if not cur_student
-            error_student << row[0]
+            error_student << i + 1
             next
           end
           grade = Grade.where('course_id = ? and user_id=?', course_id, cur_student.id).take
           if not row[-1] or row[-1] < 0 or row[-1] > 100 or not grade or (not grade.update(grade: row[-1]))
-            error_student << row[0]
+            error_student << i + 1
           end
         end
       end
       flash[:success] = "上传成功,共有#{worksheet.last_row_index}个学生, #{worksheet.last_row_index - error_student.length}个学生成绩已更新"
       if error_student.length !=0
-        flash[:error] = "学号为 #{error_student.join(' , ')} 更新失败，请检查学号以及分数的合法性"
+        flash[:error] = "行号为 #{error_student.join(' , ')} 的学生更新失败，请检查学号以及分数的合法性"
       end
     else
       flash[:error] = '文件格式错误'
