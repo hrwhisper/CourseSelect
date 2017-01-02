@@ -60,7 +60,7 @@
              <% @test = @course.diss.split("匿名用户：")%>
               <% @judge ="" %>
               <% @test.each do |test| %>
-                <% if test != "" %>
+                <% if test!="暂无人发言" and test != "" %>
                   <% if @judge.include? test   %>
                   <% else %>
                      	<div class="tip-bubble tip-bubble-left">
@@ -108,8 +108,8 @@
           <%#= f.text_area :tmp, class: 'form-control', placeholder: "输入发言内容" %>
         </div>
 
-    <%= f.submit '提交', class: "btn btn-success btn-block btn_new" %>
-    <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
+    <%#= f.submit '提交', class: "btn btn-success btn-block btn_new" %>
+    <%#= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
 
   
 <%# end %>
