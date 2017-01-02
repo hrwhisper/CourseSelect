@@ -609,12 +609,15 @@ input.gn-search:focus {
 .table_border {
   border-color: #97c65e;
 }
+.table_borer_trans{
+  border-color: transparent !important;
+}
 
 .btn_new {
   background-color: #5b6baa !important;
   background-image: none !important;
   color: white;
-  border: transparent;
+  border: transparent ;
 }
 
 .btn_new_close{
@@ -640,4 +643,7 @@ input.gn-search:focus {
 
 .font_size{
   font-size: 15px;
+}
+ul.gn-submenu li span{
+  padding-left:40px;
 }
