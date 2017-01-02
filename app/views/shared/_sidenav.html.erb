@@ -5,19 +5,17 @@
     <div class="panel-heading ">
       <h4 class="panel-title">
 
-                <% if teacher_logged_in? %>
-                    <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
-                      课程管理</a>
-                <% end %>
+        <% if teacher_logged_in? %>
+            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+              课程管理</a>
+        <% end %>
 
-                <% if student_logged_in? %>
-                    <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
-                      选修课程</a>
-                <% end %>
+        <% if student_logged_in? %>
+            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+              选修课程</a>
+        <% end %>
       </h4>
     </div>
-
-
 
 
     <div id="CourseCollapse" class="panel-collapse collapse <%= "in" if ["courses"].include?(params[:controller]) %>">
@@ -55,7 +53,7 @@
 
       </ul>
     </div>
-    </div>
+  </div>
 
   <div class="panel panel-default">
 
@@ -140,7 +138,7 @@
 
         <% if student_logged_in? %>
             <li class="list-group-item">
-              <%= link_to comments_path  do %>
+              <%= link_to comments_path do %>
                   <span class="glyphicon glyphicon-chevron-right"></span> 评估课程
               <% end %>
             </li>
