@@ -22,7 +22,7 @@
           <% @notice.each do |notice| %>
               <td><%= link_to notice.title, notice_url(notice) %></td>
               <td><%= notice.content %></td>
-              <td><%= notice.created_at %></td>
+              <td><%= notice.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
           <% end %>
           </tbody>
         </table>
