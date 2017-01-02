@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
       if @comment.update_attributes(comment_params)
         @comment.commented = true
         if @comment.save
-          flash={:info => "#{@comment.course.name}已评估"}
+          flash={:success => "#{@comment.course.name}已评估"}
         else
           flash={:info => "请重新提交#{@comment.course.name}的评估"}
         end

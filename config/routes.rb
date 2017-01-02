@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     collection do
       get :my_course_list
       post :my_course_list
+      post :save_discuss
       post :select
       get :list
       post :list

@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
     puts('--------')
 
     if @course.update_attributes(course_params)
-      flash={:info => "更新成功"}
+      flash={:success => "更新成功"}
     else
       flash={:warning => "更新失败"}
     end
@@ -164,24 +164,31 @@ class CoursesController < ApplicationController
     @coursetmp = current_user.teaching_courses if teacher_logged_in?
   end
 
-  def course_discuss
+
+  def save_discuss
     @course = Course.find_by_id(params[:id])
-    @test=@course.diss
-    if @test == "暂无人发言"
-      @test=""
+    if @course.diss="暂无人发言"
+      @course.diss=""
     end
     if @course.tmp!=nil
-      @test= @test+"匿名用户："
-      @test=@test+@course.tmp
-      @course.diss=@test
+      @course.diss+="匿名用户："
+      @course.diss+=@course.tmp
     end
-    #@course.diss="暂无人发言"
+
     if @course.save
-      flash={:success => "已经成功保存该发言:#{ @course.name}"}
+      flash={:success => "已经成功保存在《#{@course.name}》中的发言:#{ @course.tmp}"}
     else
       flash={:warning => "保存失败"}
     end
-    # redirect_to courses_path, flash: flash
+    
+     redirect_to courses_path, flash: flash
+  end
+    
+    
+    
+  def course_discuss
+    @course = Course.find_by_id(params[:id])
+    @test=""
   end
 
 

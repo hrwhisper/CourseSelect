@@ -19,7 +19,7 @@ class DiscussionsController < ApplicationController
       @discuss=Discussion.find_by_id(params[:id])
       if @discuss.update_attributes(discussion_params)
         if @discuss.save
-          flash={:info => "#{@discuss.course.name}发言成功"}
+          flash={:success => "#{@discuss.course.name}发言成功"}
         else
           flash={:info => "请重新提交#{@discuss.course.name}的发言"}
         end
