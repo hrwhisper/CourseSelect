@@ -51,6 +51,15 @@ Rails.application.routes.draw do
   resources :grades, only: [:index, :update, :export, :import,:stastics]
   resources :users
   resources :notices
+  
+  resources :discussions do
+    member do
+    end
+    collection do
+      post :update
+    end
+  end
+  
   resources :comments do
     member do
     end
