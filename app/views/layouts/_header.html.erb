@@ -80,8 +80,8 @@
 
                   <ul class="gn-submenu ">
                     <!--2'. 教师 & 学生：所有课程显示-->
-                      <% if teacher_logged_in? %>
-                          <% current_user.teaching_courses.each do |course| %>
+                    <% if teacher_logged_in? %>
+                        <% current_user.teaching_courses.each do |course| %>
                             <li>
                               <%= link_to grades_path(course_id: course.id), :method => :get do %>
                                   <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
@@ -204,4 +204,6 @@
 
 
 
-
+<script>
+  doc = new gnMenu( document.getElementById( 'gn-menu' ) );
+</script>
