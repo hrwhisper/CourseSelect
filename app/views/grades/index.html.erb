@@ -13,21 +13,16 @@
           <% if teacher_logged_in? %>
               <div class="row">
                 <div class="col-sm-12" style="padding-bottom: 26px">
-
-                  <%= form_tag 'grades/import', method: "post", multipart: true, :class => "form-inline" do %>
-                      <input type="hidden" value="<%= @course.id %>" name="course_id">
-                      <div class="form-group">
-                        <label class="sr-only" for="inputfile">选择excel文件</label>
-                        <%= file_field_tag :excel_file %>
+                  <%= form_tag 'grades/import', method: "post", multipart: true, :class => "form_file" do %>
+                      <div class="file_style">
+                        <input type="hidden" value="<%= @course.id %>" name="course_id">
+                        <input type='text' name='textfield' id='textfield' class='fileText'>
+                        <input type='button' class='btn' value='浏览'>
+                        <%= file_field_tag :excel_file, :class => "fileInput", :size => "28", :onchange => "document.getElementById('textfield').value=this.value" %>
+                        <%= submit_tag "上传", :class => "btn" %>
+                        <%= link_to "导出", grades_export_url(:course_id => @course.id, :format => 'xls'), :class => "btn" %>
                       </div>
-                      <%= submit_tag "上传", :class => "btn btn-default" %>
-
                   <% end %>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <%= link_to "导出", grades_export_url(:course_id => @course.id, :format => 'xls'), :class => "btn btn-info" %>
                 </div>
               </div>
           <% end %>
