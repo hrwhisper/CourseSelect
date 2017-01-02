@@ -603,7 +603,7 @@ input.gn-search:focus {
   border-color: #97c65e;
   background-color: #97c65e !important;
   background-image: none !important;
-  color: white;
+  color: white !important;
 }
 
 .table_border {
@@ -611,12 +611,33 @@ input.gn-search:focus {
 }
 
 .btn_new {
-
   background-color: #5b6baa !important;
   background-image: none !important;
   color: white;
+  border: transparent;
 }
 
-.font_size {
+.btn_new_close{
+  background-color: #f7ce00 !important;
+  background-image: none !important;
+  color: white;
+  border: transparent;
+}
+
+.btn_new_del{
+   background-color: #d1547e !important;
+   background-image: none !important;
+   color: white;
+   border: transparent;
+ }
+
+.btn_new_cancel{
+   background-color: #96c65e !important;
+   background-image: none !important;
+   color: white;
+   border: transparent;
+ }
+
+.font_size{
   font-size: 15px;
 }

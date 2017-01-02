@@ -59,13 +59,13 @@
                   </td>
                   <td>
                     <% if teacher_logged_in? %>
-                        <%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %>
+                        <%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info btn_new' %>
                         <% if course.open %>
-                            <%= link_to "关闭", close_course_url(course), class: 'btn btn-xs btn-warning' %>
+                            <%= link_to "关闭", close_course_url(course), class: 'btn btn-xs btn-warning btn_new_close' %>
                         <% else %>
                             <%= link_to "开课", open_course_url(course), class: 'btn btn-xs btn-success' %>
                         <% end %>
-                        <%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger', :data => {confirm: '确定要删除此课程?'} %>
+                        <%= link_to "删除", course_path(course), :method => "delete", class: 'btn btn-xs btn-danger btn_new_del', :data => {confirm: '确定要删除此课程?'} %>
                     <% elsif student_logged_in? %>
                         <%= link_to "退课", quit_course_path(course), class: 'btn-sm btn-danger btn_new' %>
                     <% end %>
