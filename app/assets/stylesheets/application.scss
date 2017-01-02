@@ -27,11 +27,11 @@
   font-weight: normal;
   font-style: normal;
   font-family: 'ecoicons';
-  src: asset_url("../fonts/ecoicons/ecoicons.eot");
-  src: asset_url("../fonts/ecoicons/ecoicons.eot?#iefix") format("embedded-opentype");
-  src: asset_url("../fonts/ecoicons/ecoicons.woff") format("woff");
-  src: asset_url("../fonts/ecoicons/ecoicons.ttf") format("truetype");
-  src: asset_url("../fonts/ecoicons/ecoicons.svg#ecoicons") format("svg");
+  src: url("/fonts/ecoicons/ecoicons.eot");
+  src: url("/fonts/ecoicons/ecoicons.eot?#iefix") format("embedded-opentype");
+  src: url("/fonts/ecoicons/ecoicons.woff") format("woff");
+  src: url("/fonts/ecoicons/ecoicons.ttf") format("truetype");
+  src: url("/fonts/ecoicons/ecoicons.svg#ecoicons") format("svg");
 }
 
 body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
@@ -212,12 +212,12 @@ html {
 .gn-menu-main li.gn-trigger {
   position: relative;
   width: 60px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  //-webkit-touch-callout: none;
+  //-webkit-user-select: none;
+  //-khtml-user-select: none;
+  //-moz-user-select: none;
+  //-ms-user-select: none;
+  //user-select: none;
 }
 
 .gn-menu-main > li:last-child {
@@ -358,17 +358,20 @@ input.gn-search:focus {
 }
 
 .gn-icon::before {
-  //display: inline-block;
+  display: inline-block;
   width: 60px;
   text-align: left;
   text-transform: none;
   font-weight: normal;
   font-style: normal;
   font-variant: normal;
-  //font-family: 'ecoicons';
   line-height: 1;
   speak: none;
   -webkit-font-smoothing: antialiased;
+}
+
+.gn-menu a >span {
+  padding: 20px;
 }
 
 .bella-icon-class::before {

@@ -27,118 +27,115 @@
                 <li>
                   <!--<a class="gn-icon gn-icon-download">Downloads</a>-->
                   <% if teacher_logged_in? %>
-                      <a  data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse">
-                        <span class="glyphicon glyphicon-user"></span>
-                        课程管理</a>
+                      <a><span class="glyphicon glyphicon-user"></span>课程管理</a>
                   <% end %>
                   <% if student_logged_in? %>
-                      <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse">
-                        <span class="glyphicon glyphicon-user"></span>
-                        选修课程</a>
+                      <a><span class="glyphicon glyphicon-user"></span>选修课程</a>
                   <% end %>
 
-                  <div id="CourseCollapse" class="panel-collapse collapse <%= "in" if ["courses"].include?(params[:controller]) %>">
-
-                    <ul class="gn-submenu ">
-
-
-                      <!--教师登陆：课程管理-已授课程／创建新课程-->
-                      <% if teacher_logged_in? %>
-                          <li >
-                            <%= link_to courses_path do %>
-                                <span class="glyphicon glyphicon-chevron-right"></span> 已授课程
-                                <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
-                            <% end %>
-                          </li>
-                          <li >
-                            <%= link_to new_course_path do %>
-                                <span class="glyphicon glyphicon-chevron-right"></span> 创建新课程
-                            <% end %>
-                          </li>
-                      <% end %>
+                  <ul class="gn-submenu">
+                    <!--教师登陆：课程管理-已授课程／创建新课程-->
+                    <% if teacher_logged_in? %>
+                        <li>
+                          <%= link_to courses_path do %>
+                              <span class="glyphicon glyphicon-chevron-right"></span>已授课程
+                              <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to new_course_path do %>
+                              <span class="glyphicon glyphicon-chevron-right"></span>创建新课程
+                          <% end %>
+                        </li>
+                    <% end %>
 
 
-                      <!--学生登陆：选修课程-选修课程／已选课程-->
-                      <% if student_logged_in? %>
-                          <li class="list-group-item">
-                            <%= link_to list_courses_path do %>
-                                <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
-                    <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %>
-                    </span>
-                            <% end %>
-                          </li>
-                          <li class="list-group-item">
-                            <%= link_to courses_path do %>
-                                <span class="glyphicon glyphicon-chevron-right"></span> 已选课程
-                                <span class="label label-info pull-right"><%= current_user.courses.length %></span>
-                            <% end %>
-                          </li>
-                      <% end %>
-                    </ul>
-                  </div>
+                    <!--学生登陆：选修课程-选修课程／已选课程-->
+                    <% if student_logged_in? %>
+                        <li>
+                          <%= link_to list_courses_path do %>
+                              <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
+                              <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %></span>
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to courses_path do %>
+                              <span class="glyphicon glyphicon-chevron-right"></span> 已选课程
+                              <span class="label label-info pull-right"><%= current_user.courses.length %></span>
+                          <% end %>
+                        </li>
+                    <% end %>
+                  </ul>
                 </li>
 
                 <!--2. 教师：成绩管理 & 学生：所有成绩-->
                 <li>
-
                   <% if teacher_logged_in? %>
-                      <a data-toggle="collapse"  data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-user"></span>
-                        成绩管理</a>
+                      <a><span class="glyphicon glyphicon-user"></span>成绩管理</a>
                   <% end %>
 
                   <% if student_logged_in? %>
-                      <a data-toggle="collapse" data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-user"></span>
-                        所有成绩</a>
+                      <a><span class="glyphicon glyphicon-user"></span>所有成绩</a>
                   <% end %>
-                </li>
 
-                <!--2'. 教师 & 学生：所有课程显示-->
-                <li>
-
-                  <% if teacher_logged_in? %>
-                      <% current_user.teaching_courses.each do |course| %>
-
-                          <%= link_to grades_path(course_id: course.id), :method => :get do %>
-                              <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
-                              <span class="label label-info pull-right"><%= course.users.length %></span>
-                          <% end %>
-
+                  <ul class="gn-submenu ">
+                    <!--2'. 教师 & 学生：所有课程显示-->
+                      <% if teacher_logged_in? %>
+                          <% current_user.teaching_courses.each do |course| %>
+                            <li>
+                              <%= link_to grades_path(course_id: course.id), :method => :get do %>
+                                  <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+                                  <span class="label label-info pull-right"><%= course.users.length %></span>
+                              <% end %>
+                            </li>
+                        <% end %>
                     <% end %>
 
-                <% end %>
-
-                  <% if student_logged_in? %>
-
-                      <%= link_to grades_path do %>
-                          <span class="glyphicon glyphicon-chevron-right"></span> 所有成绩
-                      <% end %>
-
-                  <% end %>
-
-
-
+                    <% if student_logged_in? %>
+                        <li>
+                          <%= link_to grades_path do %>
+                              <span class="glyphicon glyphicon-chevron-right"></span> 所有成绩
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to grades_stastics_path do %>
+                              <span class="glyphicon glyphicon-chevron-right"></span> 成绩统计
+                          <% end %>
+                        </li>
+                    <% end %>
+                  </ul>
                 </li>
-
                 <!--3. 教师：评估结果 & 学生：课程评估-->
                 <li>
                   <% if teacher_logged_in? %>
-                      <a data-toggle="collapse" data-parent="#accordion" href="#CommentCollapse"><span class="glyphicon glyphicon-user"></span>
-                        评估结果</a>
+                      <a><span class="glyphicon glyphicon-user"></span>评估结果</a>
                   <% end %>
 
                   <% if student_logged_in? %>
-                      <a data-toggle="collapse" data-parent="#accordion" href="#CommentCollapse"><span class="glyphicon glyphicon-user"></span>
-                        评估课程</a>
+                      <a><span class="glyphicon glyphicon-user"></span>评估课程</a>
                   <% end %>
-                <!--<a class="gn-icon gn-icon-archive">Archives</a>-->
-                <!--<ul class="gn-submenu">-->
-                  <!--<li><a class="gn-icon gn-icon-article">Articles</a></li>-->
-                  <!--<li><a class="gn-icon gn-icon-pictures">Images</a></li>-->
-                  <!--<li><a class="gn-icon gn-icon-videos">Videos</a></li>-->
-                <!--</ul>-->
-
-
                 </li>
+
+                <ul class="gn-submenu ">
+                  <% if teacher_logged_in? %>
+                      <% current_user.teaching_courses.each do |course| %>
+                          <li>
+                            <%= link_to list_comments_path(course_id: course.id), :method => :get do %>
+                                <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+                                <span class="label label-info pull-right"><%= course.users.length %></span>
+                            <% end %>
+                          </li>
+                      <% end %>
+                  <% end %>
+
+                  <% if student_logged_in? %>
+                      <li>
+                        <%= link_to comments_path do %>
+                            <span class="glyphicon glyphicon-chevron-right"></span> 评估课程
+                        <% end %>
+                      </li>
+                  <% end %>
+                </ul>
 
               </ul>
             </div><!-- /gn-scroller -->
