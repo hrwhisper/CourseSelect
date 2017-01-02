@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<% if @in_course_select_time %>
+<% if logged_in? and @in_course_select_time %>
     <%= render 'courses/curriculum_table' %>
 <% end %>
 

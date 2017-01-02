@@ -16,105 +16,106 @@
           <div class="gn-scroller">
             <ul class="gn-menu">
 
+              <% if logged_in? %>
+                  <!--1. 教师：课程管理 & 学生：选修课程-->
+                  <li>
+                    <a><span class="glyphicon glyphicon-th-list"> </span>
+                      <%= teacher_logged_in? ? "课程管理" : "选修课程" %></a>
 
-              <!--1. 教师：课程管理 & 学生：选修课程-->
-              <li>
-                <a><span class="glyphicon glyphicon-th-list"> </span>
-                  <%= teacher_logged_in? ? "课程管理" : "选修课程" %></a>
-
-                <ul class="gn-submenu">
-                  <!--教师登陆：课程管理-已授课程／创建新课程-->
-                  <% if teacher_logged_in? %>
-                      <li>
-                        <%= link_to courses_path do %>
-                            <span class="glyphicon glyphicon-hand-right"></span>已授课程
-                            <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to new_course_path do %>
-                            <span class="glyphicon glyphicon-hand-right"></span>创建新课程
-                        <% end %>
-                      </li>
-                  <% end %>
-
-
-                  <!--学生登陆：选修课程-选修课程／已选课程-->
-                  <% if student_logged_in? %>
-                      <li>
-                        <%= link_to list_courses_path do %>
-                            <span class="glyphicon glyphicon-hand-right"></span> 选修课程
-                            <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %></span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to courses_path do %>
-                            <span class="glyphicon glyphicon-hand-right"></span> 已选课程
-                            <span class="label label-info pull-right"><%= current_user.courses.length %></span>
-                        <% end %>
-                      </li>
-                  <% end %>
-                </ul>
-              </li>
-
-              <!--2. 教师：成绩管理 & 学生：所有成绩-->
-              <li>
-                <a><span class="glyphicon glyphicon-export"> </span>
-                  <%= teacher_logged_in? ? "成绩管理" : "所有成绩" %></a>
-
-                <ul class="gn-submenu">
-                  <!--2'. 教师 & 学生：所有课程显示-->
-                  <% if teacher_logged_in? %>
-                      <% current_user.teaching_courses.each do |course| %>
+                    <ul class="gn-submenu">
+                      <!--教师登陆：课程管理-已授课程／创建新课程-->
+                      <% if teacher_logged_in? %>
                           <li>
-                            <%= link_to grades_path(course_id: course.id), :method => :get do %>
-                                <span class="glyphicon glyphicon-hand-right"></span> <%= course.name %>
-                                <span class="label label-info pull-right"><%= course.users.length %></span>
+                            <%= link_to courses_path do %>
+                                <span class="glyphicon glyphicon-hand-right"></span>已授课程
+                                <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to new_course_path do %>
+                                <span class="glyphicon glyphicon-hand-right"></span>创建新课程
                             <% end %>
                           </li>
                       <% end %>
-                  <% end %>
 
-                  <% if student_logged_in? %>
-                      <li>
-                        <%= link_to grades_path do %>
-                            <span class="glyphicon glyphicon-hand-right"></span> 所有成绩
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to grades_stastics_path do %>
-                            <span class="glyphicon glyphicon-hand-right"></span> 成绩统计
-                        <% end %>
-                      </li>
-                  <% end %>
-                </ul>
-              </li>
-              <!--3. 教师：评估结果 & 学生：课程评估-->
-              <li>
-                 <a><span class="glyphicon glyphicon-star"> </span>
-                  <%= teacher_logged_in? ? "评估结果" : "评估课程" %></a>
 
-                <ul class="gn-submenu ">
-                  <% if teacher_logged_in? %>
-                      <% current_user.teaching_courses.each do |course| %>
+                      <!--学生登陆：选修课程-选修课程／已选课程-->
+                      <% if student_logged_in? %>
                           <li>
-                            <%= link_to list_comments_path(course_id: course.id), :method => :get do %>
-                                <span class="glyphicon glyphicon-hand-right"></span> <%= course.name %>
-                                <span class="label label-info pull-right"><%= course.users.length %></span>
+                            <%= link_to list_courses_path do %>
+                                <span class="glyphicon glyphicon-hand-right"></span> 选修课程
+                                <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %></span>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to courses_path do %>
+                                <span class="glyphicon glyphicon-hand-right"></span> 已选课程
+                                <span class="label label-info pull-right"><%= current_user.courses.length %></span>
                             <% end %>
                           </li>
                       <% end %>
-                  <% end %>
+                    </ul>
+                  </li>
 
-                  <% if student_logged_in? %>
-                      <li>
-                        <%= link_to comments_path do %>
-                            <span class="glyphicon glyphicon-hand-right"></span> 评估课程
-                        <% end %>
-                      </li>
-                  <% end %>
-                </ul>
-              </li>
+                  <!--2. 教师：成绩管理 & 学生：所有成绩-->
+                  <li>
+                    <a><span class="glyphicon glyphicon-export"> </span>
+                      <%= teacher_logged_in? ? "成绩管理" : "所有成绩" %></a>
+
+                    <ul class="gn-submenu">
+                      <!--2'. 教师 & 学生：所有课程显示-->
+                      <% if teacher_logged_in? %>
+                          <% current_user.teaching_courses.each do |course| %>
+                              <li>
+                                <%= link_to grades_path(course_id: course.id), :method => :get do %>
+                                    <span class="glyphicon glyphicon-hand-right"></span> <%= course.name %>
+                                    <span class="label label-info pull-right"><%= course.users.length %></span>
+                                <% end %>
+                              </li>
+                          <% end %>
+                      <% end %>
+
+                      <% if student_logged_in? %>
+                          <li>
+                            <%= link_to grades_path do %>
+                                <span class="glyphicon glyphicon-hand-right"></span> 所有成绩
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to grades_stastics_path do %>
+                                <span class="glyphicon glyphicon-hand-right"></span> 成绩统计
+                            <% end %>
+                          </li>
+                      <% end %>
+                    </ul>
+                  </li>
+                  <!--3. 教师：评估结果 & 学生：课程评估-->
+                  <li>
+                    <a><span class="glyphicon glyphicon-star"> </span>
+                      <%= teacher_logged_in? ? "评估结果" : "评估课程" %></a>
+
+                    <ul class="gn-submenu ">
+                      <% if teacher_logged_in? %>
+                          <% current_user.teaching_courses.each do |course| %>
+                              <li>
+                                <%= link_to list_comments_path(course_id: course.id), :method => :get do %>
+                                    <span class="glyphicon glyphicon-hand-right"></span> <%= course.name %>
+                                    <span class="label label-info pull-right"><%= course.users.length %></span>
+                                <% end %>
+                              </li>
+                          <% end %>
+                      <% end %>
+
+                      <% if student_logged_in? %>
+                          <li>
+                            <%= link_to comments_path do %>
+                                <span class="glyphicon glyphicon-hand-right"></span> 评估课程
+                            <% end %>
+                          </li>
+                      <% end %>
+                    </ul>
+                  </li>
+              <% end %>
             </ul>
           </div><!-- /gn-scroller -->
         </nav>
@@ -122,10 +123,9 @@
       <li></li>
     </ul>
 
-
     <div style="position: relative">
       <div class="navbar-header">
-        <%= link_to "课程大纲", root_path, class: 'navbar-brand font_size' %>
+        <%= link_to "CourseSelect", root_path, class: 'navbar-brand font_size' %>
       </div>
 
       <div class="collapse navbar-collapse">
@@ -140,7 +140,7 @@
           <% elsif admin_logged_in? %>
               <li> <%= link_to "控制面板", rails_admin_path %></li>
           <% end %>
-
+          <li> <%= link_to "开放的课程", list_courses_path %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
