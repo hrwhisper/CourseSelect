@@ -27,13 +27,13 @@
                   <% if teacher_logged_in? %>
                       <li>
                         <%= link_to courses_path do %>
-                            <span class="glyphicon glyphicon-chevron-right"></span>已授课程
+                            <span class="glyphicon glyphicon-hand-right"></span>已授课程
                             <span class="label label-info pull-right"><%= current_user.teaching_courses.length %></span>
                         <% end %>
                       </li>
                       <li>
                         <%= link_to new_course_path do %>
-                            <span class="glyphicon glyphicon-chevron-right"></span>创建新课程
+                            <span class="glyphicon glyphicon-hand-right"></span>创建新课程
                         <% end %>
                       </li>
                   <% end %>
@@ -43,13 +43,13 @@
                   <% if student_logged_in? %>
                       <li>
                         <%= link_to list_courses_path do %>
-                            <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
+                            <span class="glyphicon glyphicon-hand-right"></span> 选修课程
                             <span class="label label-info pull-right"> <%= get_course_to_choose_list().length %></span>
                         <% end %>
                       </li>
                       <li>
                         <%= link_to courses_path do %>
-                            <span class="glyphicon glyphicon-chevron-right"></span> 已选课程
+                            <span class="glyphicon glyphicon-hand-right"></span> 已选课程
                             <span class="label label-info pull-right"><%= current_user.courses.length %></span>
                         <% end %>
                       </li>
@@ -62,13 +62,13 @@
                 <a><span class="glyphicon glyphicon-export"> </span>
                   <%= teacher_logged_in? ? "成绩管理" : "所有成绩" %></a>
 
-                <ul class="gn-submenu ">
+                <ul class="gn-submenu">
                   <!--2'. 教师 & 学生：所有课程显示-->
                   <% if teacher_logged_in? %>
                       <% current_user.teaching_courses.each do |course| %>
                           <li>
                             <%= link_to grades_path(course_id: course.id), :method => :get do %>
-                                <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+                                <span class="glyphicon glyphicon-hand-right"></span> <%= course.name %>
                                 <span class="label label-info pull-right"><%= course.users.length %></span>
                             <% end %>
                           </li>
@@ -78,12 +78,12 @@
                   <% if student_logged_in? %>
                       <li>
                         <%= link_to grades_path do %>
-                            <span class="glyphicon glyphicon-chevron-right"></span> 所有成绩
+                            <span class="glyphicon glyphicon-hand-right"></span> 所有成绩
                         <% end %>
                       </li>
                       <li>
                         <%= link_to grades_stastics_path do %>
-                            <span class="glyphicon glyphicon-chevron-right"></span> 成绩统计
+                            <span class="glyphicon glyphicon-hand-right"></span> 成绩统计
                         <% end %>
                       </li>
                   <% end %>
@@ -99,7 +99,7 @@
                       <% current_user.teaching_courses.each do |course| %>
                           <li>
                             <%= link_to list_comments_path(course_id: course.id), :method => :get do %>
-                                <span class="glyphicon glyphicon-chevron-right"></span> <%= course.name %>
+                                <span class="glyphicon glyphicon-hand-right"></span> <%= course.name %>
                                 <span class="label label-info pull-right"><%= course.users.length %></span>
                             <% end %>
                           </li>
@@ -109,7 +109,7 @@
                   <% if student_logged_in? %>
                       <li>
                         <%= link_to comments_path do %>
-                            <span class="glyphicon glyphicon-chevron-right"></span> 评估课程
+                            <span class="glyphicon glyphicon-hand-right"></span> 评估课程
                         <% end %>
                       </li>
                   <% end %>
