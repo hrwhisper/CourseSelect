@@ -134,13 +134,13 @@
           <li class="<%= "active " if params[:controller]=="homes" %>"> <%= link_to "主页", root_path %></li>
 
           <% if student_logged_in? %>
-              <li class=<%= "active change_bg_font" if params[:controller]=="courses" %>> <%= link_to "我的课程", courses_path %></li>
+              <li class=<%= "active change_bg_font" if params[:controller]=="courses" and not current_page?(list_courses_path) %>> <%= link_to "我的课程", courses_path %></li>
           <% elsif teacher_logged_in? %>
-              <li class=<%= "active change_bg_font" if params[:controller]=="courses" %>> <%= link_to "课程管理", courses_path %></li>
+              <li class=<%= "active change_bg_font" if params[:controller]=="courses" and not current_page?(list_courses_path) %>> <%= link_to "课程管理", courses_path %></li>
           <% elsif admin_logged_in? %>
               <li> <%= link_to "控制面板", rails_admin_path %></li>
           <% end %>
-          <li> <%= link_to "开放的课程", list_courses_path %></li>
+          <li class=<%= "active change_bg_font" if current_page?(list_courses_path) %>> <%= link_to "开放的课程", list_courses_path %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
