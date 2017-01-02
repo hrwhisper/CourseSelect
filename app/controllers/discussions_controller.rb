@@ -43,22 +43,6 @@ class DiscussionsController < ApplicationController
     def update
         @course=Course.find_by_id(params[:course_id])
         @discussion=@course.discussions
-        @tmp=Discussion.new
-        @tmp.user="匿名用户"
-        @tmp.content=params[:content]
-        if @discussion == nil
-          @discussion=@tmp
-        else
-          @discussion+=@tmp
-        end
-        #if @discuss.update_attributes(discussion_params)
-      #  flash={:info => "#{@discuss.course.name}发言成功"}
-        if @discussion.save
-          flash={:info => "#{@discuss.course.name}发言成功"}
-        else
-          flash={:warning => "更新失败"}
-        end
-      redirect_to discussions_path, flash: flash
     end
     
     def list

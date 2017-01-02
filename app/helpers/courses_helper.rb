@@ -17,13 +17,15 @@ module CoursesHelper
 
   def get_course_table(courses)
     course_time = Array.new(11) { Array.new(7, '') }
-    courses.each do |cur|
-      cur_time = String(cur.course_time)
-      end_j = cur_time.index('(')
-      j = week_data_to_num(cur_time[0...end_j])
-      t = cur_time[end_j + 1...cur_time.index(')')].split("-")
-      for i in (t[0].to_i..t[1].to_i).each
-        course_time[(i-1)*7/7][j-1] = cur.name
+    if courses
+      courses.each do |cur|
+        cur_time = String(cur.course_time)
+        end_j = cur_time.index('(')
+        j = week_data_to_num(cur_time[0...end_j])
+        t = cur_time[end_j + 1...cur_time.index(')')].split("-")
+        for i in (t[0].to_i..t[1].to_i).each
+          course_time[(i-1)*7/7][j-1] = cur.name
+        end
       end
     end
     course_time
@@ -77,7 +79,7 @@ module CoursesHelper
   end
 
   def get_current_semester_course()
-    filter_course_by_semester(current_user.courses)
+    logged_in? ? filter_course_by_semester(current_user.courses) : nil
   end
 
   def course_filter_by_condition(courses, params, keys)
@@ -102,8 +104,9 @@ module CoursesHelper
 
   def get_course_to_choose_list()
     current_semester = semester_to_array(get_current_semester())
-    Course.where('open = true and year=? and term_num =?',
-                 current_semester[0], current_semester[1])-current_user.courses
+    course = Course.where('open = true and year=? and term_num =?',
+                          current_semester[0], current_semester[1])
+    logged_in? ? course-current_user.courses : course
   end
 
   def get_course_select_end_time()

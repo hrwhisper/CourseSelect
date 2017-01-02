@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
+      <div class="panel panel-primary table_border">
+        <div class="panel-heading table_new">
           <% if teacher_logged_in? %><h3 class="panel-title">成绩管理: <%= @course.name %></h3>
           <% end %>
           <% if student_logged_in? %><h3 class="panel-title">成绩列表</h3>
@@ -61,7 +61,7 @@
                   <% if teacher_logged_in? %>
                       <%= form_for grade, url: grade_url(id: grade.id, course_id: grade.course.id), method: :patch do |f| %>
                           <td><%= f.text_field :grade %></td>
-                          <td><%= f.submit "提交", class: "btn btn-success btn-xs" %></td>
+                          <td><%= f.submit "提交", class: "btn btn-success btn-xs btn_new" %></td>
                       <% end %>
                   <% end %>
 

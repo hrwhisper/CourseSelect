@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_id(params[:id])
     if @user.update_attributes(user_params)
-      flash={:info => "更新成功"}
+      flash={:success => "更新成功"}
     else
       flash={:warning => "更新失败"}
     end

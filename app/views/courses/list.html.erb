@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
+      <div class="panel panel-primary table_border">
+        <div class="panel-heading table_new">
           <h3 class="panel-title">选修课程</h3>
         </div>
         <div class="panel-body" style="min-height: 450px">
@@ -13,7 +13,7 @@
                       <%= render 'courses/search_course_select_form', info: @course_time, submit_name: "course_time", name: "上课时间" %>
                       <%= render 'courses/search_course_select_form', info: @course_exam_type, submit_name: "exam_type", name: "考试方式" %>
                     </div>
-                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="submit" class="btn btn_new">提交</button>
                 <% end %>
               </div>
               <hr>
@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<% if @in_course_select_time %>
+<% if logged_in? and @in_course_select_time %>
     <%= render 'courses/curriculum_table' %>
 <% end %>
 
