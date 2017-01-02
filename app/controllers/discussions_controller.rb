@@ -1,41 +1,69 @@
 class DiscussionsController < ApplicationController
 
+
+    def new
+          @discussion=Discussion.new
+    end
+
     def index
-        if teacher_logged_in?
           @course=Course.find_by_id(params[:course_id])
-          @discuss=@course.discussions
-        elsif student_logged_in?
-          @discuss=current_user.discussions
-        else
-          redirect_to root_path, flash: {:warning=>"请先登陆"}
-        end
+          @discussion=@course.discussions
+    end
+    
+    def show
+          @course=Course.find_by_id(params[:course_id])
+          @discussion=@course.discussions
     end
     
     def edit
-      @discuss=Discussion.find_by_id(params[:id])
+          @course=Course.find_by_id(params[:course_id])
+          @discussion=@course.discussions
     end
     
+    def create
+        @course=Course.find_by_id(params[:course_id])
+        @discussion=@course.discussions
+        @tmp=Discussion.new
+        @tmp.user="匿名用户"
+        @tmp.content=params[:@discussion][:content]
+        if @discussion == nil
+          @discussion=@tmp
+        else
+          @discussion<<@tmp
+        end
+        #if @discuss.update_attributes(discussion_params)
+        if @course.save
+          flash={:success => "已经成功保存在《#{@course.name}》中的发言:#{ params[:@discussion][:content]}"}
+        else
+          flash={:warning => "更新失败"}
+        end
+      redirect_to discussions_path(course_id:params[:course_id]), flash: flash
+    end
+  
     def update
-      @discuss=Discussion.find_by_id(params[:id])
-      if @discuss.update_attributes(discussion_params)
-        if @discuss.save
+        @course=Course.find_by_id(params[:course_id])
+        @discussion=@course.discussions
+        @tmp=Discussion.new
+        @tmp.user="匿名用户"
+        @tmp.content=params[:content]
+        if @discussion == nil
+          @discussion=@tmp
+        else
+          @discussion+=@tmp
+        end
+        #if @discuss.update_attributes(discussion_params)
+      #  flash={:info => "#{@discuss.course.name}发言成功"}
+        if @discussion.save
           flash={:info => "#{@discuss.course.name}发言成功"}
         else
-          flash={:info => "请重新提交#{@discuss.course.name}的发言"}
+          flash={:warning => "更新失败"}
         end
-      else
-        flash={:warning => "更新失败"}
-      end
       redirect_to discussions_path, flash: flash
     end
     
     def list
       @course=Course.find_by_id(params[:course_id])
       @discuss=@course.discussions
-    end
-    
-    def discussion_params
-    params.require(:discussion).permit(:content)
     end
   
 end

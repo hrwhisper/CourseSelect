@@ -19,8 +19,8 @@
                   <% end %>
               <% end %>
           <% end %>
-          <%= link_to "查看课程Discuss信息", course_discuss_course_url(course_id: @course.id), class: 'btn-sm btn-danger btn_new' %>
-          <%#= link_to "查看课程Discuss信息",discussions_path(course_id: @course.id), class: 'btn btn-xs btn-info' %>
+          <%#= link_to "查看课程Discuss信息", course_discuss_course_url(course_id: @course.id), class: 'btn-sm btn-danger btn_new' %>
+          <%= link_to "查看课程Discuss信息",discussions_path(course_id: @course.id), class: 'btn btn-xs btn-info' %>
           <div class="panel-body">
             <div class="table-responsive">
               <%= @course.outline %>

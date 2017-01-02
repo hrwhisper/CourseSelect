@@ -4,39 +4,52 @@
       <div class="panel panel-primary filterable">
         <div class="panel-heading">
           <h3 class="panel-title">
-            <% @course = Course.find_by_id(params[:course_id]) %>
+            <%# @course = Course.find_by_id(params[:course_id]) %>
               《<%= @course.name %> 》Discuss区
           </h3>
         </div>
                            </br>
+                           
         <div id="button-edit">
-          
+    
+    
        
-       <%= form_for @discusstmp, url: discussion_url(id: @discusstmp.id,course_id: @course.id) ,method: :patch  do |f| %>
+          <%= form_tag( url: discussions_path(course_id: @course.id),method: "patch") do %>
+          <%= text_area(:@discussion, :content) %>
+          <input id="course_id" name="course_id" type="hidden" value="<%= @course.id %>" />
+          
+          <button type="submit" class="btn btn-default">提交</button>
+          <% end %>
+          
+
+          
+          <!--
+
+        <%# form_for @discussion ,url: discussions_url(course_id: @course.id) ,method: :patch  do |f| %>
           <div class="form-group">
-         <%= f.label "请输入匿名发言的内容：", class: 'col-sm-3 control-label' %>
+         <%#= f.label "请输入匿名发言的内容：", class: 'col-sm-3 control-label' %>
       <div class="col-sm-9">
         <div class="input-group input-group-lg">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <% $discusstmp.user="匿名用户" %>
-          <%= f.text_field :content, class: 'form-control', placeholder: "输入匿名发言" %>
+          <%#= f.text_area :content, class: 'form-control', placeholder: "输入匿名发言" %>
         </div>
       </div>
     </div>
     
 
-    <%= f.submit '提交', class: "btn btn-success btn-block" %>
+    <%#= f.submit '提交', class: "btn btn-success btn-block" %>
     
-    <% @discuss << @discusstmp %>
-    
-    <%= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
-   <% end %>
+    <%#= link_to '取消', courses_path, :class => "btn btn-default btn-block" %>
+   <%# end %>
+   
+   -->
+   
 
           <div class="panel-body" style="text-align:left;">
             <div class="table-responsive">
           <tbody>
              <br>
-             <% @discuss.each do |discuss| %>
+             <% @discussion.each do |discuss| %>
              <td><%= discuss.user %></td>
               <td>(</td>
               <td><%= discuss.created_at %></td>
