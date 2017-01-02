@@ -17,10 +17,6 @@
             <div class="gn-scroller">
               <ul class="gn-menu">
 
-                <!--<li class="gn-search-item">-->
-                <!--<input placeholder="Search" type="search" class="gn-search">-->
-                <!--<a class="gn-icon gn-icon-search"><span>Search</span></a>-->
-                <!--</li>-->
 
 
                 <!--1. 教师：课程管理 & 学生：选修课程-->
@@ -114,7 +110,6 @@
                   <% if student_logged_in? %>
                       <a><span class="glyphicon glyphicon-user"></span>评估课程</a>
                   <% end %>
-                </li>
 
                 <ul class="gn-submenu ">
                   <% if teacher_logged_in? %>
@@ -136,7 +131,7 @@
                       </li>
                   <% end %>
                 </ul>
-
+                </li>
               </ul>
             </div><!-- /gn-scroller -->
           </nav>
@@ -207,3 +202,4 @@
 <script>
   doc = new gnMenu( document.getElementById( 'gn-menu' ) );
 </script>
+<div class="container">
