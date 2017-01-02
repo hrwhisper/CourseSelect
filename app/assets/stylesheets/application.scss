@@ -47,11 +47,12 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
   font-family: monospace, '宋体', Tahoma, Helvetica,
   Arial, "\5b8b\4f53", sans-serif;
 }
-a{
+
+a {
   color: #5b6baa;
 }
 
-td,th{
+td, th {
   color: #34383b;
 }
 
@@ -75,10 +76,10 @@ footer {
   //background-repeat: no-repeat;
   //background-size: 100% 100%;
 }
-.login_backgroung{
+
+.login_backgroung {
   background-color: #97c65e;
 }
-
 
 body {
   padding-top: 80px;
@@ -387,7 +388,7 @@ input.gn-search:focus {
   -webkit-font-smoothing: antialiased;
 }
 
-.gn-menu a >span {
+.gn-menu a > span {
   padding: 25px;
 }
 
@@ -458,7 +459,6 @@ input.gn-search:focus {
   content: '';
 }
 
-
 .no-touch .gn-icon-menu:hover::before,
 .no-touch .gn-icon-menu.gn-selected:hover::before {
   background: white;
@@ -520,6 +520,34 @@ input.gn-search:focus {
   margin-right: 10px;
 }
 
+.file_style {
+  position: relative;
+}
+
+.file_style .fileInput {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 189px;
+  height: 30px;
+
+}
+
+.file_style .fileText {
+  height: 30px;
+  border: 1px solid #cdcdcd;
+  width: 130px;
+  background: rgba(198, 211, 205, 0.5);
+}
+
+.file_style .btn {
+  border: 1px solid #cdcdcd;
+  background: rgba(198, 211, 205, 0.5);
+  height: 31px;
+  margin-top: -2px;
+  color: black;
+}
+
 #side_course_table {
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
   //height: 100%;
@@ -562,29 +590,33 @@ input.gn-search:focus {
   background: image_url("/images/side_course_table_button_hover.png") repeat scroll left top rgba(0, 0, 0, 0);
 }
 
-.alert_bar{
+.alert_bar {
   background-color: #97c65e;
   color: white;
 }
-.padding{
+
+.padding {
   padding-bottom: 24px;
 }
 
-.table_new{
+.table_new {
   border-color: #97c65e;
   background-color: #97c65e !important;
   background-image: none !important;
   color: white;
 }
-.table_border{
+
+.table_border {
   border-color: #97c65e;
 }
-.btn_new{
+
+.btn_new {
 
   background-color: #5b6baa !important;
   background-image: none !important;
   color: white;
 }
-.font_size{
+
+.font_size {
   font-size: 15px;
 }

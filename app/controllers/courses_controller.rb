@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
     puts('--------')
 
     if @course.update_attributes(course_params)
-      flash={:info => "更新成功"}
+      flash={:success => "更新成功"}
     else
       flash={:warning => "更新失败"}
     end
