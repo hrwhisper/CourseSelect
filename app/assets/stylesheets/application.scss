@@ -47,6 +47,13 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
   font-family: monospace, '宋体', Tahoma, Helvetica,
   Arial, "\5b8b\4f53", sans-serif;
 }
+a{
+  color: #5b6baa;
+}
+
+td,th{
+  color: #34383b;
+}
 
 .table {
   margin-bottom: 10px;
@@ -187,7 +194,7 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
   font-size: 13px;
 }
 
@@ -219,6 +226,7 @@ html {
 .gn-menu-main li.gn-trigger {
   position: relative;
   width: 50px;
+  //padding:20px;
   //-webkit-touch-callout: none;
   //-webkit-user-select: none;
   //-khtml-user-select: none;
@@ -248,7 +256,7 @@ html {
 
 .gn-menu-wrapper {
   position: fixed;
-  top: 60px;
+  top: 50px;
   bottom: 0;
   left: 0;
   overflow: hidden;
@@ -362,12 +370,13 @@ input.gn-search:focus {
   position: absolute;
   top: 0;
   left: 0;
-  height: 60px;
+  //height: 100%;
+  //width: 100%;
 }
 
 .gn-icon::before {
   display: inline-block;
-  width: 60px;
+  width: 64px;
   text-align: left;
   text-transform: none;
   font-weight: normal;
@@ -440,8 +449,8 @@ input.gn-search:focus {
 }
 
 .gn-icon-menu::before {
-  margin-left: -15px;
-  vertical-align: -2px;
+  //margin-left: -20px;
+  //vertical-align: -5px;
   width: 20px;
   height: 3px;
   background: #97c65e;
@@ -457,8 +466,10 @@ input.gn-search:focus {
 }
 
 .gn-icon-menu.gn-selected::before {
+  //width: 64px;
   background: #97c65e;
-  box-shadow: 0 3px rgba(0, 0, 0, 0.05), 0 -6px #97c65e, 0 -9px rgba(0, 0, 0, 0.05), 0 -12px #97c65e
+  box-shadow: 0 3px rgba(0, 0, 0, 0.05), 0 -6px #97c65e, 0 -9px rgba(0, 0, 0, 0.05), 0 -12px #97c65e;
+  vertical-align: -5px;
 }
 
 /* styles for opening menu */
@@ -553,5 +564,24 @@ input.gn-search:focus {
 
 .alert_bar{
   background-color: #97c65e;
+  color: white;
+}
+.padding{
+  padding-bottom: 24px;
+}
+
+.table_new{
+  border-color: #97c65e;
+  background-color: #97c65e !important;
+  background-image: none !important;
+  color: white;
+}
+.table_border{
+  border-color: #97c65e;
+}
+.btn_new{
+
+  background-color: #5b6baa !important;
+  background-image: none !important;
   color: white;
 }
