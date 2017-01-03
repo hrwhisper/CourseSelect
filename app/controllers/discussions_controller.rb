@@ -23,21 +23,25 @@ class DiscussionsController < ApplicationController
     def create
         @course=Course.find_by_id(params[:course_id])
         @discussion=@course.discussions
-        @tmp=Discussion.new
-        @tmp.user="匿名用户"
-        @tmp.content=params[:@discussion][:content]
-        if @discussion == nil
-          @discussion=@tmp
+        if params[:@discussion][:content] != ""
+         @tmp=Discussion.new
+         @tmp.user="匿名用户"
+         @tmp.content=params[:@discussion][:content]
+         if @discussion == nil
+           @discussion=@tmp
+         else
+           @discussion<<@tmp
+         end
+         
+          if @course.save
+            flash={:success => "已经成功保存在《#{@course.name}》中的发言:#{ params[:@discussion][:content]}"}
+          else
+            flash={:warning => "更新失败"}
+          end
         else
-          @discussion<<@tmp
+          flash={:warning => "发言内容不能为空！"}
         end
-        #if @discuss.update_attributes(discussion_params)
-        if @course.save
-          flash={:success => "已经成功保存在《#{@course.name}》中的发言:#{ params[:@discussion][:content]}"}
-        else
-          flash={:warning => "更新失败"}
-        end
-      redirect_to discussions_path(course_id:params[:course_id]), flash: flash
+       redirect_to discussions_path(course_id:params[:course_id]), flash: flash
     end
   
     def update
