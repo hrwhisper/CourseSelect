@@ -1,17 +1,22 @@
 # CourseSelect
 
-
 这个系统是基于https://github.com/PENGZhaoqing/CourseSelect 的继续开发
+
+本项目已部署在heroku平台上[演示Demo戳这里](https://hrcourseselect.herokuapp.com)
 
 ### 截图
 
 <img src="/lib/screenshot1.png" width="700">  
 
+
+
 <img src="/lib/screenshot2.png" width="700">
+
+
 
 <img src="/lib/screenshot3.png" width="700">   
 
-<img src="/lib/screenshot4.png" width="700">
+
 
 ## 说明
 
@@ -123,6 +128,21 @@ bundle install
 
 6.运行部署，详情[请戳这里](https://devcenter.heroku.com/articles/getting-started-with-rails4#rails-asset-pipeline)
 
+我的部署实例：
+
+```
+heroku create hrcourseselect
+git push heroku master
+heroku run rake db:migrate
+heroku run rake db:seed
+```
+
+
+
+
+
+
+
 
 ## 测试
 
@@ -173,7 +193,7 @@ cucumber features/XX.feature (执行XX测试，.feature文件在features文件�
 17. ~~总分数统计~~
 18. ~~查询评估结果~~
 19. ~~通知详情页~~
-20. Discuss功能
+20. ~~Discuss功能~~
 21. 评估结果可视化
 22. GPA目标计算
 23. 选课方式修改
