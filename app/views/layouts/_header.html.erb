@@ -2,6 +2,7 @@
 <%= javascript_include_tag('modernizr.custom.js') %>
 <%= javascript_include_tag('classie.js') %>
 <%= javascript_include_tag('gnmenu.js') %>
+<%= javascript_include_tag('d3.v3.min.js') %>
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -141,6 +142,7 @@
               <li> <%= link_to "控制面板", rails_admin_path %></li>
           <% end %>
           <li class=<%= "active change_bg_font" if current_page?(list_courses_path) %>> <%= link_to "开放的课程", list_courses_path %></li>
+          <li class="<%= "active " if params[:controller]=="notices" %>"> <%= link_to "通知", '/notices/' %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -163,10 +165,9 @@
               </li>
 
           <% else %>
-
-              <li><%= link_to sessions_login_path do %>
-                    登录 <span class="	glyphicon glyphicon-user"></span>
-                <% end %>
+              <li><a data-toggle="modal" data-target="#login_modal">
+                登录 <span class="	glyphicon glyphicon-user"></span>
+              </a>
               </li>
 
               <li><%= link_to new_user_path do %>
@@ -180,8 +181,48 @@
   </div>
 </nav>
 
+<script> doc = new gnMenu(document.getElementById('gn-menu'));</script>
 
+<% if not current_user %>
+    <div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4><span class="glyphicon glyphicon-lock"></span> 登录</h4>
+          </div>
+          <div class="modal-body">
+            <%= form_for(:session, url: sessions_login_url, method: :post, html: {role: 'form', :id => 'login'}) do |f| %>
+                <div class="form-group">
+                  <%= f.label :email, "账号密码登陆" %>
+                  <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                    <%= f.email_field :email, class: 'form-control', placeholder: "输入邮箱" %>
+                  </div>
+                </div>
 
-<script>
-    doc = new gnMenu(document.getElementById('gn-menu'));
-</script>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    <%= f.password_field :password, class: 'form-control', placeholder: "输入密码" %>
+                  </div>
+                </div>
+
+                <div class="checkbox">
+                  <label><%= f.check_box :remember_me %>记住我</label>
+                </div>
+                </div>
+            <% end %>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-success" onclick="document.getElementById('login').submit()">
+                登陆</button>
+<p style="float: left">没有账号?
+  <%= link_to "注册", new_user_path %>
+</p>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+<% end %>

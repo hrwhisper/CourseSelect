@@ -28,15 +28,6 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
   Arial, "\5b8b\4f53", sans-serif;
 }
 
-body {
-  overflow-x: hidden;
-}
-
-body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
-  font-family: monospace, '宋体', Tahoma, Helvetica,
-  Arial, "\5b8b\4f53", sans-serif;
-}
-
 a {
   color: #5b6baa;
 }
@@ -71,8 +62,8 @@ footer {
 }
 
 body {
+  overflow-x: hidden;
   padding-top: 80px;
-  padding-bottom: 100px;
 }
 
 html {
@@ -215,7 +206,7 @@ html {
 
 .gn-menu-main li.gn-trigger {
   position: relative;
-  width: 50px;
+  width: 60px;
   //padding:20px;
   //-webkit-touch-callout: none;
   //-webkit-user-select: none;
@@ -378,7 +369,7 @@ input.gn-search:focus {
 }
 
 .gn-menu a > span {
-  padding: 25px;
+  padding: 22px;
 }
 
 /* if an icon anchor has a span, hide the span */
@@ -590,8 +581,8 @@ ul.gn-submenu li span {
 }
 
 .page-header {
-  margin: 0;
-  margin-top: -49px;
+  margin: 0 !important;
+  margin-top: -49px !important;
   position: relative;
   padding: 160px 0 139px 0;
   border-bottom: none;
@@ -603,7 +594,132 @@ ul.gn-submenu li span {
   height: 100%;
   top: 0;
   content: '';
-  opacity: 0.2;
+  opacity: 0.3;
   z-index: 2;
   background-color: #333333;
+}
+
+#instruction {
+  padding-left: 60px;
+}
+
+section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+section:nth-of-type(odd) {
+  background: #f4f4f4;
+}
+
+section h1 {
+  font-family: "Microsoft YaHei UI", sans-serif;
+}
+
+section h6 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+section p.lead {
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: normal;
+  margin-top: 40px;
+}
+
+.visualization {
+  max-width: 400px;
+}
+
+.visualization .coeff .dot {
+  fill: hsla(207, 63%, 27%, 0.2);
+}
+
+.visualization .coeff.last .dot {
+  fill: hsla(207, 63%, 27%, 1.0);
+}
+
+.visualization .coeff .circle {
+  fill: none;
+  stroke: hsl(0, 0%, 70%);
+}
+
+.visualization .coeff.first .circle {
+  fill: none;
+  stroke: hsl(0, 0%, 30%);
+}
+
+.visualization .coeff.last .circle {
+  display: none;
+}
+
+.visualization .graph {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+.visualization .trace {
+  fill: none;
+  stroke: steelblue;
+}
+
+.visualization .proj {
+  fill: none;
+  stroke: #000;
+}
+
+.visualization .axis {
+  stroke: hsl(0, 0%, 70%);
+}
+
+footer {
+  background-color: #282e33;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+footer h2 {
+  opacity: 0.5;
+  color: #fff;
+}
+
+footer p, footer a, footer a:hover {
+  opacity: 0.8;
+  color: #eee;
+}
+
+footer .footer-header {
+  font-size: 30px;
+  color: #eee;
+  opacity: 0.6;
+}
+
+footer .fa {
+  font-size: 36px !important;
+}
+
+.copyright {
+  opacity: 0.5;
+  color: #fff;
+  font-size: 12px;
+  margin-top: 50px;
+}
+
+.copyright a {
+  color: #aaa;
+  font-weight: 600;
+}
+
+.calendar {
+  box-shadow: 0 1px 10px #777777;
+  width: 220px;
+  background: rgba(238, 238, 238, 0.91);
+  transform: rotate(1deg);
 }

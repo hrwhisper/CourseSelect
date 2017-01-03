@@ -4,7 +4,7 @@ gem 'roo'
 gem 'roo-xls'
 
 gem 'spreadsheet'
- 
+
 gem 'bootstrap-sass', '~> 3.3.7'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
@@ -83,4 +83,3 @@ group :development, :test do
 end
 
 gem 'seed_dump'
-gem 'spreadsheet'

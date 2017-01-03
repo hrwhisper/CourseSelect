@@ -12,8 +12,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
+      <div class="panel panel-primary table_border">
+        <div class="panel-heading table_new">
           <h3 class="panel-title">评估课程: <%= @comment.course.name %></h3>
         </div>
         <div class="panel-body" style="min-height: 450px">
@@ -264,7 +264,7 @@
                 </table>
 
                 <div class="control-group">
-                  <h4>想对老师说的话</h4>
+                  <a>想对老师说的话</a>
                 </div>
                 <div class="control-group">
                   <div class="controls2">
@@ -275,8 +275,8 @@
 
                 <div class="form-actions">
                   <input type=button name="commit" value="<%= @comment.commented? ? "修改" : "提交" %>"
-                         onclick="check(this.form)" class="btn btn-info btn-block"/>
-                  <%= link_to '取消', comments_path, :class => "btn btn-default btn-block" %>
+                         onclick="check(this.form)" class="btn btn-info btn-block btn_new"/>
+                  <%= link_to '取消', comments_path, :class => "btn btn-default btn-block btn_new_cancel" %>
                 </div>
             <% end %>
             </div>
