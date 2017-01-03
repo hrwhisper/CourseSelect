@@ -1,25 +1,41 @@
-<!--navbar navbar-inverse navbar-fixed-top back-->
 </div>
 <script>
-  $(".navbar-fixed-top").css("background","transporant");
+  $('#main_container').css("min-height","0");
 </script>
-<style>
 
 
-</style>
-<div style="height: 600px;">
 <header class="page-header colored-background">
 
 </header>
-</div>
 
+<section id="instruction">
 
+  <div class="container">
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <%= render 'notices/notice_list' %>
+    <div class="row">
+      <div class="col-sm-6">
+          <h1>最新通知</h1>
+          <h6>Recent Notices</h6>
+          <p class="lead">
+            <% @notice.each do |notice| %>
+              <div>
+              <span class="glyphicon glyphicon-hand-right">
+                <%= link_to notice.title, notice_url(notice) %>
+              </span>
+                <span class="glyphicon glyphicon-calendar" style="float: right">
+                  <%= notice.created_at.strftime('%Y-%m-%d %H:%M') %>
+                </span>
+              </div>
+              <br>
+          <% end %>
+          </p>
+      </div>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-5">
+        <div class="visualization"></div>
+        <script src="/javascripts/index.js"></script>
+      </div>
+
     </div>
   </div>
-</div>
-<div>
+</section>

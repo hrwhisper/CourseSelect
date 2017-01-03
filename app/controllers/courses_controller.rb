@@ -180,12 +180,11 @@ class CoursesController < ApplicationController
     else
       flash={:warning => "保存失败"}
     end
-    
-     redirect_to courses_path, flash: flash
+
+    redirect_to courses_path, flash: flash
   end
-    
-    
-    
+
+
   def course_discuss
     @course = Course.find_by_id(params[:id])
     @test=""
@@ -199,7 +198,6 @@ class CoursesController < ApplicationController
   def my_course_list
     @course=current_user.teaching_courses if teacher_logged_in?
     @course=current_user.courses if student_logged_in?
-    @course_time_table = get_course_table(@course)
     @all_semester= get_course_info(@course, 'year', 'term_num')
     @current_semester = get_current_semester()
     semester = nil
@@ -216,6 +214,8 @@ class CoursesController < ApplicationController
     else
       @current_semester = nil
     end
+    @course_time_table = get_course_table(@course)
+
   end
 
 

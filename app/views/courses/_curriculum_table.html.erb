@@ -39,7 +39,7 @@
 <script>
     $(document).ready(
         function () {
-            var sideDiv_right = $("#side_course_table").width() +($("body").height() > $(window).height() ? 16 : 23);
+            var sideDiv_right = $("#side_course_table").width() +(document.body.clientHeight > $(window).height() ? 16 : 23);
             var speed = 300;
 
             $("#side_course_table").css("right", -sideDiv_right);

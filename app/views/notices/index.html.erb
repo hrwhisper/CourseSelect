@@ -1,0 +1,28 @@
+<div class="panel panel-primary filterable table_border">
+  <div class="panel-heading table_new">
+    <h4 class="panel-title ">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseNotice">
+        公告
+      </a>
+    </h4>
+  </div>
+  <div id="collapseNotice" class="panel-collapse collapse in">
+    <div class="panel-body">
+
+      <div class="table-responsive">
+        <% @notice.each do |notice| %>
+            <div>
+              <span class="glyphicon glyphicon-hand-right">
+                <%= link_to notice.title, notice_url(notice) %>
+              </span>
+              <span class="glyphicon glyphicon-calendar" style="float: right">
+                  <%= notice.created_at.strftime('%Y-%m-%d %H:%M') %>
+                </span>
+            </div>
+            <br>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

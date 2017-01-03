@@ -47,6 +47,9 @@ Course.create!([
   {name: "计算机网络2015", course_code: nil, course_type: "一级学科核心课", teaching_type: "授课、讨论", exam_type: "闭卷笔试", credit: "60/3.0", limit_num: 50, class_room: "教1-109", course_time: "周三(9-11)", course_week: "第2-20周", teacher_id: 3, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2015, term_num: 1},
   {name: "嵌入式系统", course_code: "092M6002H", course_type: "专业研讨课", teaching_type: "课堂讲授为主", exam_type: "闭卷笔试", credit: "20/1.0", limit_num: 50, class_room: "教1-115", course_time: "周四(9-10)", course_week: "第2-12周\t", teacher_id: 30, open: true, outline: "本课程暂无大纲", tmp: nil, diss: "暂无人发言", year: 2016, term_num: 1}
 ])
+Discussion.create!([
+  {course_id: 1, user: "匿名用户", content: "aaa"}
+])
 Grade.create!([
   {course_id: 33, user_id: 36, grade: nil},
   {course_id: 19, user_id: 36, grade: nil},
@@ -1230,7 +1233,12 @@ Grade.create!([
   {course_id: 32, user_id: 235, grade: 66}
 ])
 Notice.create!([
-  {user_id: nil, title: "选课截至2017-1-5", content: "如题"}
+  {user_id: nil, title: "选课截至2017-1-5", content: "如题"},
+  {user_id: nil, title: "选课相关注意事项", content: "欢迎使用网络选课系统。请同学们在网络选课之前认真仔细阅读《学生必读》中有关课程学分修读要求及选课规定！网络选课相关事宜说明如下：\r\n一、选课对象：已注册的2016-2017学年春季学期集中学习的硕士研究生、硕博连读研究生和直博生；\r\n二、选课网址： http://sep.ucas.ac.cn→登录选课系统进行选课；\r\n三、选课要求：\r\n（一） 限选课程\r\n1. “英语A”、 “英语B”、“英语C”与“自然辩证法概论”课程、实行分班，请同学们根据时间选择班级。英语A/B/C选课具体要求见附件。\r\n2.公共选修课：公选课均已按教室能容纳人数进行限定，若课程选课人数已达限选人数，请选择其它公选课。\r\n3.体育类课程（开课编号前三位TGX），全学年所选体育类课程累计学分最多以0.5学分计。\r\n特别提醒:  (1)患有如下疾病的同学不可选游泳课（心脏病，精神病，高血压，肝炎，癫痫病，皮肤病和各类传染性疾病）；(2)具备蛙泳基础的同学方可选自由泳课。\r\n（二） 专业课程：包括一级学科核心课、一级学科普及课、一级学科研讨课、专业核心课、专业普及课与专业研讨课。要求每位学生在导师和培养单位的指导下，本学年修读本专业所属一级学科核心课以及一级学科下各专业核心课共2-3门；只开设1门核心课的学科或专业，修读全部的核心课；未开设核心课的学科或专业，按导师或培养单位的意见进行选课。\r\n提示：1.部分专业课程有选课人数的限制；2.公管学院的核心课和普及课可以作为公选课,选课的时候需要选择课程属性,根据课程属性不同,学分不同。(公管学院核心课和普及课见附件3)\r\n（三）人文系列讲座课程学分计入本学期选课学分下限,故本学期每人选课总学分不得低于9学分。\r\n四、网上选课起止时间\r\n选课时间：2017年1月4日（星期三）中午12：30 ——2017年3月5日（星期日）下午17：00网络开放，学生可选修、更改课程及班级信息；外语系课程选课要求见附件。\r\n3月5日下午17：00网络选课结束，网络封闭。请同学们务必在网络关闭前确认、提交选课信息。 \r\n五、交报选课单时间\r\n  2017年3月6日（星期一）各院系下载打印学生选课单，交学生本人核对，经导师、培养单位审核签字、盖章后，交所属院系汇总。各院系务必于3月20日前交报教务部。\r\n选课中如有系统登录问题，咨询网络中心（88256622）；如有选课问题，咨询相关院系教学主管或教务部（见附件2）。\r\n 祝同学们网络选课顺利！\r\n                            中国科学院大学教务部\r\n                        2016年12月30日\r\n附件1                 外语选课通知\r\n英语A选课须知：\r\n选课资格：未通过英语A考试的硕士生和直博生（包括未参加英语A考试的学生）\r\n选课内容：参加英语A课程学习的学生只选一个班，每周2学时；参加英语A+课程学习的学生须选修听说课（周学时2）和读写课（周学时2）各一个班，周共计4学时；\r\n选课时间：2017年1月12日12:30开始网上选班\r\n开课时间：2017年2月20日（第1周）"},
+  {user_id: nil, title: "英语选课通知", content: "英语A选课须知：\r\n选课资格：未通过英语A考试的硕士生和直博生（包括未参加英语A考试的学生）\r\n选课内容：参加英语A课程学习的学生只选一个班，每周2学时；参加英语A+课程学习的学生须选修听说课（周学时2）和读写课（周学时2）各一个班，周共计4学时；\r\n选课时间：2017年1月12日12:30开始网上选班\r\n开课时间：2017年2月20日（第1周）\r\n \r\n英语B选课须知\r\n选课资格：\r\n1.未选修过英语B课程的博士研究生（已通过英语B免修考试的学生不得修读）\r\n2.已通过英语A考试，但没有选修过英语B课程的直博生或学术型硕士可自愿选修（已通过英语B免修考试的学生不得选修）\r\n选课内容：每人必选两门课程,  从高级读写和高级写作中任选一门，从高级口语和高级听说中任选一门，共计两门，周4学时，不得多选或少选\r\n一年级硕士生选课时间：2017年1月12日12:30开始网上选班\r\n一年级直博生选课时间：2017年1月11日12:30开始网上选班\r\n已报名的博士生及高年级硕士生选课时间：2017年1月11日\r\n开课时间：2017年2月20（第1周）\r\n \r\n英语C选课须知\r\n选课资格：此课程只针对专业学位硕士开设 \r\n选课内容：参加英语C课程学习的学生只选一个班，每周2学时\r\n选课时间：2017年1月12日12:30开始网上选班\r\n开课时间：2017年2月20日（第1周）\r\n \r\n公共选修课选课须知：\r\n选课资格：只有通过英语A的学生才有资格选修外语系的公共选修课\r\n选课时间：2017年1月12日12:30开始网上选班\r\n开课时间：2017年2月20日（第1周）"},
+  {user_id: nil, title: "test11", content: "tgwattq3tt"},
+  {user_id: nil, title: "test112", content: "awfawf"},
+  {user_id: nil, title: "test11test11test11", content: "test11test11test11test11"}
 ])
 Systeminfo.create!([
   {name: "current_semester", value: "2016-1"},
@@ -1239,7 +1247,6 @@ Systeminfo.create!([
 User.create!([
   {name: "彭兆卿", email: "admin@test.com", num: "201628008629001", major: "计算机软件与理论", department: "计算机与控制学院", password_digest: "$2a$10$rZyE8URfPMJFSNUFEDRSBODJJHy8O0HfeSKCeDlqTiqdrTNCzB5UO", remember_digest: nil, admin: true, teacher: false},
   {name: "胡伟武", email: "teacher1@test.com", num: nil, major: nil, department: "计算技术研究所", password_digest: "$2a$10$SzdamtwWutrwLojCM1ZRZ.TJYpqnqYbSUm3l7cuphGOIX3Of3t5ba", remember_digest: nil, admin: false, teacher: true},
-  {name: "谢高岗", email: "teacher2@test.com", num: nil, major: nil, department: "计算机与控制学院", password_digest: "$2a$10$ZmNs9hlwK8u/n3NPJm5AwOEL7qnCHiSlaAzscr5l5PifgZgXFPVHG", remember_digest: nil, admin: false, teacher: true},
   {name: "魏峻", email: "teacher3@test.com", num: nil, major: nil, department: "软件研究所", password_digest: "$2a$10$q4ARoIbIK28S.zMEEDoBWepEYpNAoFkrFRO1kzoA7sZKJUQr3q2dK", remember_digest: nil, admin: false, teacher: true},
   {name: "罗铁坚", email: "teacher4@test.com", num: nil, major: nil, department: "计算机与控制学院", password_digest: "$2a$10$l64fr5iEIwtf3VFvu1ebWeSHMAEtMubSob6dEqcMBNRFG6yRSVnMO", remember_digest: nil, admin: false, teacher: true},
   {name: "眭跃飞", email: "teacher5@test.com", num: nil, major: nil, department: "软件研究所", password_digest: "$2a$10$4.XyQu4SXY3I/Z8Rx18dv.ACEz5Z3O2Qpsb4PAzlXyKwGO9mRjsEK", remember_digest: nil, admin: false, teacher: true},
@@ -1471,5 +1478,6 @@ User.create!([
   {name: "依韵麟", email: "student198@test.com", num: "201621283686410", major: "通信与信息系统", department: "计算机与控制学院", password_digest: "$2a$10$p3KIYDRUZsCVJPa8dZBw9eDx/2nTgtwXdlnImkqFuqWbKwmey82LO", remember_digest: nil, admin: false, teacher: false},
   {name: "寸翰伶", email: "student199@test.com", num: "201662251554732", major: "计算机应用技术", department: "计算机与控制学院", password_digest: "$2a$10$Ihw9KNFyphOGvYNc7PIjZuE3hYWz17QsvSc5zklby.cHqKgY9aFba", remember_digest: nil, admin: false, teacher: false},
   {name: "以辛绮", email: "student200@test.com", num: "201664262918152", major: "控制理论与控制工程", department: "计算机技术研究所", password_digest: "$2a$10$nKstdi.7JAEz9i6lD6hdMeBQusC3HAGhS9zq6QQVv08Cu0gtjXEAa", remember_digest: nil, admin: false, teacher: false},
-  {name: "越纹欣", email: "student1@test.com", num: "201640335724143", major: "计算机应用技术", department: "软件研究所", password_digest: "$2a$10$AcCVPMgnE3913bJwZqFbQOeg38DSMvWQYdKPjx/TtuTQHQ7rNm46C", remember_digest: nil, admin: false, teacher: false}
+  {name: "越纹欣", email: "student1@test.com", num: "201640335724143", major: "计算机应用技术", department: "软件研究所", password_digest: "$2a$10$AcCVPMgnE3913bJwZqFbQOeg38DSMvWQYdKPjx/TtuTQHQ7rNm46C", remember_digest: nil, admin: false, teacher: false},
+  {name: "谢高岗", email: "teacher2@test.com", num: nil, major: nil, department: "计算机与控制学院", password_digest: "$2a$10$ZmNs9hlwK8u/n3NPJm5AwOEL7qnCHiSlaAzscr5l5PifgZgXFPVHG", remember_digest: nil, admin: false, teacher: true}
 ])
