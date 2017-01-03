@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="panel panel-primary filterable">
-        <div class="panel-heading">
+      <div class="panel panel-primary filterable table_border">
+        <div class="panel-heading table_new">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion"
                href="#collapseStudentList">
@@ -15,7 +15,7 @@
 
             <div class="row">
               <div class="col-sm-12" style="padding-bottom: 26px;">
-               <%= link_to "导出", grades_export_url(:course_id =>@course.id,:format => 'xls'),:class =>"btn btn-info"%>
+               <%= link_to "导出", grades_export_url(:course_id =>@course.id,:format => 'xls'),:class =>"btn btn-info btn_new"%>
               </div>
             </div>
 

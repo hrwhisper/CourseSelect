@@ -532,9 +532,18 @@ input.gn-search:focus {
 }
 
 .table_border {
-  border-color: #97c65e;
+  border-color: #97c65e !important;
 }
 
+.table_new_blue {
+  background-color: #5b6baa !important;
+  background-image: none !important;
+  color: white !important;
+}
+
+.table_border_blue {
+  border-color: #5b6baa;
+}
 .table_borer_trans {
   border-color: transparent !important;
 }
