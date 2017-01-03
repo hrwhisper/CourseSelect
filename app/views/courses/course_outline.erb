@@ -10,22 +10,26 @@
         </div>
         </br>
         <div id="button-edit">
-          <% if teacher_logged_in? %>
-              <% @coursetmp.each do |coursetmp| %>
-                  <% if @course == coursetmp %>
-
-                      <%= link_to "点击修改课程大纲", edit_outline_course_url(@course), class: 'btn btn-xs btn-info' %>
-                      <% # = link_to "点击修改课程大纲", edit_course_url(@course), class: 'btn btn-xs btn-info' %>
-                  <% end %>
-              <% end %>
-          <% end %>
-          <%#= link_to "查看课程Discuss信息", course_discuss_course_url(course_id: @course.id), class: 'btn-sm btn-danger btn_new' %>
-          <%= link_to "查看课程Discuss信息",discussions_path(course_id: @course.id), class: 'btn btn-xs btn-info' %>
+          <!--显示评论-->
           <div class="panel-body">
             <div class="table-responsive">
               <%= @course.outline %>
             </div>
           </div>
+          <!--按钮-->
+          <% if teacher_logged_in? %>
+              <% @coursetmp.each do |coursetmp| %>
+                  <% if @course == coursetmp %>
+
+                      <a><%= link_to "点击修改课程大纲", edit_outline_course_url(@course), class: 'btn btn-xs btn-info btn_new_cancel' %></a>
+                  <% end %>
+              <% end %>
+          <% end %>
+          <a><%= link_to "查看课程Discuss信息",discussions_path(course_id: @course.id), class: 'btn btn-xs btn-info btn_new' %></a>
+          <!--保证格式-->
+          <div class="panel-body">
+          </div>
+
         </div>
       </div>
     </div>
