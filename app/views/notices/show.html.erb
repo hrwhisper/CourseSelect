@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div id="notice_detail" class="panel panel-primary filterable">
+      <div class="panel-body">
+        <div class="notice_head">
+          <h3><%= @notice.title %></h3>
+          <span class="glyphicon glyphicon-calendar">
+                <%= @notice.created_at.strftime('%Y年%m月%d日 %H:%M') %>
+              </span>
+          <span class="glyphicon glyphicon-user">
+                国科大教务部
+              </span>
+          <% if admin_logged_in? %>
+          <span class="glyphicon glyphicon-pencil">
+                <%= link_to '编辑', "/admin/notice/#{@notice.id}/edit" %>
+              </span>
+          <% end %>
+        </div>
+        <p><%= @notice.content %></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
