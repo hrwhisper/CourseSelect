@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12" style="text-align:center;">
+    <div class="col-sm-offset-3 col-sm-6" style="text-align:center;">
       <div class="panel panel-primary filterable table_border">
         <div class="panel-heading table_new">
           <h3 class="panel-title">
@@ -25,7 +25,7 @@
                   <% end %>
               <% end %>
           <% end %>
-          <a><%= link_to "查看课程Discuss信息",discussions_path(course_id: @course.id), class: 'btn btn-xs btn-info btn_new' %></a>
+          <a><%= link_to "查看课程Discuss信息", discussions_path(course_id: @course.id), class: 'btn btn-xs btn-info btn_new' %></a>
           <!--保证格式-->
           <div class="panel-body">
           </div>
