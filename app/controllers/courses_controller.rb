@@ -197,7 +197,7 @@ class CoursesController < ApplicationController
 
   def my_course_list
     @course=current_user.teaching_courses if teacher_logged_in?
-    @course=current_user.courses if student_logged_in?
+    @course= get_student_course() if student_logged_in?
     @all_semester= get_course_info(@course, 'year', 'term_num')
     @current_semester = get_current_semester()
     semester = nil
@@ -218,31 +218,7 @@ class CoursesController < ApplicationController
 
   end
 
-
   private
-
-  # Confirms a student logged-in user.
-  def student_logged_in
-    unless student_logged_in?
-      redirect_to root_url, flash: {danger: '请登陆'}
-    end
-  end
-
-  def curriculum
-    @course=current_user.teaching_courses if teacher_logged_in?
-    @course=current_user.courses if student_logged_in?
-    render :json => @course
-  end
-
-
-  def curriculum
-    @course=current_user.teaching_courses if teacher_logged_in?
-    @course=current_user.courses if student_logged_in?
-    render :json => @course
-  end
-
-  private
-
   # Confirms a student logged-in user.
   def student_logged_in
     unless student_logged_in?

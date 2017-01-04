@@ -38,7 +38,6 @@ Rails.application.routes.draw do
       post :select
       get :list
       post :list
-      get :curriculum
     end
   end
 

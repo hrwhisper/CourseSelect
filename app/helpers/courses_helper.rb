@@ -56,6 +56,14 @@ module CoursesHelper
     res.to_a.sort
   end
 
+  def get_student_course()
+     course = []
+      current_user.grades.each do |x|
+        course << x.course
+      end
+    course
+  end
+
   def get_current_semester()
     current_semester = Systeminfo.where(name: 'current_semester').take
     current_semester[:value]
@@ -79,7 +87,7 @@ module CoursesHelper
   end
 
   def get_current_semester_course()
-    logged_in? ? filter_course_by_semester(current_user.courses) : nil
+    logged_in? ? filter_course_by_semester(get_student_course()) : nil
   end
 
   def course_filter_by_condition(courses, params, keys)
@@ -106,7 +114,7 @@ module CoursesHelper
     current_semester = semester_to_array(get_current_semester())
     course = Course.where('open = true and year=? and term_num =?',
                           current_semester[0], current_semester[1])
-    logged_in? ? course-current_user.courses : course
+    logged_in? ? course- get_student_course() : course
   end
 
   def get_course_select_end_time()

@@ -46,7 +46,7 @@ class GradesController < ApplicationController
 
   def stastics
     @grades = []
-    @courses=current_user.courses
+    @courses= get_student_course()
     @all_semester= get_course_info(@courses, 'year', 'term_num')
     @current_semester = get_current_semester()
     semester = nil
