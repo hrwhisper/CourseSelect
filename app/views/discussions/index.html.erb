@@ -19,9 +19,8 @@
 
               <% @discussion.each do |discuss| %>
                   <% @cnt +=1 %>
-                  <font size="4" color="black">
-                    <td><%= discuss.content %></td>
-                  </font>
+
+                    <td><a><%= discuss.content %></a></td>
                   <br>
                   <font size="1" color="red">
              <span class="glyphicon glyphicon-user">
@@ -40,18 +39,18 @@
           </div>
           <div>
             <% if @cnt == 0 %>
-                <font size="5" color="#5b6baa">
-                  暂时无人发言！
-                </font>
+                  <a>暂时无人发言，留下第一条评论吧</a>
                 <br><br>
             <% end %>
           </div>
           <div style="margin-bottom: 20px">
             <%= form_tag(url: discussions_path(course_id: @course.id), method: "patch") do %>
                 <%= text_area(:@discussion, :content) %>
-                <input id="course_id" name="course_id" type="hidden" value="<%= @course.id %>"/>
+                <input id="course_id" name="course_id" type="hidden" style="margin-bottom:20px" value="<%= @course.id %>"/>
                 <br>
-                <button type="submit" class="btn btn-default btn_new">提交</button>
+                <br>
+                <button type="submit" class="btn btn-default btn_new" >提交</button>
+
             <% end %>
           </div>
 
