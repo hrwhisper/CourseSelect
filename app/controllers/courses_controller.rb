@@ -114,8 +114,7 @@ class CoursesController < ApplicationController
           fails_course = []
           success_course = []
           @course.each do |course|
-            if course.grades.length < course.limit_num
-              current_user.courses << course #todo 并发考虑
+            if course.grades.length < course.limit_num and Grade.create(:user_id => current_user.id, :course_id => course.id)
               success_course << course.name
             else
               fails_course << course.name
@@ -145,7 +144,7 @@ class CoursesController < ApplicationController
 
   def quit
     @course=Course.find_by_id(params[:id])
-    current_user.courses.delete(@course)
+    Grade.where(:user_id => current_user.id, :course_id => @course.id).take.destroy()
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
