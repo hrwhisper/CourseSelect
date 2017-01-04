@@ -109,7 +109,7 @@ class CoursesController < ApplicationController
       if ids
         @course = Course.find(ids)
         if course_conflict?(get_current_semester_course(), @course)
-          flash={:error => "课程冲突"}
+          flash={:warning => "课程冲突"}
         else
           fails_course = []
           success_course = []
@@ -137,7 +137,7 @@ class CoursesController < ApplicationController
         flash={:success => "请勾选课程"}
       end
     else
-      flash={:error => "不在选课时间！"}
+      flash={:warning => "不在选课时间！"}
     end
     redirect_to courses_path, flash: flash
   end
