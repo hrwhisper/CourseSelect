@@ -1,37 +1,31 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-sm-12" style="text-align:center">
+    <div class="col-sm-offset-3 col-sm-6" style="text-align:center">
       <div class="panel panel-primary filterable table_border">
         <div class="panel-heading table_new">
           <h3 class="panel-title">
-            <%  @course = Course.find_by_id(params[:id]) %>
+            <% @course = Course.find_by_id(params[:id]) %>
             <% @coursetmp=current_user.teaching_courses if teacher_logged_in? %>
-              《<%= @course.name %>》课程大纲修改
+            《<%= @course.name %>》课程大纲修改
           </h3>
         </div>
-                           </br>
-             
-             <%  @course = Course.find_by_id(params[:id]) %>
-<%= form_for @course, html: {class: 'form-horizontal', role: 'form'} do |f| %>
-    <%= render 'shared/error_messages', :object => @course %>
+        <% @course = Course.find_by_id(params[:id]) %>
+        <%= form_for @course, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+            <%= render 'shared/error_messages', :object => @course %>
+            <div class="col-sm-12">
+              <div class="input-group input-group-lg">
+                <div class="input-group-addon" style="background-color: transparent">
+                  <%= f.text_area :outline, class: 'form-control',rows:"13", placeholder: "输入课程大纲" %>
+                </div>
 
+              </div>
+            </div>
 
-      <div class="col-sm-11">
-        <div class="input-group input-group-lg">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
-          <%= f.text_area :outline, class: 'form-control', placeholder: "输入课程大纲" %>
-        </div>
-    </div>
+            <%= f.submit '提交', class: "btn btn-success btn-block btn_new" %>
+            <%= link_to '取消', courses_path, :class => "btn btn-default btn-block btn_new_cancel" %>
 
-    <%= f.submit '提交', class: "btn btn-success btn-block btn_new" %>
-    <%= link_to '取消', courses_path, :class => "btn btn-default btn-block btn_new_cancel" %>
-
-<% end %>
-              
-                           
-                           
-                           
+        <% end %>
       </div>
     </div>
   </div>
