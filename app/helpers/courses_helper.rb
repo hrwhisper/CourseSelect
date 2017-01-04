@@ -1,6 +1,20 @@
 require 'set'
 
 module CoursesHelper
+  def semester_to_season(semester) # '2016-1'
+    semester = semester.split('-')
+    if semester[1] == '1'
+      semester[1] = '秋季学期'
+    elsif semester[1] == '2'
+      semester[1] = '春季学期'
+    else
+      semester[1] = '夏季学期'
+    end
+    semester[0] += '-' +(semester[0].to_i + 1).to_s
+    semester.join('学年')
+  end
+
+
   def week_data_to_num(week_data)
     param = {
         '周一' => 0,
@@ -57,10 +71,10 @@ module CoursesHelper
   end
 
   def get_student_course()
-     course = []
-      current_user.grades.each do |x|
-        course << x.course
-      end
+    course = []
+    current_user.grades.each do |x|
+      course << x.course
+    end
     course
   end
 

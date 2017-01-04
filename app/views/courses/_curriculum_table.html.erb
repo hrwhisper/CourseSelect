@@ -2,7 +2,7 @@
   <div class="sideDiv_content">
     <div class="panel panel-primary filterable">
       <div class="panel-heading">
-        我的课程表
+        <%=current_user.name %> <%= semester_to_season(@current_semester) %> 课程表
       </div>
       <div class="table-responsive">
         <table class="table table-striped" id="curriculum_table">

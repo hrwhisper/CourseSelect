@@ -3,7 +3,9 @@
     <div class="col-sm-12">
       <div class="panel panel-primary table_border">
         <div class="panel-heading table_new">
-          <h3 class="panel-title">选修课程</h3>
+          <h3 class="panel-title">
+            <%= student_logged_in?? "选修课程":"已开放的课程列表" %>
+          </h3>
         </div>
         <div class="panel-body" style="min-height: 450px">
           <% if @in_course_select_time %>

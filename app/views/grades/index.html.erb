@@ -30,7 +30,6 @@
           <table class="table table-striped table-hover">
             <thead>
             <tr>
-              <th>成绩编号</th>
               <% if not student_logged_in? %>
                   <th>学号</th>
                   <th>名字</th>
@@ -46,7 +45,6 @@
 
             <% @grades.each do |grade| %>
                 <tr>
-                  <td><%= grade.id %></td>
                   <% if not student_logged_in? %>
                       <td><%= grade.user.num %></td>
                       <td><%= grade.user.name %></td>

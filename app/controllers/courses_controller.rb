@@ -87,6 +87,7 @@ class CoursesController < ApplicationController
     @in_course_select_time = in_course_select_time?()
     if @in_course_select_time # 选课时间判断
       @course_to_choose=get_course_to_choose_list()
+      @current_semester = get_current_semester()
 
       @course = get_current_semester_course()
       @course_time_table = get_course_table(@course)

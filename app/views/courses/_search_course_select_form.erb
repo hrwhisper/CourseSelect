@@ -3,12 +3,12 @@
   <div class="col-sm-8">
     <select class="form-control" name="<%= submit_name %>">
       <% if nil != @current_semester %>
-          <option value="<%= @current_semester %>"><%= @current_semester %></option>
+          <option value="<%= @current_semester %>"><%= semester_to_season(@current_semester) %></option>
       <% end %>
       <option value=""><%= submit_name == 'semester'? '所有学期':'' %></option>
       <% info.each do |info| %>
           <% if info != @current_semester %>
-              <option value="<%= info %>"><%= info %></option>
+              <option value="<%= info %>"><%= semester_to_season(info) %></option>
           <% end %>
       <% end %>
     </select>

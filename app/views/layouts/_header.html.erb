@@ -141,7 +141,7 @@
           <% elsif admin_logged_in? %>
               <li> <%= link_to "控制面板", rails_admin_path %></li>
           <% end %>
-          <li class=<%= "active change_bg_font" if current_page?(list_courses_path) %>> <%= link_to "开放的课程", list_courses_path %></li>
+          <li class=<%= "active change_bg_font" if current_page?(list_courses_path) %>> <%= link_to  student_logged_in?? "选修课程":"已开放的课程列表", list_courses_path %></li>
           <li class="<%= "active " if params[:controller]=="notices" %>"> <%= link_to "通知", '/notices/' %></li>
         </ul>
 

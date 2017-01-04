@@ -21,7 +21,7 @@
       <tbody>
       <% @course_to_choose.each do |course_to_choose| %>   <!-- #双||表示内部的局部变量 -->
           <tr>
-            <% if logged_in? %>
+            <% if student_logged_in? %>
                 <td><%= check_box_tag 'course_to_choose[]', course_to_choose.id, false, 'alt' =>
                     course_to_choose.name + '|'+ course_to_choose.course_time %></td>
             <% end %>
@@ -40,7 +40,7 @@
       <% end %>
       </tbody>
     </table>
-    <% if logged_in? %>
+    <% if student_logged_in? %>
         <button type="submit" class="btn btn_new">提交</button>
     <% end %>
 <% end %>
