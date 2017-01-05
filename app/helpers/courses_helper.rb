@@ -30,7 +30,7 @@ module CoursesHelper
 
 
   def get_course_table(courses)
-    course_time = Array.new(11) { Array.new(7, {'name' => '', 'id' => nil}) }
+    course_time = Array.new(11) { Array.new(7, {'name' => '', 'id' => ''}) }
     if courses
       courses.each do |cur|
         cur_time = String(cur.course_time)

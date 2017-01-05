@@ -63,7 +63,7 @@
         var col = week_data_to_num(cur_time.substring(0, end_j));
         var t = cur_time.substring(end_j + 1, cur_time.indexOf(')')).split('-');
         return {
-            'id' : cur_course[0],
+            'id': cur_course[0],
             'name': cur_course[1],
             'start': parseInt(t[0]),
             'end': parseInt(t[1]),
@@ -73,8 +73,8 @@
 
     function check_course_conflict(data) {
         for (var row = data['start']; row <= data['end']; row++) {
-            var text = $('.row' + row + '.col' + data['col']).text();
-            if (text != '') return text;
+            var cur = $('.row' + row + '.col' + data['col']);
+            if (cur.attr('alt') != '') return cur.text();
         }
         return null;
     }
@@ -84,18 +84,21 @@
         if (add) {
             var res = check_course_conflict(data);
             if (res != null) {
-                alert('你选择的课和' + res + '冲突');
+                alert('你选择的' + data['name'] + ' 和' + res + '冲突');
                 return false;
             }
         }
         for (var row = data['start']; row <= data['end']; row++) {
             var element = $('.row' + row + '.col' + data['col']);
-            element.text(add ? data['name'] : '');
-            element.addClass(data['name']);
-            if (!add) {
+            if (add) {
+                element.text(data['name']);
+                element.attr('alt', data['id']);
+            }
+            else {
+                element.text('');
+                element.attr('alt', '');
                 element.css("border-bottom", "1px solid #ddd");
                 element.css("border-top", "1px solid #ddd");
-                element.removeClass("aa");
             }
         }
         if (add)
@@ -109,16 +112,16 @@
         for (var j = 1; j <= n; j++) {
             for (var i = m; i >= 0; i--) {
                 var cur = $('.row' + i + '.col' + j);
-                if (i - 1 >= 0 && cur.text() != '') {
+                if (i - 1 >= 0 && cur.attr('alt') != '') {
                     var pre_row = $('.row' + (i - 1) + '.col' + j);
-                    if (pre_row.text() == cur.text()) {
+                    if (pre_row.attr('alt') == cur.attr('alt')) {
                         pre_row.css("border-bottom", "none");
                         cur.css("border-top", "none");
                         cur.text("");
                         i--;
                         if (i - 1 <= m) {
                             var p_pre_row = $('.row' + (i - 1) + '.col' + j);
-                            if (p_pre_row.text() == pre_row.text()) {
+                            if (p_pre_row.attr('alt') == pre_row.attr('alt')) {
                                 i--;
                                 p_pre_row.css("border-bottom", "none");
                                 pre_row.css("border-top", "none");
