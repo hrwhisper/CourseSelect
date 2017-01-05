@@ -110,34 +110,4 @@
             hidden_border();
         return true;
     }
-
-
-    function hidden_border() {
-        var m = 11, n = 7;
-        for (var j = 1; j <= n; j++) {
-            for (var i = m; i >= 0; i--) {
-                var cur = $('.row' + i + '.col' + j);
-                if (i - 1 >= 0 && cur.attr('alt') != '') {
-                    var pre_row = $('.row' + (i - 1) + '.col' + j);
-                    if (pre_row.attr('alt') == cur.attr('alt')) {
-                        pre_row.css("border-bottom", "none");
-                        cur.css("border-top", "none");
-                        cur.text("");
-                        i--;
-                        if (i - 1 <= m) {
-                            var p_pre_row = $('.row' + (i - 1) + '.col' + j);
-                            if (p_pre_row.attr('alt') == pre_row.attr('alt')) {
-                                i--;
-                                p_pre_row.css("border-bottom", "none");
-                                pre_row.css("border-top", "none");
-                                p_pre_row.text("");
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-    $(hidden_border());
 </script>
