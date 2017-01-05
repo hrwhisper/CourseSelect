@@ -15,9 +15,9 @@
               <span class="glyphicon glyphicon-hand-right">
                 <%= link_to notice.title, notice_url(notice) %>
               </span>
-              <span class="glyphicon glyphicon-calendar" style="float: right">
-                  <%= notice.created_at.strftime('%Y-%m-%d %H:%M') %>
-                </span>
+              <span class="glyphicon glyphicon-calendar" style="float: right"><%= notice.created_at.strftime('%Y-%m-%d %H:%M') %></span>
+              <span class="glyphicon glyphicon-user" style="float: right;margin-right:10px;">国科大教务部</span>
+
             </div>
             <br>
         <% end %>
