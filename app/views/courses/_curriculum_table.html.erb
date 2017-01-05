@@ -5,7 +5,7 @@
         <%=current_user.name %> <%= semester_to_season(@current_semester) %> 课程表
       </div>
       <div class="table-responsive">
-        <table class="table table-striped" id="curriculum_table">
+        <table class="table table-bordered" id="curriculum_table" style="text-align: center">
           <thead>
           <td></td>
           <td>星期一</td>
@@ -21,7 +21,7 @@
               <tr>
                 <td><%= i+1 %></td>
                 <% (0...@course_time_table[i].length).each do |j| %>
-                    <td class='row<%= i+1 %> col<%= j+1 %>'><%= @course_time_table[i][j] %></td>
+                    <td class='row<%= i+1 %> col<%= j+1 %>'><%= @course_time_table[i][j]['name'] %></td>
                 <% end %>
               </tr>
           <% end %>

@@ -4,7 +4,7 @@
       <div class="panel panel-primary table_border">
         <div class="panel-heading table_new">
           <h3 class="panel-title">
-            <%= student_logged_in?? "选修课程":"已开放的课程列表" %>
+            <%= student_logged_in? ? "选修课程" : "已开放的课程列表" %>
           </h3>
         </div>
         <div class="panel-body" style="min-height: 450px">
@@ -54,14 +54,17 @@
                 $(this).removeAttr('checked');
         });
 
+
     function parse_course_time(cur_course) {
         cur_course = cur_course.split('|');
-        var cur_time = cur_course[1];
+        var id = cur_course[0];
+        var cur_time = cur_course[2];
         var end_j = cur_time.indexOf('(');
         var col = week_data_to_num(cur_time.substring(0, end_j));
         var t = cur_time.substring(end_j + 1, cur_time.indexOf(')')).split('-');
         return {
-            'name': cur_course[0],
+            'id' : cur_course[0],
+            'name': cur_course[1],
             'start': parseInt(t[0]),
             'end': parseInt(t[1]),
             'col': col
@@ -86,9 +89,47 @@
             }
         }
         for (var row = data['start']; row <= data['end']; row++) {
-            $('.row' + row + '.col' + data['col']).text(add ? data['name'] : '');
+            var element = $('.row' + row + '.col' + data['col']);
+            element.text(add ? data['name'] : '');
+            element.addClass(data['name']);
+            if (!add) {
+                element.css("border-bottom", "1px solid #ddd");
+                element.css("border-top", "1px solid #ddd");
+                element.removeClass("aa");
+            }
         }
+        if (add)
+            hidden_border();
         return true;
     }
 
+
+    function hidden_border() {
+        var m = 11, n = 7;
+        for (var j = 1; j <= n; j++) {
+            for (var i = m; i >= 0; i--) {
+                var cur = $('.row' + i + '.col' + j);
+                if (i - 1 >= 0 && cur.text() != '') {
+                    var pre_row = $('.row' + (i - 1) + '.col' + j);
+                    if (pre_row.text() == cur.text()) {
+                        pre_row.css("border-bottom", "none");
+                        cur.css("border-top", "none");
+                        cur.text("");
+                        i--;
+                        if (i - 1 <= m) {
+                            var p_pre_row = $('.row' + (i - 1) + '.col' + j);
+                            if (p_pre_row.text() == pre_row.text()) {
+                                i--;
+                                p_pre_row.css("border-bottom", "none");
+                                pre_row.css("border-top", "none");
+                                p_pre_row.text("");
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    $(hidden_border());
 </script>

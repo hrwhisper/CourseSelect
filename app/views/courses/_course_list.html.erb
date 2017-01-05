@@ -23,7 +23,7 @@
           <tr>
             <% if student_logged_in? %>
                 <td><%= check_box_tag 'course_to_choose[]', course_to_choose.id, false, 'alt' =>
-                    course_to_choose.name + '|'+ course_to_choose.course_time %></td>
+                    course_to_choose.id.to_s + '|'+course_to_choose.name + '|'+ course_to_choose.course_time %></td>
             <% end %>
 
             <td><%= course_to_choose.course_code %></td>

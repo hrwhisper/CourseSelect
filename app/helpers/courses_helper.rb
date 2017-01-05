@@ -30,7 +30,7 @@ module CoursesHelper
 
 
   def get_course_table(courses)
-    course_time = Array.new(11) { Array.new(7, '') }
+    course_time = Array.new(11) { Array.new(7, {'name' => '', 'id' => nil}) }
     if courses
       courses.each do |cur|
         cur_time = String(cur.course_time)
@@ -38,7 +38,10 @@ module CoursesHelper
         j = week_data_to_num(cur_time[0...end_j])
         t = cur_time[end_j + 1...cur_time.index(')')].split("-")
         for i in (t[0].to_i..t[1].to_i).each
-          course_time[(i-1)*7/7][j-1] = cur.name
+          course_time[(i-1)*7/7][j-1] = {
+              'name' => cur.name,
+              'id' => cur.id
+          }
         end
       end
     end
@@ -50,7 +53,7 @@ module CoursesHelper
     to_choose_table = get_course_table(to_select_courses)
     for i in (0...current_course_table.length)
       for j in (0...current_course_table[i].length)
-        if current_course_table[i][j] != '' and to_choose_table[i][j] != ''
+        if current_course_table[i][j]['id'] != '' and to_choose_table[i][j]['id'] != ''
           return true
         end
       end
