@@ -67,14 +67,19 @@
             'name': cur_course[1],
             'start': parseInt(t[0]),
             'end': parseInt(t[1]),
-            'col': col
+            'col': col,
+            'orign_time': cur_time
         };
     }
 
     function check_course_conflict(data) {
         for (var row = data['start']; row <= data['end']; row++) {
             var cur = $('.row' + row + '.col' + data['col']);
-            if (cur.attr('alt') != '') return cur.text();
+            if (cur.attr('alt') != '' && cur.text().trim() !='')
+                return {
+                    'name': cur.text().trim(),
+                    'time': data['orign_time']
+                }
         }
         return null;
     }
@@ -84,7 +89,7 @@
         if (add) {
             var res = check_course_conflict(data);
             if (res != null) {
-                alert('你选择的' + data['name'] + ' 和' + res + '冲突');
+                alert('你选择的' + data['name'] + ' 和' + res['name'] + '冲突\n' + '时间:' + res['time']);
                 return false;
             }
         }
