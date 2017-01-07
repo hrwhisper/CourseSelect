@@ -2,6 +2,9 @@ require 'set'
 
 module CoursesHelper
   def semester_to_season(semester) # '2016-1'
+    if semester.nil?
+      return nil
+    end
     semester = semester.split('-')
     if semester[1] == '1'
       semester[1] = '秋季学期'

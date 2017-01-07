@@ -474,8 +474,6 @@ input.gn-search:focus {
 }
 
 #side_course_table {
-  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
-  //height: 100%;
   height: 483px;
   overflow: hidden;
   position: absolute;
@@ -483,6 +481,7 @@ input.gn-search:focus {
 }
 
 .sideDiv_content {
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
   height: 100%;
   left: 40px;
   position: absolute;
@@ -544,6 +543,7 @@ input.gn-search:focus {
 .table_border_blue {
   border-color: #5b6baa;
 }
+
 .table_borer_trans {
   border-color: transparent !important;
 }

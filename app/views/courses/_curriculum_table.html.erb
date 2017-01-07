@@ -69,7 +69,7 @@
 
     $(document).ready(
         function () {
-            var sideDiv_right = $("#side_course_table").width() - 40 + (document.body.clientHeight > $(window).height() ? 16 : 23);
+            var sideDiv_right = $("#side_course_table").width() - 40 + (document.body.clientHeight > $(window).height() ? 16 : 25);
             var speed = 300;
 
             $("#side_course_table").css("right", -sideDiv_right);
@@ -104,6 +104,8 @@
         }).scroll(function () {
         $("#side_course_table").css("top", window.pageYOffset + 100 + 'px');
     });
-        $(function () { $('.tooltip-show').tooltip('show');});
+    $(function () {
+        $('.tooltip-show').tooltip('show');
+    });
 
 </script>

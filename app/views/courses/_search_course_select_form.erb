@@ -2,13 +2,13 @@
   <label for="name" class="col-sm-4 control-label"><%= name %></label>
   <div class="col-sm-8">
     <select class="form-control" name="<%= submit_name %>">
-      <% if nil != @current_semester %>
+      <% submit_name == 'semester' and if nil != @current_semester %>
           <option value="<%= @current_semester %>"><%= semester_to_season(@current_semester) %></option>
       <% end %>
-      <option value=""><%= submit_name == 'semester'? '所有学期':'' %></option>
+      <option value=""><%= submit_name == 'semester' ? '所有学期' : '' %></option>
       <% info.each do |info| %>
           <% if info != @current_semester %>
-              <option value="<%= info %>"><%= semester_to_season(info) %></option>
+              <option value="<%= info %>"><%= submit_name == 'semester' ? semester_to_season(info) : info %></option>
           <% end %>
       <% end %>
     </select>
