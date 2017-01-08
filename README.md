@@ -1,7 +1,5 @@
 # CourseSelect
 
-这个系统是基于https://github.com/PENGZhaoqing/CourseSelect 的继续开发
-
 本项目已部署在heroku平台上[演示Demo戳这里](https://hrcourseselect.herokuapp.com)
 
 ### 截图
@@ -36,7 +34,7 @@
 在终端（MacOS或Linux）中执行以下代码
 
 ```
-$ git clone https://github.com/PENGZhaoqing/CourseSelect
+$ git clone https://github.com/hrwhisper/CourseSelect
 $ cd CourseSelect
 $ bundle install
 $ rake db:migrate
@@ -86,8 +84,6 @@ bundle install
 
 
 
-
-
 ##使用
 
 1.学生登陆：
@@ -110,6 +106,8 @@ bundle install
 密码：`password`
 
 账号中数字都可以替换成2,3...等等
+
+
 
 
 ## Heroku云部署
@@ -136,10 +134,6 @@ git push heroku master
 heroku run rake db:migrate
 heroku run rake db:seed
 ```
-
-
-
-
 
 
 
@@ -172,29 +166,52 @@ cucumber (全部执行)
 cucumber features/XX.feature (执行XX测试，.feature文件在features文件夹下)
 ```
 
-## 添加的功能
 
-1. ~~课表实时显示~~
-2. ~~课表功能~~
-3. ~~首页查看开放的课程（不需登录）~~
-4. ~~查看选自己课的学生学生信息~~
-5. ~~学生信息统计可视化~~
-6. ~~管理员在首页发公告~~
-7. ~~通过学期、时间等筛选课程~~
-8. ~~查看以往学期所授课程~~
-9. ~~编辑、查看课程大纲~~
-10. ~~选课时间限制~~
-11. ~~选课人数限制-~~
-12. ~~获取课程名单EXCEL表格~~
-13. ~~Excel成绩导入~~
-14. ~~课程评价~~
-15. ~~课程成绩分布可视化~~
-16. ~~每学期成绩分数统计~~
-17. ~~总分数统计~~
-18. ~~查询评估结果~~
-19. ~~通知详情页~~
-20. ~~Discuss功能~~
-21. 评估结果可视化
-22. GPA目标计算
-23. 选课方式修改
-24. 选课结果邮件通知
+
+## 原系统功能
+
+这个系统是基于https://github.com/PENGZhaoqing/CourseSelect 的继续开发
+
+- 多角色登陆（学生，老师，管理员）
+- 学生选课（不能批量），退课
+- 老师动态增加，删除课程
+- 老师对课程下的学生添加、修改成绩（不能导入、只能一个个改）
+- 权限控制：老师和学生只能看到自己相关课程信息
+
+
+
+## 本系统添加的功能
+
+1. 课程开放、关闭
+2. 课表实时显示
+3. 课表功能
+4. 首页查看开放的课程（不需登录）
+5. 查看选自己课的学生学生信息
+6. 学生信息统计可视化
+7. 管理员在首页发公告
+8. 通过学期、时间等筛选课程
+9. 查看以往学期所授课程
+10. 编辑、查看课程大纲
+11. 选课时间限制
+12. 选课人数限制
+13. 获取课程名单EXCEL表格
+14. Excel成绩导入
+15. 课程评价
+16. 课程成绩分布可视化
+17. 每学期成绩分数统计
+18. 总分数统计
+19. 查询评估结果
+20. 通知详情页
+21. Discuss功能
+22. 评估结果可视化
+
+
+
+
+
+## Future work
+
+1. 富文本编辑器
+2. GPA目标计算
+3. 选课方式修改 -积分选课
+4. 选课结果邮件通知
